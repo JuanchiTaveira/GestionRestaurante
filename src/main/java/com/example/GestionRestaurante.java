@@ -1,17 +1,16 @@
 package com.example;
 
-import com.example.config.HibernateUtil;
-import org.hibernate.SessionFactory;
-
-import java.awt.EventQueue;
+import com.example.controller.UsuarioController;
+import com.example.model.Usuario;
 
 import javax.swing.JFrame;
+import java.awt.EventQueue;
 
 public class GestionRestaurante {
 
 	private JFrame frame;
 
-	private static SessionFactory sessionFactory;
+	private UsuarioController usuarioController = new UsuarioController();
 
 	/**
 	 * Launch the application.
@@ -35,7 +34,9 @@ public class GestionRestaurante {
 	public GestionRestaurante() {
 		initialize();
 
-		sessionFactory = HibernateUtil.getSessionFactory();
+		usuarioController.insertarUsuario(new Usuario("juan123", "123456"));
+		Boolean result = usuarioController.iniciarSesion("juan123", "123456");
+		System.out.println(result);
 	}
 
 	/**
