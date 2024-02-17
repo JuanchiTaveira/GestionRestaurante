@@ -1,5 +1,8 @@
 package com.example;
 
+import com.example.config.HibernateUtil;
+import org.hibernate.SessionFactory;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +10,8 @@ import javax.swing.JFrame;
 public class GestionRestaurante {
 
 	private JFrame frame;
+
+	private static SessionFactory sessionFactory;
 
 	/**
 	 * Launch the application.
@@ -29,6 +34,8 @@ public class GestionRestaurante {
 	 */
 	public GestionRestaurante() {
 		initialize();
+
+		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
 	/**
