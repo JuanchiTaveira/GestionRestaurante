@@ -1,6 +1,8 @@
 package com.example;
 
+import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
+import com.example.model.Reserva;
 import com.example.model.Usuario;
 
 import javax.swing.JFrame;
@@ -11,6 +13,8 @@ public class GestionRestaurante {
 	private JFrame frame;
 
 	private UsuarioController usuarioController = new UsuarioController();
+
+	private ReservaController reservaController = new ReservaController();
 
 	/**
 	 * Launch the application.
@@ -34,9 +38,14 @@ public class GestionRestaurante {
 	public GestionRestaurante() {
 		initialize();
 
+		// testeando que funcione Usuario y Reserva
 		usuarioController.insertarUsuario(new Usuario("juan123", "123456"));
 		Boolean result = usuarioController.iniciarSesion("juan123", "123456");
 		System.out.println(result);
+
+		reservaController.insertarReserva(new Reserva("juan", 1, Reserva.Horario.ALMUERZO));
+		reservaController.getAllReservas().forEach(System.out::println);
+
 	}
 
 	/**
