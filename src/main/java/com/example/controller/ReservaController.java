@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ReservaController {
 
-    private static SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public ReservaController() {
         sessionFactory = HibernateUtil.getSessionFactory();

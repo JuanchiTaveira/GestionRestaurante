@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UsuarioController {
 
-    private static SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public UsuarioController() {
         sessionFactory = HibernateUtil.getSessionFactory();
@@ -24,12 +24,16 @@ public class UsuarioController {
 
     public Usuario getUsuario(String usuario, String password) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password", Usuario.class)
+            Usuario usuarioEncontrado = session.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password", Usuario.class)
                     .setParameter("usuario", usuario)
                     .setParameter("password", password)
                     .getSingleResult();
+
+            System.out.println("Sesion iniciada correctamente.");
+
+            return usuarioEncontrado;
         } catch (NoResultException e) {
-            System.err.println("ERROR: Usuario o contraseña incorrecto.");
+            System.err.println("ERROR: Usuario o contraseña incorrectos.");
             return null;
         }
     }
