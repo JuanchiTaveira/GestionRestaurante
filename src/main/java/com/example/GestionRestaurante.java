@@ -12,9 +12,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
 
 public class GestionRestaurante extends JFrame implements ActionListener {
 
@@ -27,7 +34,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	private JLabel labelPassword;
 	private JLabel labelUsuario;
 	private JButton btnIniciarSesion;
-	private JLabel lblNewLabel;
+	private JLabel labelTitulo;
 
 
 	/**
@@ -61,13 +68,18 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	 * Initialize the contents of the 
 	 */
 	private void initialize() {
-		setTitle("Gestión de Restaurante");
+		setTitle("JAJ - Gestión de Restaurante");
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
 		Container mainContainer = getContentPane(); // contendor principal
 		mainContainer.setLayout(new BorderLayout());
+
+		labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
+		labelTitulo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 18));
+		labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		mainContainer.add(labelTitulo, BorderLayout.NORTH);
 
 		centerPanel = new JPanel(new GridBagLayout()); // contenedor central
 
