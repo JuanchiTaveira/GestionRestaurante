@@ -12,24 +12,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class GestionRestaurante extends JFrame implements ActionListener {
 
 	private final UsuarioController usuarioController = new UsuarioController();
 	private final ReservaController reservaController = new ReservaController();
 
-	private JPanel contentPane;
+	private JPanel centerPanel;
 	private JTextField tfUsuario;
 	private JPasswordField tfPassword;
 	private JLabel labelPassword;
 	private JLabel labelUsuario;
 	private JButton btnIniciarSesion;
+	private JLabel lblNewLabel;
 
 
 	/**
@@ -68,8 +66,10 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
-		contentPane = new JPanel(new GridBagLayout());
-		setContentPane(contentPane);
+		Container mainContainer = getContentPane(); // contendor principal
+		mainContainer.setLayout(new BorderLayout());
+
+		centerPanel = new JPanel(new GridBagLayout()); // contenedor central
 
 		GridBagConstraints gbc;
 		Insets insets = new Insets(5, 5, 5, 5); // padding
@@ -78,37 +78,39 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
 		gbc.gridx = 0;
-		gbc.gridy = 0;
-		contentPane.add(labelUsuario, gbc);
+		gbc.gridy = 1;
+		centerPanel.add(labelUsuario, gbc);
 
 		tfUsuario = new JTextField(15);
 		gbc = new GridBagConstraints();
-		gbc.insets = insets;
+		gbc.insets = new Insets(5, 5, 5, 0);
 		gbc.gridx = 1;
-		gbc.gridy = 0;
-		contentPane.add(tfUsuario, gbc);
+		gbc.gridy = 1;
+		centerPanel.add(tfUsuario, gbc);
 
 		labelPassword = new JLabel("Contraseña");
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
 		gbc.gridx = 0;
-		gbc.gridy = 1;
-		contentPane.add(labelPassword, gbc);
+		gbc.gridy = 2;
+		centerPanel.add(labelPassword, gbc);
 
 		tfPassword = new JPasswordField(15);
 		gbc = new GridBagConstraints();
-		gbc.insets = insets;
+		gbc.insets = new Insets(5, 5, 5, 0);
 		gbc.gridx = 1;
-		gbc.gridy = 1;
-		contentPane.add(tfPassword, gbc);
+		gbc.gridy = 2;
+		centerPanel.add(tfPassword, gbc);
 
 		btnIniciarSesion = new JButton("Iniciar sesión");
 		gbc = new GridBagConstraints();
-		gbc.insets = insets;
+		gbc.insets = new Insets(5, 5, 0, 0);
 		gbc.gridx = 1;
-		gbc.gridy = 2;
-		contentPane.add(btnIniciarSesion, gbc);
+		gbc.gridy = 3;
+		centerPanel.add(btnIniciarSesion, gbc);
 		btnIniciarSesion.addActionListener(this);
+
+		mainContainer.add(centerPanel, BorderLayout.CENTER); // agrego el contenedor central al contenedor principal
 	}
 
 	@Override
