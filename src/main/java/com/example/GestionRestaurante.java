@@ -15,11 +15,14 @@ import javax.swing.JTextField;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class GestionRestaurante extends JFrame implements ActionListener {
 
-	private UsuarioController usuarioController = new UsuarioController();
-	private ReservaController reservaController = new ReservaController();
+	private final UsuarioController usuarioController = new UsuarioController();
+	private final ReservaController reservaController = new ReservaController();
 
 	private JPanel contentPane;
 	private JTextField tfUsuario;
@@ -60,41 +63,62 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	 * Initialize the contents of the 
 	 */
 	private void initialize() {
-		setBounds(100, 100, 703, 485);
+		setTitle("Gestión de Restaurante");
+		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		contentPane = new JPanel();
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		tfUsuario = new JTextField();
-		tfUsuario.setBounds(262, 147, 165, 20);
-		tfUsuario.setColumns(10);
-		contentPane.add(tfUsuario);
+		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
-		tfPassword = new JPasswordField();
-		tfPassword.setBounds(262, 206, 165, 20);
-		tfPassword.setColumns(10);
-		contentPane.add(tfPassword);
+		contentPane = new JPanel(new GridBagLayout());
+		setContentPane(contentPane);
+
+		GridBagConstraints gbc;
+		Insets insets = new Insets(5, 5, 5, 5); // padding
 
 		labelUsuario = new JLabel("Usuario");
-		labelUsuario.setBounds(160, 150, 75, 14);
-		contentPane.add(labelUsuario);
-		
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		contentPane.add(labelUsuario, gbc);
+
+		tfUsuario = new JTextField(15);
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		contentPane.add(tfUsuario, gbc);
+
 		labelPassword = new JLabel("Contraseña");
-		labelPassword.setBounds(160, 209, 75, 14);
-		contentPane.add(labelPassword);
-		
-		btnIniciarSesion = new JButton("Iniciar sesion");
-		btnIniciarSesion.setBounds(160, 265, 119, 23);
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		contentPane.add(labelPassword, gbc);
+
+		tfPassword = new JPasswordField(15);
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		contentPane.add(tfPassword, gbc);
+
+		btnIniciarSesion = new JButton("Iniciar sesión");
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		contentPane.add(btnIniciarSesion, gbc);
 		btnIniciarSesion.addActionListener(this);
-		contentPane.add(btnIniciarSesion);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnIniciarSesion)) {
-			System.out.println("Cargando siguiente pantalla...");
-			JOptionPane.showMessageDialog(contentPane, "Iniciando sesion...");
+			if (usuarioController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
+				JOptionPane.showMessageDialog(this, "Iniciando sesión...");
+			} else {
+				JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+			}
 		}
 	}
 }

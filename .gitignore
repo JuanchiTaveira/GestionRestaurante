@@ -39,3 +39,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
+/jgoodies-forms-1.8.0.jar
