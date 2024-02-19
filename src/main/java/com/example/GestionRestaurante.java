@@ -5,22 +5,29 @@ import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
 import com.example.model.Usuario;
 
-import javax.swing.JFrame;
-import java.awt.EventQueue;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GestionRestaurante {
+public class GestionRestaurante extends JFrame implements ActionListener {
 
 	private UsuarioController usuarioController = new UsuarioController();
 	private ReservaController reservaController = new ReservaController();
 
-	private JFrame frame;
+	private JPanel contentPane;
 	private JTextField tfUsuario;
 	private JPasswordField tfPassword;
 	private JLabel labelPassword;
+	private JLabel labelUsuario;
+	private JButton btnIniciarSesion;
+
 
 	/**
 	 * Launch the application.
@@ -30,7 +37,7 @@ public class GestionRestaurante {
 			public void run() {
 				try {
 					GestionRestaurante window = new GestionRestaurante();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,8 +49,7 @@ public class GestionRestaurante {
 	 * Create the application.
 	 */
 	public GestionRestaurante() {
-		// testeando que funcione Usuario y Reserva
-		usuarioController.insertarUsuario(new Usuario("juan123", "123456"));
+		usuarioController.insertarUsuario(new Usuario("juan", "juan"));
 		reservaController.insertarReserva(new Reserva("juan", 1, Reserva.Horario.ALMUERZO));
 
 		initialize();
@@ -51,39 +57,44 @@ public class GestionRestaurante {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the 
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 703, 485);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setBounds(100, 100, 703, 485);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		tfUsuario = new JTextField();
 		tfUsuario.setBounds(262, 147, 165, 20);
-		frame.getContentPane().add(tfUsuario);
 		tfUsuario.setColumns(10);
-		
+		contentPane.add(tfUsuario);
+
 		tfPassword = new JPasswordField();
 		tfPassword.setBounds(262, 206, 165, 20);
-		frame.getContentPane().add(tfPassword);
 		tfPassword.setColumns(10);
-		
-		JLabel labelUsuario = new JLabel("Usuario");
+		contentPane.add(tfPassword);
+
+		labelUsuario = new JLabel("Usuario");
 		labelUsuario.setBounds(160, 150, 75, 14);
-		frame.getContentPane().add(labelUsuario);
+		contentPane.add(labelUsuario);
 		
 		labelPassword = new JLabel("Contraseña");
 		labelPassword.setBounds(160, 209, 75, 14);
-		frame.getContentPane().add(labelPassword);
+		contentPane.add(labelPassword);
 		
-		JButton btnIniciarSesion = new JButton("Iniciar sesion");
-		btnIniciarSesion.addActionListener(e -> {
-			if (usuarioController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
-				System.out.println("Cargando siguiente pantalla...");
-			}
-        });
+		btnIniciarSesion = new JButton("Iniciar sesion");
 		btnIniciarSesion.setBounds(160, 265, 119, 23);
-		frame.getContentPane().add(btnIniciarSesion);
+		btnIniciarSesion.addActionListener(this);
+		contentPane.add(btnIniciarSesion);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(btnIniciarSesion)) {
+			System.out.println("Cargando siguiente pantalla...");
+			JOptionPane.showMessageDialog(contentPane, "Iniciando sesion...");
+		}
 	}
 }
