@@ -5,6 +5,8 @@ target/
 
 ### IntelliJ IDEA ###
 /.idea/*.xml
+/.idea/sonarlint/securityhotspotstore/
+
 .idea/sonarlint/
 .idea/modules.xml
 .idea/jarRepositories.xml
