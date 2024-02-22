@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -30,18 +32,26 @@ public class Reserva {
     @Column(name = "nombre_reserva")
     private String nombreReserva;
 
-    private Integer mesa;
+    @Column(name = "numero_mesa")
+    private Integer numeroMesa;
+
+    private LocalDate dia;
 
     @Enumerated(EnumType.STRING)
     private Horario horario;
+
+    @Column(name = "numero_personas")
+    private Integer numeroPersonas;
 
     public enum Horario {
         ALMUERZO, CENA
     }
 
-    public Reserva(String nombreReserva, Integer mesa, Horario horario) {
+    public Reserva(String nombreReserva, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas) {
         this.nombreReserva = nombreReserva;
-        this.mesa = mesa;
+        this.numeroMesa = numeroMesa;
+        this.dia = dia;
         this.horario = horario;
+        this.numeroPersonas = numeroPersonas;
     }
 }

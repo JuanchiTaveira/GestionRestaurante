@@ -21,6 +21,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import javax.swing.SwingConstants;
 
 public class GestionRestaurante extends JFrame implements ActionListener {
@@ -58,7 +59,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	 */
 	public GestionRestaurante() {
 		usuarioController.insertarUsuario(new Usuario("juan", "juan"));
-		reservaController.insertarReserva(new Reserva("juan", 1, Reserva.Horario.ALMUERZO));
+		reservaController.insertarReserva(new Reserva("juan", 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
 
 		initialize();
 
