@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class GestionRestaurante extends JFrame implements ActionListener {
 
@@ -36,6 +38,14 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	private JLabel labelUsuario;
 	private JButton btnIniciarSesion;
 	private JLabel labelTitulo;
+	private JLabel lblIconoUsuario;
+	private JLabel lblIconoCandando;
+	private GridBagConstraints gbc_1;
+	private JLabel lblLogo;
+	private GridBagConstraints gbc_2;
+	private GridBagConstraints gbc_3;
+	private JLabel labelLogoPie;
+	private JButton btnRegistrarse;
 
 
 	/**
@@ -58,6 +68,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	 * Create the application.
 	 */
 	public GestionRestaurante() {
+		getContentPane().setBackground(new Color(245, 210, 10));
 		usuarioController.insertarUsuario(new Usuario("juan", "juan"));
 		reservaController.insertarReserva(new Reserva("juan", 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
 
@@ -83,47 +94,103 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 		mainContainer.add(labelTitulo, BorderLayout.NORTH);
 
 		centerPanel = new JPanel(new GridBagLayout()); // contenedor central
+		centerPanel.setBackground(new Color(245, 210, 10));
 
 		GridBagConstraints gbc;
-		Insets insets = new Insets(5, 5, 5, 5); // padding
+		Insets insets = new Insets(5, 5, 5, 5);
+		
+		lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/logo-no-background (1).png")));
+		GridBagConstraints gbc_lblLogo = new GridBagConstraints();
+		gbc_lblLogo.gridheight = 2;
+		gbc_lblLogo.anchor = GridBagConstraints.EAST;
+		gbc_lblLogo.gridwidth = 6;
+		gbc_lblLogo.insets = new Insets(0, 0, 5, 0);
+		gbc_lblLogo.gridx = 0;
+		gbc_lblLogo.gridy = 0;
+		centerPanel.add(lblLogo, gbc_lblLogo);
+		
+		lblIconoUsuario = new JLabel("");
+		lblIconoUsuario.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/usuario.png")));
+		GridBagConstraints gbc_lblIconoUsuario = new GridBagConstraints();
+		gbc_lblIconoUsuario.gridwidth = 2;
+		gbc_lblIconoUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblIconoUsuario.gridx = 0;
+		gbc_lblIconoUsuario.gridy = 2;
+		centerPanel.add(lblIconoUsuario, gbc_lblIconoUsuario);
 
 		labelUsuario = new JLabel("Usuario");
 		gbc = new GridBagConstraints();
+		gbc.gridwidth = 2;
 		gbc.insets = insets;
-		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridx = 2;
+		gbc.gridy = 2;
 		centerPanel.add(labelUsuario, gbc);
 
 		tfUsuario = new JTextField(15);
-		gbc = new GridBagConstraints();
-		gbc.insets = new Insets(5, 5, 5, 0);
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		centerPanel.add(tfUsuario, gbc);
+		gbc_2 = new GridBagConstraints();
+		gbc_2.gridwidth = 2;
+		gbc_2.insets = new Insets(5, 5, 5, 0);
+		gbc_2.gridx = 4;
+		gbc_2.gridy = 2;
+		centerPanel.add(tfUsuario, gbc_2);
+		
+		lblIconoCandando = new JLabel("");
+		lblIconoCandando.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/candado.png")));
+		GridBagConstraints gbc_lblIconoCandando = new GridBagConstraints();
+		gbc_lblIconoCandando.gridwidth = 2;
+		gbc_lblIconoCandando.insets = new Insets(0, 0, 5, 5);
+		gbc_lblIconoCandando.gridx = 0;
+		gbc_lblIconoCandando.gridy = 3;
+		centerPanel.add(lblIconoCandando, gbc_lblIconoCandando);
 
 		labelPassword = new JLabel("Contraseña");
-		gbc = new GridBagConstraints();
-		gbc.insets = insets;
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		centerPanel.add(labelPassword, gbc);
+		gbc_1 = new GridBagConstraints();
+		gbc_1.gridwidth = 2;
+		gbc_1.insets = insets;
+		gbc_1.gridx = 2;
+		gbc_1.gridy = 3;
+		centerPanel.add(labelPassword, gbc_1);
 
 		tfPassword = new JPasswordField(15);
-		gbc = new GridBagConstraints();
-		gbc.insets = new Insets(5, 5, 5, 0);
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		centerPanel.add(tfPassword, gbc);
+		gbc_3 = new GridBagConstraints();
+		gbc_3.gridwidth = 2;
+		gbc_3.insets = new Insets(5, 5, 5, 0);
+		gbc_3.gridx = 4;
+		gbc_3.gridy = 3;
+		centerPanel.add(tfPassword, gbc_3);
+		
+		btnRegistrarse = new JButton(" Registrarse ");
+		GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
+		gbc_btnRegistrarse.anchor = GridBagConstraints.SOUTH;
+		gbc_btnRegistrarse.gridwidth = 3;
+		gbc_btnRegistrarse.insets = new Insets(0, 0, 0, 5);
+		gbc_btnRegistrarse.gridx = 1;
+		gbc_btnRegistrarse.gridy = 4;
+		centerPanel.add(btnRegistrarse, gbc_btnRegistrarse);
 
 		btnIniciarSesion = new JButton("Iniciar sesión");
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 0, 0);
-		gbc.gridx = 1;
-		gbc.gridy = 3;
+		gbc.gridx = 5;
+		gbc.gridy = 4;
 		centerPanel.add(btnIniciarSesion, gbc);
 		btnIniciarSesion.addActionListener(this);
+		
+		labelLogoPie = new JLabel("");
+		labelLogoPie.setBackground(new Color(245, 210, 10));
+		labelLogoPie.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/logopie2 (2).png")));
+		labelLogoPie.setHorizontalAlignment(SwingConstants.CENTER);
+		labelLogoPie.setFont(new Font("Yu Gothic UI", Font.PLAIN, 18));
+		getContentPane().add(labelLogoPie, BorderLayout.SOUTH);
 
-		mainContainer.add(centerPanel, BorderLayout.CENTER); // agrego el contenedor central al contenedor principal
+		mainContainer.add(centerPanel, BorderLayout.CENTER);
+		GridBagConstraints gbc_lblLogopie = new GridBagConstraints();
+		gbc_lblLogo.gridwidth = 5;
+		gbc_lblLogo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLogo.gridx = 0;
+		gbc_lblLogo.gridy = 0;
+		centerPanel.add(lblLogo, gbc_lblLogo);
 	}
 
 	@Override
@@ -134,6 +201,9 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
 			}
+		}if (e.getSource().equals(btnRegistrarse)) {
+			JOptionPane.showMessageDialog(this, "Entrando a pagina de registro");
 		}
 	}
+
 }
