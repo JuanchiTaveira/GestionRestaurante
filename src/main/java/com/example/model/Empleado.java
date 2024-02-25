@@ -18,7 +18,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "Usuarios")
-public class Usuario implements Serializable {
+public class Empleado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
 
     private String password;
 
-    public Usuario(String usuario, String password) {
+    public Empleado(String usuario, String password) {
         this.usuario = usuario;
         this.password = password;
     }

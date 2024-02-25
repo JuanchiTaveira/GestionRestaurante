@@ -1,9 +1,9 @@
 package com.example;
 
 import com.example.controller.ReservaController;
-import com.example.controller.UsuarioController;
+import com.example.controller.EmpleadoController;
 import com.example.model.Reserva;
-import com.example.model.Usuario;
+import com.example.model.Empleado;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 
 public class GestionRestaurante extends JFrame implements ActionListener {
 
-	private final UsuarioController usuarioController = new UsuarioController();
+	private final EmpleadoController empleadoController = new EmpleadoController();
 	private final ReservaController reservaController = new ReservaController();
 
 	private JPanel centerPanel;
@@ -42,23 +42,21 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GestionRestaurante window = new GestionRestaurante();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+            try {
+                GestionRestaurante window = new GestionRestaurante();
+                window.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public GestionRestaurante() {
-		usuarioController.insertarUsuario(new Usuario("juan", "juan"));
+		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
 		reservaController.insertarReserva(new Reserva("juan", 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
 
 		initialize();
@@ -129,7 +127,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnIniciarSesion)) {
-			if (usuarioController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
+			if (empleadoController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
 				JOptionPane.showMessageDialog(this, "Iniciando sesión...");
 			} else {
 				JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");

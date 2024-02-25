@@ -18,7 +18,7 @@
 <!--        <property name="hibernate.format_sql">true</property>-->
 
         <!-- Clases mapeadas-->
-        <mapping class="com.example.model.Usuario"/>
+        <mapping class="com.example.model.Empleado"/>
         <mapping class="com.example.model.Reserva"/>
 
     </session-factory>

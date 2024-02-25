@@ -1,66 +1,66 @@
 package com.example.controller;
 
 import com.example.config.HibernateUtil;
-import com.example.model.Usuario;
+import com.example.model.Empleado;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class UsuarioController {
+public class EmpleadoController {
 
     private final SessionFactory sessionFactory;
 
-    public UsuarioController() {
+    public EmpleadoController() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     public Boolean iniciarSesion(String usuario, String password) {
-        Usuario result = getUsuario(usuario, password);
+        Empleado result = getEmpleado(usuario, password);
 
         return result != null;
     }
 
-    public Usuario getUsuario(String usuario, String password) {
+    public Empleado getEmpleado(String usuario, String password) {
         try (Session session = sessionFactory.openSession()) {
-            Usuario usuarioEncontrado = session.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password", Usuario.class)
+            Empleado empleadoEncontrado = session.createQuery("SELECT u FROM Empleado u WHERE u.usuario = :usuario AND u.password = :password", Empleado.class)
                     .setParameter("usuario", usuario)
                     .setParameter("password", password)
                     .getSingleResult();
 
             System.out.println("Sesion iniciada correctamente.");
 
-            return usuarioEncontrado;
+            return empleadoEncontrado;
         } catch (NoResultException e) {
             System.err.println("ERROR: Usuario o contraseña incorrectos.");
             return null;
         }
     }
 
-    public List<Usuario> getAllUsuarios() {
+    public List<Empleado> getAllEmpleados() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT u FROM Usuario u", Usuario.class)
+            return session.createQuery("SELECT u FROM Empleado u", Empleado.class)
                     .getResultList();
         }
     }
 
-    public void insertarUsuario(Usuario usuario) {
+    public void insertarEmpleado(Empleado empleado) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.persist(usuario);
+            session.persist(empleado);
             session.getTransaction().commit();
-            System.out.println("Usuario registrado");
+            System.out.println("Empleado registrado");
         }
     }
 
-    public void eliminarUsuario(Integer id) {
+    public void eliminarEmpleado(Integer id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Usuario u WHERE u.id = :id", Usuario.class)
+            session.createQuery("DELETE FROM Empleado u WHERE u.id = :id", Empleado.class)
                     .setParameter("id", id);
             session.getTransaction().commit();
-            System.out.println("Usuario eliminado con id: " + id);
+            System.out.println("Empleado eliminado con id: " + id);
         }
     }
 
