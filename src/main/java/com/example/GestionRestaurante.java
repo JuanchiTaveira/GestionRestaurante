@@ -4,6 +4,7 @@ import com.example.controller.ReservaController;
 import com.example.controller.EmpleadoController;
 import com.example.model.Reserva;
 import com.example.model.Empleado;
+import com.example.model.UsuarioReserva;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -57,7 +58,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	 */
 	public GestionRestaurante() {
 		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
-		reservaController.insertarReserva(new Reserva("juan", 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
+		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
 
 		initialize();
 

@@ -29,8 +29,8 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nombre_reserva")
-    private String nombreReserva;
+    @Column(name = "usuario_reserva")
+    private UsuarioReserva usuarioReserva;
 
     @Column(name = "numero_mesa")
     private Integer numeroMesa;
@@ -47,8 +47,8 @@ public class Reserva {
         ALMUERZO, CENA
     }
 
-    public Reserva(String nombreReserva, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas) {
-        this.nombreReserva = nombreReserva;
+    public Reserva(UsuarioReserva usuarioReserva, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas) {
+        this.usuarioReserva = usuarioReserva;
         this.numeroMesa = numeroMesa;
         this.dia = dia;
         this.horario = horario;

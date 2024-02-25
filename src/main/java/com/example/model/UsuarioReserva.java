@@ -17,19 +17,25 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "Empleados")
-public class Empleado implements Serializable {
+@Table(name = "Usuarios")
+public class UsuarioReserva implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String usuario;
+    private String nombre;
 
-    private String password;
+    private String apellido;
 
-    public Empleado(String usuario, String password) {
-        this.usuario = usuario;
-        this.password = password;
+    private String telefono;
+
+    private String correo;
+
+    public UsuarioReserva(String nombre, String apellido, String telefono, String correo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.correo = correo;
     }
 }
