@@ -4,6 +4,8 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+/.idea/*.xml
+.idea/sonarlint/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -36,3 +38,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+/jgoodies-forms-1.8.0.jar
+/.gitignore
+/.idea/
+/pom.xml
+/src/

@@ -16,6 +16,8 @@ public class UsuarioController {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
+
+
     public Boolean iniciarSesion(String usuario, String password) {
         Usuario result = getUsuario(usuario, password);
 
@@ -25,8 +27,8 @@ public class UsuarioController {
     public Usuario getUsuario(String usuario, String password) {
         try (Session session = sessionFactory.openSession()) {
             Usuario usuarioEncontrado = session.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password", Usuario.class)
-                    .setParameter("usuario", usuario)
-                    .setParameter("password", password)
+                    .setParameter("root", usuario)
+                    .setParameter("root", password)
                     .getSingleResult();
 
             System.out.println("Sesion iniciada correctamente.");
