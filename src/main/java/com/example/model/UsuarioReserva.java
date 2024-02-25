@@ -1,9 +1,11 @@
 package com.example.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,13 +13,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "Usuarios_Reserva")
 public class UsuarioReserva implements Serializable {
 
     @Id
@@ -31,6 +34,9 @@ public class UsuarioReserva implements Serializable {
     private String telefono;
 
     private String correo;
+
+    @OneToMany(mappedBy = "usuarioReserva", cascade = CascadeType.ALL)
+    private List<Reserva> reservas;
 
     public UsuarioReserva(String nombre, String apellido, String telefono, String correo) {
         this.nombre = nombre;

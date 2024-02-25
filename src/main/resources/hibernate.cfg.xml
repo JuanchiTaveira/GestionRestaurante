@@ -20,6 +20,7 @@
         <!-- Clases mapeadas-->
         <mapping class="com.example.model.Empleado"/>
         <mapping class="com.example.model.Reserva"/>
+        <mapping class="com.example.model.UsuarioReserva"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -1,5 +1,6 @@
 package com.example.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -23,13 +27,14 @@ import java.time.LocalDate;
 @ToString
 @Entity
 @Table(name = "Reservas")
-public class Reserva {
+public class Reserva implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "usuario_reserva")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_reserva_id") // nombre de la columna en la tabla Reservas que contendrá el ID del usuario de la reserva
     private UsuarioReserva usuarioReserva;
 
     @Column(name = "numero_mesa")
