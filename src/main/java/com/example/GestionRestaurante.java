@@ -44,8 +44,8 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 	private JLabel lblLogo;
 	private GridBagConstraints gbc_2;
 	private GridBagConstraints gbc_3;
-	private JLabel labelLogoPie;
 	private JButton btnRegistrarse;
+	private JLabel lblLogopie;
 
 
 	/**
@@ -100,7 +100,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 		Insets insets = new Insets(5, 5, 5, 5);
 		
 		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/logo-no-background (1).png")));
+		lblLogo.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/logosinfondo.png")));
 		GridBagConstraints gbc_lblLogo = new GridBagConstraints();
 		gbc_lblLogo.gridheight = 2;
 		gbc_lblLogo.anchor = GridBagConstraints.EAST;
@@ -177,12 +177,9 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 		centerPanel.add(btnIniciarSesion, gbc);
 		btnIniciarSesion.addActionListener(this);
 		
-		labelLogoPie = new JLabel("");
-		labelLogoPie.setBackground(new Color(245, 210, 10));
-		labelLogoPie.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/logopie2 (2).png")));
-		labelLogoPie.setHorizontalAlignment(SwingConstants.CENTER);
-		labelLogoPie.setFont(new Font("Yu Gothic UI", Font.PLAIN, 18));
-		getContentPane().add(labelLogoPie, BorderLayout.SOUTH);
+		lblLogopie = new JLabel("");
+		lblLogopie.setIcon(new ImageIcon(GestionRestaurante.class.getResource("/imagenes/logopie2.png")));
+		getContentPane().add(lblLogopie, BorderLayout.SOUTH);
 
 		mainContainer.add(centerPanel, BorderLayout.CENTER);
 		GridBagConstraints gbc_lblLogopie = new GridBagConstraints();
