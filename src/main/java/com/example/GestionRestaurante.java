@@ -5,6 +5,7 @@ import com.example.controller.EmpleadoController;
 import com.example.model.Reserva;
 import com.example.model.Empleado;
 import com.example.model.UsuarioReserva;
+import com.example.views.LoginPanel;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,19 +26,10 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import javax.swing.SwingConstants;
 
-public class GestionRestaurante extends JFrame implements ActionListener {
+public class GestionRestaurante extends JFrame {
 
 	private final EmpleadoController empleadoController = new EmpleadoController();
 	private final ReservaController reservaController = new ReservaController();
-
-	private JPanel centerPanel;
-	private JTextField tfUsuario;
-	private JPasswordField tfPassword;
-	private JLabel labelPassword;
-	private JLabel labelUsuario;
-	private JButton btnIniciarSesion;
-	private JLabel labelTitulo;
-
 
 	/**
 	 * Launch the application.
@@ -73,66 +65,7 @@ public class GestionRestaurante extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
-		Container mainContainer = getContentPane(); // contendor principal
-		mainContainer.setLayout(new BorderLayout());
-
-		labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
-		labelTitulo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 18));
-		labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		mainContainer.add(labelTitulo, BorderLayout.NORTH);
-
-		centerPanel = new JPanel(new GridBagLayout()); // contenedor central
-
-		GridBagConstraints gbc;
-		Insets insets = new Insets(5, 5, 5, 5); // padding
-
-		labelUsuario = new JLabel("Usuario");
-		gbc = new GridBagConstraints();
-		gbc.insets = insets;
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		centerPanel.add(labelUsuario, gbc);
-
-		tfUsuario = new JTextField(15);
-		gbc = new GridBagConstraints();
-		gbc.insets = new Insets(5, 5, 5, 0);
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		centerPanel.add(tfUsuario, gbc);
-
-		labelPassword = new JLabel("Contraseña");
-		gbc = new GridBagConstraints();
-		gbc.insets = insets;
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		centerPanel.add(labelPassword, gbc);
-
-		tfPassword = new JPasswordField(15);
-		gbc = new GridBagConstraints();
-		gbc.insets = new Insets(5, 5, 5, 0);
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		centerPanel.add(tfPassword, gbc);
-
-		btnIniciarSesion = new JButton("Iniciar sesión");
-		gbc = new GridBagConstraints();
-		gbc.insets = new Insets(5, 5, 0, 0);
-		gbc.gridx = 1;
-		gbc.gridy = 3;
-		centerPanel.add(btnIniciarSesion, gbc);
-		btnIniciarSesion.addActionListener(this);
-
-		mainContainer.add(centerPanel, BorderLayout.CENTER); // agrego el contenedor central al contenedor principal
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(btnIniciarSesion)) {
-			if (empleadoController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
-				JOptionPane.showMessageDialog(this, "Iniciando sesión...");
-			} else {
-				JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
-			}
-		}
+		LoginPanel loginPanel = new LoginPanel();
+		add(loginPanel, BorderLayout.CENTER);
 	}
 }
