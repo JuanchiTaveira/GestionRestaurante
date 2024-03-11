@@ -1,5 +1,6 @@
 package com.example.views;
 
+import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 
 import javax.swing.*;
@@ -8,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel implements ActionListener {
+
+    private GestionRestaurante gestionRestaurante;
 
     private final EmpleadoController empleadoController = new EmpleadoController();
 
@@ -18,7 +21,9 @@ public class LoginPanel extends JPanel implements ActionListener {
     private JButton btnIniciarSesion;
     private JLabel labelTitulo;
 
-    public LoginPanel() {
+    public LoginPanel(GestionRestaurante gestionRestaurante) {
+        this.gestionRestaurante = gestionRestaurante;
+
         setLayout(new BorderLayout());
 
         labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
@@ -74,7 +79,8 @@ public class LoginPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(btnIniciarSesion)) {
             if (empleadoController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
-                JOptionPane.showMessageDialog(this, "Iniciando sesión...");
+                this.setVisible(false);
+                MainMenu mainMenu = new MainMenu(gestionRestaurante);
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
             }
