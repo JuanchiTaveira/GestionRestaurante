@@ -5,6 +5,7 @@ import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
 import com.example.model.UsuarioReserva;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -17,13 +18,16 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.time.LocalDate;
+import javax.swing.JComboBox;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 public class EditDialog extends JDialog {
-    private JTextField tfNumeroMesa, tfDia, tfHorario, tfNumeroPersonas;
+    private JTextField tfNumeroMesa, tfDia, tfNumeroPersonas;
     private JLabel labelId, labelUsuarioReserva;
     private final ReservaController reservaController = new ReservaController();
     private final UsuarioController usuarioController = new UsuarioController();
     private boolean save;
+    private JComboBox horarioComboBox;
 
     public EditDialog(String id, String usuarioReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
         setTitle("Editar Reserva");
@@ -38,8 +42,6 @@ public class EditDialog extends JDialog {
         tfNumeroMesa.setHorizontalAlignment(SwingConstants.CENTER);
         tfDia = new JTextField(dia);
         tfDia.setHorizontalAlignment(SwingConstants.CENTER);
-        tfHorario = new JTextField(horario);
-        tfHorario.setHorizontalAlignment(SwingConstants.CENTER);
         tfNumeroPersonas = new JTextField(numeroPersonas);
         tfNumeroPersonas.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -59,7 +61,7 @@ public class EditDialog extends JDialog {
                         .usuarioReserva(usuario)
                         .numeroMesa(Integer.valueOf(tfNumeroMesa.getText()))
                         .dia(LocalDate.parse(tfDia.getText()))
-                        .horario(Reserva.Horario.valueOf(tfHorario.getText()))
+                        .horario(Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString()))
                         .numeroPersonas(Integer.valueOf(tfNumeroPersonas.getText()))
                         .build();
 
@@ -103,7 +105,14 @@ public class EditDialog extends JDialog {
         formPanel.add(new JLabel("Dia:"));
         formPanel.add(tfDia);
         formPanel.add(new JLabel("Horario:"));
-        formPanel.add(tfHorario);
+        
+        horarioComboBox = new JComboBox();
+        horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
+        BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
+        basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        horarioComboBox.setRenderer(basicComboBoxRenderer);
+        formPanel.add(horarioComboBox);
+
         formPanel.add(new JLabel("Cantidad Personas:"));
         formPanel.add(tfNumeroPersonas);
 
@@ -132,8 +141,8 @@ public class EditDialog extends JDialog {
         return tfDia.getText();
     }
 
-    public String getTfHorario() {
-        return tfHorario.getText();
+    public String getHorario() {
+        return horarioComboBox.getSelectedItem().toString();
     }
 
     public String getTfNumeroPersonas() {
