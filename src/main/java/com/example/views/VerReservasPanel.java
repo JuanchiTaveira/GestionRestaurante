@@ -120,6 +120,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
             InsertDialog dialog = new InsertDialog();
             dialog.setLocationRelativeTo(null);
             dialog.setVisible(true);
+
+            if (dialog.isSave()) {
+                tableModel.addRow(reservaToTableModel(dialog.getNuevaReserva()));
+            }
         }
     }
 

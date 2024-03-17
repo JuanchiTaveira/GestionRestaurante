@@ -35,12 +35,18 @@ public class ReservaController {
         }
     }
 
-    public void insertarReserva(Reserva reserva) {
+    public Boolean insertarReserva(Reserva reserva) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.persist(reserva);
+
+            if (!verificarDisponibilidadMesa(reserva.getNumeroMesa(), reserva.getDia(), reserva.getHorario())) {
+                return false;
+            }
+
+            session.merge(reserva);
             session.getTransaction().commit();
             System.out.println("Reserva registrada");
+            return true;
         }
     }
 
@@ -76,6 +82,19 @@ public class ReservaController {
                     .getSingleResult();
 
             return count == 0;
+        }
+    }
+
+    public Reserva getReserva(Integer numeroMesa, LocalDate dia, Reserva.Horario horario) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("SELECT r FROM Reserva r WHERE r.numeroMesa = :numeroMesa AND r.dia = :dia AND r.horario = :horario", Reserva.class)
+                    .setParameter("numeroMesa", numeroMesa)
+                    .setParameter("dia", dia)
+                    .setParameter("horario", horario)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            System.err.println("ERROR: Reserva no encontrada.");
+            return null;
         }
     }
 }

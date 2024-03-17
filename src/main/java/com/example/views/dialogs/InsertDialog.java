@@ -3,12 +3,14 @@ package com.example.views.dialogs;
 import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
+import com.example.model.UsuarioReserva;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -18,6 +20,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.time.LocalDate;
 
 public class InsertDialog extends JDialog {
     private final ReservaController reservaController = new ReservaController();
@@ -26,6 +29,7 @@ public class InsertDialog extends JDialog {
     private boolean save;
     private final JComboBox horarioComboBox;
     private final JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
+    private Reserva nuevaReserva;
 
     public InsertDialog() {
         setTitle("Insertar Reserva");
@@ -39,7 +43,7 @@ public class InsertDialog extends JDialog {
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
 
-        formPanel.add(new JLabel("Usuario Reserva:"));
+        formPanel.add(new JLabel("Correo usuario:"));
         tfUsuarioReserva = new JTextField();
         tfUsuarioReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfUsuarioReserva);
@@ -56,6 +60,7 @@ public class InsertDialog extends JDialog {
         formPanel.add(new JLabel("Horario:"));
         horarioComboBox = new JComboBox();
         horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
+        horarioComboBox.setSelectedIndex(0);
         BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
         basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         horarioComboBox.setRenderer(basicComboBoxRenderer);
@@ -67,6 +72,30 @@ public class InsertDialog extends JDialog {
 
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
+
+            UsuarioReserva usuarioReserva = usuarioController.getUsuarioByCorreo(tfUsuarioReserva.getText());
+
+            if (usuarioReserva == null) {
+                //TODO: crear dialog para crear usuario
+            }
+
+            Integer numeroMesa = (Integer) spinnerNumeroMesa.getValue();
+            LocalDate dia = LocalDate.parse(tfDia.getText());
+            Reserva.Horario horario = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
+            Integer numeroPersonas = (Integer) spinnerNumeroPersonas.getValue();
+
+            nuevaReserva = new Reserva(usuarioReserva, numeroMesa, dia, horario, numeroPersonas);
+
+            Boolean success = reservaController.insertarReserva(nuevaReserva);
+
+            if (!success) {
+                JOptionPane.showMessageDialog(this, "Mesa no disponible en ese horario");
+                return;
+            }
+
+            nuevaReserva = reservaController.getReserva(numeroMesa, dia, horario);
+
+            save = true;
 
             dispose();
         });
@@ -81,24 +110,8 @@ public class InsertDialog extends JDialog {
         getContentPane().add(panel);
     }
 
-    public String getUsuarioReserva() {
-        return tfUsuarioReserva.getText();
-    }
-
-    public String getSpinnerNumeroMesa() {
-        return spinnerNumeroMesa.getValue().toString();
-    }
-
-    public String getDia() {
-        return tfDia.getText();
-    }
-
-    public String getHorario() {
-        return horarioComboBox.getSelectedItem().toString();
-    }
-
-    public String getSpinnerNumeroPersonas() {
-        return spinnerNumeroPersonas.getValue().toString();
+    public Reserva getNuevaReserva() {
+        return nuevaReserva;
     }
 
     public boolean isSave() {
