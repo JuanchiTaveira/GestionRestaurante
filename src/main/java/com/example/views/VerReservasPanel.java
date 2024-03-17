@@ -109,7 +109,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
                 // Actualizar los valores en la tabla si se guarda el diálogo
                 if (dialog.isSave()) {
                     table.setValueAt(dialog.getId(), selectedRow, 0);
-                    table.setValueAt(dialog.getUsuarioReserva(), selectedRow, 1);
+                    table.setValueAt(dialog.getCorreoReserva(), selectedRow, 1);
                     table.setValueAt(dialog.getSpinnerNumeroMesa(), selectedRow, 2);
                     table.setValueAt(dialog.getTfDia(), selectedRow, 3);
                     table.setValueAt(dialog.getHorario(), selectedRow, 4);

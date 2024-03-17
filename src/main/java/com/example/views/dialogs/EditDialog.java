@@ -26,13 +26,13 @@ public class EditDialog extends JDialog {
     private final ReservaController reservaController = new ReservaController();
     private final UsuarioController usuarioController = new UsuarioController();
     private final JTextField tfDia;
-    private final JLabel labelId, labelUsuarioReserva;
+    private final JLabel labelId, labelCorreoReserva;
     private boolean save;
     private final JComboBox horarioComboBox;
     private final JSpinner spinnerNumeroMesa;
     private final JSpinner spinnerNumeroPersonas;
 
-    public EditDialog(String id, String usuarioReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
+    public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
         setTitle("Editar Reserva");
         setSize(400, 350);
         setModal(true);
@@ -44,8 +44,8 @@ public class EditDialog extends JDialog {
         //Crear labels y textFields
         labelId = new JLabel(id);
         labelId.setHorizontalAlignment(SwingConstants.CENTER);
-        labelUsuarioReserva = new JLabel(usuarioReserva);
-        labelUsuarioReserva.setHorizontalAlignment(SwingConstants.CENTER);
+        labelCorreoReserva = new JLabel(correoReserva);
+        labelCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         tfDia = new JTextField(dia);
         tfDia.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -56,7 +56,7 @@ public class EditDialog extends JDialog {
         formPanel.add(labelId);
 
         formPanel.add(new JLabel("Usuario Reserva:"));
-        formPanel.add(labelUsuarioReserva);
+        formPanel.add(labelCorreoReserva);
 
         formPanel.add(new JLabel("Numero Mesa:"));
         spinnerNumeroMesa = new JSpinner();
@@ -90,7 +90,7 @@ public class EditDialog extends JDialog {
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
             if (confirm == 0) {
-                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(usuarioReserva);
+                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(correoReserva);
 
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))
@@ -142,8 +142,8 @@ public class EditDialog extends JDialog {
         return labelId.getText();
     }
 
-    public String getUsuarioReserva() {
-        return labelUsuarioReserva.getText();
+    public String getCorreoReserva() {
+        return labelCorreoReserva.getText();
     }
 
     public String getSpinnerNumeroMesa() {

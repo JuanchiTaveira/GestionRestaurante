@@ -25,7 +25,7 @@ import java.time.LocalDate;
 public class InsertDialog extends JDialog {
     private final ReservaController reservaController = new ReservaController();
     private final UsuarioController usuarioController = new UsuarioController();
-    private final JTextField tfDia, tfUsuarioReserva;
+    private final JTextField tfDia, tfCorreoReserva;
     private boolean save;
     private final JComboBox horarioComboBox;
     private final JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
@@ -44,9 +44,9 @@ public class InsertDialog extends JDialog {
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
 
         formPanel.add(new JLabel("Correo usuario:"));
-        tfUsuarioReserva = new JTextField();
-        tfUsuarioReserva.setHorizontalAlignment(SwingConstants.CENTER);
-        formPanel.add(tfUsuarioReserva);
+        tfCorreoReserva = new JTextField();
+        tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
+        formPanel.add(tfCorreoReserva);
 
         formPanel.add(new JLabel("Numero Mesa:"));
         spinnerNumeroMesa = new JSpinner();
@@ -73,10 +73,12 @@ public class InsertDialog extends JDialog {
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
 
-            UsuarioReserva usuarioReserva = usuarioController.getUsuarioByCorreo(tfUsuarioReserva.getText());
+            UsuarioReserva usuarioReserva = usuarioController.getUsuarioByCorreo(tfCorreoReserva.getText());
 
             if (usuarioReserva == null) {
                 //TODO: crear dialog para crear usuario
+                //TODO: verificar que no se pueda insertar si hay algun campo vacio
+                //TODO: agregar placeholder con el formato de la fecha esperado
             }
 
             Integer numeroMesa = (Integer) spinnerNumeroMesa.getValue();
