@@ -53,4 +53,12 @@ public class ReservaController {
         }
     }
 
+    public void editarReserva(Reserva reservaActualizada) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(reservaActualizada);
+            session.getTransaction().commit();
+            System.out.println("Reserva editada con id: " + reservaActualizada.getId());
+        }
+    }
 }

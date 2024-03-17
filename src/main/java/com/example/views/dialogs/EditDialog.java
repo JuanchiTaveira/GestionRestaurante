@@ -1,7 +1,9 @@
 package com.example.views.dialogs;
 
 import com.example.controller.ReservaController;
+import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
+import com.example.model.UsuarioReserva;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,6 +21,7 @@ import java.time.LocalDate;
 public class EditDialog extends JDialog {
     private JTextField tfId, tfUsuarioReserva, tfNumeroMesa, tfDia, tfHorario, tfNumeroPersonas;
     private final ReservaController reservaController = new ReservaController();
+    private final UsuarioController usuarioController = new UsuarioController();
     private boolean save;
 
     public EditDialog(String id, String usuarioReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
@@ -50,6 +53,12 @@ public class EditDialog extends JDialog {
             //TODO: Desactivar la edicion de las celdas desde la tabla.
 
             if (confirm == 0) {
+                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(tfUsuarioReserva.getText());
+
+                Reserva reservaActualizada = Reserva.builder().id(Integer.valueOf(tfId.getText())).usuarioReserva(usuario).numeroMesa(Integer.valueOf(tfNumeroMesa.getText())).dia(LocalDate.parse(tfDia.getText())).horario(Reserva.Horario.valueOf(tfHorario.getText())).numeroPersonas(Integer.valueOf(tfNumeroPersonas.getText())).build();
+
+                reservaController.editarReserva(reservaActualizada);
+
                 save = true;
                 //TODO: Guardar los cambios en bbdd si confirma en el dialog.
             }
