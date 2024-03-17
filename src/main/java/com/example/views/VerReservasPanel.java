@@ -21,7 +21,12 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
     private GestionRestaurante gestionRestaurante;
     private JTable table;
-    private DefaultTableModel tableModel = new DefaultTableModel();
+    private DefaultTableModel tableModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // Esto hace que todas las celdas sean no editables
+        }
+    };
     private ReservaController reservaController = new ReservaController();
     private JButton btnInsertar;
     private JButton btnEditar;

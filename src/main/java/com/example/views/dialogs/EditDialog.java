@@ -45,8 +45,6 @@ public class EditDialog extends JDialog {
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
             // Guardar los valores y cerrar el diálogo
-
-            //TODO: Abrir dialog preguntando para confirmar los cambios.
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
             //TODO: Crear PK compuesta en tabla Reservas con los campos (numero mesa, dia, horario) para que no se puedan guardar dos reservas de la misma mesa en el mismo dia y horario.
@@ -55,12 +53,18 @@ public class EditDialog extends JDialog {
             if (confirm == 0) {
                 UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(tfUsuarioReserva.getText());
 
-                Reserva reservaActualizada = Reserva.builder().id(Integer.valueOf(tfId.getText())).usuarioReserva(usuario).numeroMesa(Integer.valueOf(tfNumeroMesa.getText())).dia(LocalDate.parse(tfDia.getText())).horario(Reserva.Horario.valueOf(tfHorario.getText())).numeroPersonas(Integer.valueOf(tfNumeroPersonas.getText())).build();
+                Reserva reservaActualizada = Reserva.builder()
+                        .id(Integer.valueOf(tfId.getText()))
+                        .usuarioReserva(usuario)
+                        .numeroMesa(Integer.valueOf(tfNumeroMesa.getText()))
+                        .dia(LocalDate.parse(tfDia.getText()))
+                        .horario(Reserva.Horario.valueOf(tfHorario.getText()))
+                        .numeroPersonas(Integer.valueOf(tfNumeroPersonas.getText()))
+                        .build();
 
                 reservaController.editarReserva(reservaActualizada);
 
                 save = true;
-                //TODO: Guardar los cambios en bbdd si confirma en el dialog.
             }
 
             dispose();
