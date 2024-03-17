@@ -22,12 +22,12 @@ import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 public class EditDialog extends JDialog {
-    private JTextField tfNumeroMesa, tfDia, tfNumeroPersonas;
-    private JLabel labelId, labelUsuarioReserva;
+    private final JTextField tfNumeroMesa, tfDia, tfNumeroPersonas;
+    private final JLabel labelId, labelUsuarioReserva;
     private final ReservaController reservaController = new ReservaController();
     private final UsuarioController usuarioController = new UsuarioController();
     private boolean save;
-    private JComboBox horarioComboBox;
+    private final JComboBox horarioComboBox;
 
     public EditDialog(String id, String usuarioReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
         setTitle("Editar Reserva");
@@ -44,6 +44,35 @@ public class EditDialog extends JDialog {
         tfDia.setHorizontalAlignment(SwingConstants.CENTER);
         tfNumeroPersonas = new JTextField(numeroPersonas);
         tfNumeroPersonas.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
+        formPanel.add(new JLabel("ID:"));
+        formPanel.add(labelId);
+        formPanel.add(new JLabel("Usuario Reserva:"));
+        formPanel.add(labelUsuarioReserva);
+        formPanel.add(new JLabel("Numero Mesa:"));
+        formPanel.add(tfNumeroMesa);
+        formPanel.add(new JLabel("Dia:"));
+        formPanel.add(tfDia);
+        formPanel.add(new JLabel("Horario:"));
+        
+        horarioComboBox = new JComboBox();
+        horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
+        if (horario.equals(Reserva.Horario.ALMUERZO.toString())) {
+            horarioComboBox.setSelectedIndex(0);
+        } else {
+            horarioComboBox.setSelectedIndex(1);
+        }
+        BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
+        basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        horarioComboBox.setRenderer(basicComboBoxRenderer);
+        formPanel.add(horarioComboBox);
+
+        formPanel.add(new JLabel("Cantidad Personas:"));
+        formPanel.add(tfNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
@@ -91,30 +120,6 @@ public class EditDialog extends JDialog {
 
             dispose();
         });
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-        JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
-        formPanel.add(new JLabel("ID:"));
-        formPanel.add(labelId);
-        formPanel.add(new JLabel("Usuario Reserva:"));
-        formPanel.add(labelUsuarioReserva);
-        formPanel.add(new JLabel("Numero Mesa:"));
-        formPanel.add(tfNumeroMesa);
-        formPanel.add(new JLabel("Dia:"));
-        formPanel.add(tfDia);
-        formPanel.add(new JLabel("Horario:"));
-        
-        horarioComboBox = new JComboBox();
-        horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
-        BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
-        basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        horarioComboBox.setRenderer(basicComboBoxRenderer);
-        formPanel.add(horarioComboBox);
-
-        formPanel.add(new JLabel("Cantidad Personas:"));
-        formPanel.add(tfNumeroPersonas);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.add(saveButton);
