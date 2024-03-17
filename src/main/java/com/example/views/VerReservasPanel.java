@@ -4,6 +4,7 @@ import com.example.GestionRestaurante;
 import com.example.controller.ReservaController;
 import com.example.model.Reserva;
 import com.example.views.dialogs.EditDialog;
+import com.example.views.dialogs.InsertDialog;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -115,6 +116,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
                     table.setValueAt(dialog.getSpinnerNumeroPersonas(), selectedRow, 5);
                 }
             }
+        } else if (e.getSource().equals(btnInsertar)) {
+            InsertDialog dialog = new InsertDialog();
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
         }
     }
 
