@@ -43,7 +43,8 @@ public class Reserva implements Serializable {
     @Column(name = "numero_mesa")
     private Integer numeroMesa;
 
-    private LocalDate dia;
+    @Column(name = "dia")
+    private LocalDate dia; //TODO: formatear fecha a DD-MM-AAAA
 
     @Enumerated(EnumType.STRING)
     private Horario horario;

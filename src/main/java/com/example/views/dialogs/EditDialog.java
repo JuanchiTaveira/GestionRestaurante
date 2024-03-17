@@ -20,14 +20,17 @@ import java.awt.GridLayout;
 import java.time.LocalDate;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+import javax.swing.JSpinner;
 
 public class EditDialog extends JDialog {
-    private final JTextField tfNumeroMesa, tfDia, tfNumeroPersonas;
-    private final JLabel labelId, labelUsuarioReserva;
     private final ReservaController reservaController = new ReservaController();
     private final UsuarioController usuarioController = new UsuarioController();
+    private final JTextField tfDia;
+    private final JLabel labelId, labelUsuarioReserva;
     private boolean save;
     private final JComboBox horarioComboBox;
+    private final JSpinner spinnerNumeroMesa;
+    private final JSpinner spinnerNumeroPersonas;
 
     public EditDialog(String id, String usuarioReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
         setTitle("Editar Reserva");
@@ -43,25 +46,27 @@ public class EditDialog extends JDialog {
         labelId.setHorizontalAlignment(SwingConstants.CENTER);
         labelUsuarioReserva = new JLabel(usuarioReserva);
         labelUsuarioReserva.setHorizontalAlignment(SwingConstants.CENTER);
-        tfNumeroMesa = new JTextField(numeroMesa);
-        tfNumeroMesa.setHorizontalAlignment(SwingConstants.CENTER);
         tfDia = new JTextField(dia);
         tfDia.setHorizontalAlignment(SwingConstants.CENTER);
-        tfNumeroPersonas = new JTextField(numeroPersonas);
-        tfNumeroPersonas.setHorizontalAlignment(SwingConstants.CENTER);
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
+
         formPanel.add(new JLabel("ID:"));
         formPanel.add(labelId);
+
         formPanel.add(new JLabel("Usuario Reserva:"));
         formPanel.add(labelUsuarioReserva);
+
         formPanel.add(new JLabel("Numero Mesa:"));
-        formPanel.add(tfNumeroMesa);
+        spinnerNumeroMesa = new JSpinner();
+        spinnerNumeroMesa.setValue(Integer.valueOf(numeroMesa));
+        formPanel.add(spinnerNumeroMesa);
+
         formPanel.add(new JLabel("Dia:"));
         formPanel.add(tfDia);
+
         formPanel.add(new JLabel("Horario:"));
-        
         horarioComboBox = new JComboBox();
         horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
         if (horario.equals(Reserva.Horario.ALMUERZO.toString())) {
@@ -75,7 +80,9 @@ public class EditDialog extends JDialog {
         formPanel.add(horarioComboBox);
 
         formPanel.add(new JLabel("Cantidad Personas:"));
-        formPanel.add(tfNumeroPersonas);
+        spinnerNumeroPersonas = new JSpinner();
+        spinnerNumeroPersonas.setValue(Integer.valueOf(numeroPersonas));
+        formPanel.add(spinnerNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
@@ -88,10 +95,10 @@ public class EditDialog extends JDialog {
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))
                         .usuarioReserva(usuario)
-                        .numeroMesa(Integer.valueOf(tfNumeroMesa.getText()))
+                        .numeroMesa(Integer.valueOf(spinnerNumeroMesa.getValue().toString()))
                         .dia(LocalDate.parse(tfDia.getText()))
                         .horario(Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString()))
-                        .numeroPersonas(Integer.valueOf(tfNumeroPersonas.getText()))
+                        .numeroPersonas(Integer.valueOf(spinnerNumeroPersonas.getValue().toString()))
                         .build();
 
                 Reserva oldReserva = Reserva.builder()
@@ -139,8 +146,8 @@ public class EditDialog extends JDialog {
         return labelUsuarioReserva.getText();
     }
 
-    public String getTfNumeroMesa() {
-        return tfNumeroMesa.getText();
+    public String getSpinnerNumeroMesa() {
+        return spinnerNumeroMesa.getValue().toString();
     }
 
     public String getTfDia() {
@@ -151,8 +158,8 @@ public class EditDialog extends JDialog {
         return horarioComboBox.getSelectedItem().toString();
     }
 
-    public String getTfNumeroPersonas() {
-        return tfNumeroPersonas.getText();
+    public String getSpinnerNumeroPersonas() {
+        return spinnerNumeroPersonas.getValue().toString();
     }
 
     public boolean isSave() {

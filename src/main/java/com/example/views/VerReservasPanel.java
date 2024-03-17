@@ -109,10 +109,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
                 if (dialog.isSave()) {
                     table.setValueAt(dialog.getId(), selectedRow, 0);
                     table.setValueAt(dialog.getUsuarioReserva(), selectedRow, 1);
-                    table.setValueAt(dialog.getTfNumeroMesa(), selectedRow, 2);
+                    table.setValueAt(dialog.getSpinnerNumeroMesa(), selectedRow, 2);
                     table.setValueAt(dialog.getTfDia(), selectedRow, 3);
                     table.setValueAt(dialog.getHorario(), selectedRow, 4);
-                    table.setValueAt(dialog.getTfNumeroPersonas(), selectedRow, 5);
+                    table.setValueAt(dialog.getSpinnerNumeroPersonas(), selectedRow, 5);
                 }
             }
         }
