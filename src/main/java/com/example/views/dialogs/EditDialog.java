@@ -34,6 +34,11 @@ public class EditDialog extends JDialog {
         setSize(400, 350);
         setModal(true);
 
+        //Panel principal
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        //Crear labels y textFields
         labelId = new JLabel(id);
         labelId.setHorizontalAlignment(SwingConstants.CENTER);
         labelUsuarioReserva = new JLabel(usuarioReserva);
@@ -45,9 +50,7 @@ public class EditDialog extends JDialog {
         tfNumeroPersonas = new JTextField(numeroPersonas);
         tfNumeroPersonas.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-
+        //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
         formPanel.add(new JLabel("ID:"));
         formPanel.add(labelId);
@@ -78,9 +81,6 @@ public class EditDialog extends JDialog {
         saveButton.addActionListener(e -> {
             // Guardar los valores y cerrar el diálogo
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
-
-            //TODO: Crear PK compuesta en tabla Reservas con los campos (numero mesa, dia, horario) para que no se puedan guardar dos reservas de la misma mesa en el mismo dia y horario.
-            //TODO: Desactivar la edicion de las celdas desde la tabla.
 
             if (confirm == 0) {
                 UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(usuarioReserva);
@@ -121,6 +121,7 @@ public class EditDialog extends JDialog {
             dispose();
         });
 
+        //Panel del boton de guardar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.add(saveButton);
 
