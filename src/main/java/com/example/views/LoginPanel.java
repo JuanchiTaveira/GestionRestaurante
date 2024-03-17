@@ -3,8 +3,18 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -62,6 +72,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc.insets = new Insets(5, 5, 5, 0);
         gbc.gridx = 1;
         gbc.gridy = 2;
+        tfPassword.addActionListener(this);
         centerPanel.add(tfPassword, gbc);
 
         btnIniciarSesion = new JButton("Iniciar sesión");
@@ -80,10 +91,12 @@ public class LoginPanel extends JPanel implements ActionListener {
         if (e.getSource().equals(btnIniciarSesion)) {
             if (empleadoController.iniciarSesion(tfUsuario.getText(), tfPassword.getText())) {
                 this.setVisible(false);
-                MainMenu mainMenu = new MainMenu(gestionRestaurante);
+                new MainMenu(gestionRestaurante);
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
             }
+        } else if (e.getSource().equals(tfPassword) && e.getModifiers() == 0) {
+            btnIniciarSesion.doClick();
         }
     }
 }
