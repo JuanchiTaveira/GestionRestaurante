@@ -51,6 +51,7 @@ public class GestionRestaurante extends JFrame {
 	public GestionRestaurante() {
 		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
 		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
+		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
 
 		initialize();
 

@@ -6,6 +6,7 @@ import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ReservaController {
@@ -53,12 +54,28 @@ public class ReservaController {
         }
     }
 
-    public void editarReserva(Reserva reservaActualizada) {
+    public Boolean editarReserva(Reserva reservaActualizada) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            if (!verificarDisponibilidadMesa(reservaActualizada.getNumeroMesa(), reservaActualizada.getDia(), reservaActualizada.getHorario())) {
+                return false;
+            }
             session.merge(reservaActualizada);
             session.getTransaction().commit();
             System.out.println("Reserva editada con id: " + reservaActualizada.getId());
+            return true;
+        }
+    }
+
+    private Boolean verificarDisponibilidadMesa(Integer mesa, LocalDate dia, Reserva.Horario horario) {
+        try (Session session = sessionFactory.openSession()) {
+            Long count = session.createQuery("SELECT count(r) FROM Reserva r WHERE r.numeroMesa = :mesa AND r.dia = :dia AND r.horario = :horario", Long.class)
+                    .setParameter("mesa", mesa)
+                    .setParameter("dia", dia)
+                    .setParameter("horario", horario)
+                    .getSingleResult();
+
+            return count == 0;
         }
     }
 }

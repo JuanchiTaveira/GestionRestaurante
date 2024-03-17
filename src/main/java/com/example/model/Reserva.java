@@ -20,6 +20,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -60,5 +61,13 @@ public class Reserva implements Serializable {
         this.dia = dia;
         this.horario = horario;
         this.numeroPersonas = numeroPersonas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reserva reserva = (Reserva) o;
+        return Objects.equals(id, reserva.id) && Objects.equals(usuarioReserva, reserva.usuarioReserva) && Objects.equals(numeroMesa, reserva.numeroMesa) && Objects.equals(dia, reserva.dia) && horario == reserva.horario && Objects.equals(numeroPersonas, reserva.numeroPersonas);
     }
 }

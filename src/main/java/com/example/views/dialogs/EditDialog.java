@@ -62,7 +62,26 @@ public class EditDialog extends JDialog {
                         .numeroPersonas(Integer.valueOf(tfNumeroPersonas.getText()))
                         .build();
 
-                reservaController.editarReserva(reservaActualizada);
+                Reserva oldReserva = Reserva.builder()
+                        .id(Integer.valueOf(id))
+                        .usuarioReserva(usuario)
+                        .numeroMesa(Integer.valueOf(numeroMesa))
+                        .dia(LocalDate.parse(dia))
+                        .horario(Reserva.Horario.valueOf(horario))
+                        .numeroPersonas(Integer.valueOf(numeroPersonas))
+                        .build();
+
+                if (reservaActualizada.equals(oldReserva)) {
+                    dispose();
+                    return;
+                }
+
+                Boolean success = reservaController.editarReserva(reservaActualizada);
+
+                if (!success) {
+                    JOptionPane.showMessageDialog(this, "Mesa no disponible en ese horario");
+                    return;
+                }
 
                 save = true;
             }
