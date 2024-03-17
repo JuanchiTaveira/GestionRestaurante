@@ -19,7 +19,8 @@ import java.awt.GridLayout;
 import java.time.LocalDate;
 
 public class EditDialog extends JDialog {
-    private JTextField tfId, tfUsuarioReserva, tfNumeroMesa, tfDia, tfHorario, tfNumeroPersonas;
+    private JTextField tfNumeroMesa, tfDia, tfHorario, tfNumeroPersonas;
+    private JLabel labelId, labelUsuarioReserva;
     private final ReservaController reservaController = new ReservaController();
     private final UsuarioController usuarioController = new UsuarioController();
     private boolean save;
@@ -29,10 +30,10 @@ public class EditDialog extends JDialog {
         setSize(400, 350);
         setModal(true);
 
-        tfId = new JTextField(id);
-        tfId.setHorizontalAlignment(SwingConstants.CENTER);
-        tfUsuarioReserva = new JTextField(usuarioReserva);
-        tfUsuarioReserva.setHorizontalAlignment(SwingConstants.CENTER);
+        labelId = new JLabel(id);
+        labelId.setHorizontalAlignment(SwingConstants.CENTER);
+        labelUsuarioReserva = new JLabel(usuarioReserva);
+        labelUsuarioReserva.setHorizontalAlignment(SwingConstants.CENTER);
         tfNumeroMesa = new JTextField(numeroMesa);
         tfNumeroMesa.setHorizontalAlignment(SwingConstants.CENTER);
         tfDia = new JTextField(dia);
@@ -51,10 +52,10 @@ public class EditDialog extends JDialog {
             //TODO: Desactivar la edicion de las celdas desde la tabla.
 
             if (confirm == 0) {
-                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(tfUsuarioReserva.getText());
+                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(usuarioReserva);
 
                 Reserva reservaActualizada = Reserva.builder()
-                        .id(Integer.valueOf(tfId.getText()))
+                        .id(Integer.valueOf(id))
                         .usuarioReserva(usuario)
                         .numeroMesa(Integer.valueOf(tfNumeroMesa.getText()))
                         .dia(LocalDate.parse(tfDia.getText()))
@@ -94,9 +95,9 @@ public class EditDialog extends JDialog {
 
         JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
         formPanel.add(new JLabel("ID:"));
-        formPanel.add(tfId);
+        formPanel.add(labelId);
         formPanel.add(new JLabel("Usuario Reserva:"));
-        formPanel.add(tfUsuarioReserva);
+        formPanel.add(labelUsuarioReserva);
         formPanel.add(new JLabel("Numero Mesa:"));
         formPanel.add(tfNumeroMesa);
         formPanel.add(new JLabel("Dia:"));
@@ -115,12 +116,12 @@ public class EditDialog extends JDialog {
         getContentPane().add(panel);
     }
 
-    public String getTfId() {
-        return tfId.getText();
+    public String getId() {
+        return labelId.getText();
     }
 
-    public String getTfUsuarioReserva() {
-        return tfUsuarioReserva.getText();
+    public String getUsuarioReserva() {
+        return labelUsuarioReserva.getText();
     }
 
     public String getTfNumeroMesa() {
