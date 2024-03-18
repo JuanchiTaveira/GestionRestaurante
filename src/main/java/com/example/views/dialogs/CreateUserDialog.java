@@ -70,7 +70,7 @@ public class CreateUserDialog extends JDialog {
             Boolean success = usuarioController.insertarUsuarioReserva(nuevoUsuario);
 
             if (!success) {
-                JOptionPane.showMessageDialog(this, "ERROR: El correo ya está en uso.");
+                JOptionPane.showMessageDialog(this, "ERROR: Usuario invalido o ya existente.");
                 return;
             }
 

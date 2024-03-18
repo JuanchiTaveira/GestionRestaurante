@@ -28,13 +28,16 @@ public class UsuarioReserva implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String nombre;
 
+    @Column(nullable = false)
     private String apellido;
 
+    @Column(nullable = false)
     private String telefono;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String correo;
 
     @OneToMany(mappedBy = "usuarioReserva", cascade = CascadeType.ALL)

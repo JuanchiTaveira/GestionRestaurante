@@ -41,14 +41,30 @@ public class UsuarioController {
 
     public Boolean insertarUsuarioReserva(UsuarioReserva usuario) {
         try (Session session = sessionFactory.openSession()) {
+
+            if (!isValidUser(usuario)) {
+                throw new Exception("ERROR: usuario no valido");
+            }
+
             session.beginTransaction();
             session.persist(usuario);
             session.getTransaction().commit();
             System.out.println("Usuario registrado");
+
             return true;
         } catch (ConstraintViolationException e) {
             System.out.println("ERROR: usuario ya existente");
             return false;
+        } catch (Exception e) {
+            System.out.println("ERROR: usuario invalido");
+            return false;
         }
+    }
+
+    private Boolean isValidUser(UsuarioReserva usuarioReserva) {
+        return !usuarioReserva.getNombre().isBlank()
+                && !usuarioReserva.getApellido().isBlank()
+                && !usuarioReserva.getCorreo().isBlank()
+                && !usuarioReserva.getTelefono().isBlank();
     }
 }

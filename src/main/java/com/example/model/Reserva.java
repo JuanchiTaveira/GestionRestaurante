@@ -37,19 +37,20 @@ public class Reserva implements Serializable {
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_reserva_id") // nombre de la columna en la tabla Reservas que contendrá el ID del usuario de la reserva
+    @JoinColumn(name = "usuario_reserva_id", nullable = false) // nombre de la columna en la tabla Reservas que contendrá el ID del usuario de la reserva
     private UsuarioReserva usuarioReserva;
 
-    @Column(name = "numero_mesa")
+    @Column(name = "numero_mesa", nullable = false)
     private Integer numeroMesa;
 
     @Column(name = "dia")
     private LocalDate dia; //TODO: formatear fecha a DD-MM-AAAA
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "horario", nullable = false)
     private Horario horario;
 
-    @Column(name = "numero_personas")
+    @Column(name = "numero_personas", nullable = false)
     private Integer numeroPersonas;
 
     public enum Horario {
