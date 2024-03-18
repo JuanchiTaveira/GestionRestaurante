@@ -1,6 +1,7 @@
 package com.example.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,6 +34,7 @@ public class UsuarioReserva implements Serializable {
 
     private String telefono;
 
+    @Column(unique = true)
     private String correo;
 
     @OneToMany(mappedBy = "usuarioReserva", cascade = CascadeType.ALL)

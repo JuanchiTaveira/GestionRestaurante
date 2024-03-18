@@ -5,6 +5,7 @@ import com.example.model.UsuarioReserva;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.List;
 
@@ -38,12 +39,16 @@ public class UsuarioController {
         }
     }
 
-    public void insertarUsuarioReserva(UsuarioReserva empleado) {
+    public Boolean insertarUsuarioReserva(UsuarioReserva usuario) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.persist(empleado);
+            session.persist(usuario);
             session.getTransaction().commit();
             System.out.println("Usuario registrado");
+            return true;
+        } catch (ConstraintViolationException e) {
+            System.out.println("ERROR: usuario ya existente");
+            return false;
         }
     }
 }
