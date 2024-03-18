@@ -82,8 +82,8 @@ public class InsertDialog extends JDialog {
 
                 if (dialog.isSave()) {
                     usuarioReserva = usuarioController.getUsuarioByCorreo(dialog.getTfCorreoReserva());
+                    tfCorreoReserva.setText(usuarioReserva.getCorreo());
                 }
-                //TODO: verificar que no se pueda insertar si hay algun campo vacio
                 //TODO: agregar placeholder con el formato de la fecha esperado
             }
 
