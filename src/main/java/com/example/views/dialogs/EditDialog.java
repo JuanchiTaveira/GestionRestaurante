@@ -63,7 +63,7 @@ public class EditDialog extends JDialog {
         spinnerNumeroMesa.setValue(Integer.valueOf(numeroMesa));
         formPanel.add(spinnerNumeroMesa);
 
-        formPanel.add(new JLabel("Dia:"));
+        formPanel.add(new JLabel("Dia (AAAA-MM-DD):"));
         formPanel.add(tfDia);
 
         formPanel.add(new JLabel("Horario:"));

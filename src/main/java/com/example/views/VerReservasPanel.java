@@ -74,7 +74,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         tableModel.addColumn("Id");
         tableModel.addColumn("Usuario reserva");
         tableModel.addColumn("Numero mesa");
-        tableModel.addColumn("Dia");
+        tableModel.addColumn("Dia (AAAA-MM-DD)");
         tableModel.addColumn("Horario");
         tableModel.addColumn("Cantidad pers.");
         table.setModel(tableModel);

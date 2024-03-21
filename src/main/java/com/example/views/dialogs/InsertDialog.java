@@ -52,7 +52,7 @@ public class InsertDialog extends JDialog {
         spinnerNumeroMesa = new JSpinner();
         formPanel.add(spinnerNumeroMesa);
 
-        formPanel.add(new JLabel("Dia:"));
+        formPanel.add(new JLabel("Dia (AAAA-MM-DD):"));
         tfDia = new JTextField();
         tfDia.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfDia);
