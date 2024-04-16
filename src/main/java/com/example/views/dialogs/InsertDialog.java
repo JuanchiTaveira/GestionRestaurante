@@ -84,7 +84,6 @@ public class InsertDialog extends JDialog {
                     usuarioReserva = usuarioController.getUsuarioByCorreo(dialog.getTfCorreoReserva());
                     tfCorreoReserva.setText(usuarioReserva.getCorreo());
                 }
-                //TODO: agregar placeholder con el formato de la fecha esperado
             }
 
             Integer numeroMesa = (Integer) spinnerNumeroMesa.getValue();

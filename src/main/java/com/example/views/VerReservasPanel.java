@@ -9,6 +9,7 @@ import com.example.views.dialogs.InsertDialog;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -54,8 +55,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         // Panel para el botón "Volver al menú"
         JPanel panelVolver = new JPanel();
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
-        btnVolverAlMenu = new JButton("Volver al menú");
-        
+
         btnVolverAlMenu = new JButton("Volver al menú");
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
@@ -144,7 +144,16 @@ public class VerReservasPanel extends JPanel implements ActionListener {
                 tableModel.addRow(reservaToTableModel(dialog.getNuevaReserva()));
             }
         } else if (e.getSource().equals(btnEliminar)) {
-            //TODO: eliminar reserva
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow != -1) {
+                Integer id = Integer.valueOf(table.getValueAt(selectedRow, 0).toString());
+                int confirm = JOptionPane.showConfirmDialog(this, "Quieres eliminar la reserva con ID: " + id + "?");
+
+                if (confirm == JOptionPane.OK_OPTION) {
+                    reservaController.eliminarReserva(id);
+                    tableModel.removeRow(selectedRow);
+                }
+            }
         }
     }
 

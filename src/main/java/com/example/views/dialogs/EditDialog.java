@@ -89,7 +89,7 @@ public class EditDialog extends JDialog {
             // Guardar los valores y cerrar el diálogo
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
-            if (confirm == 0) {
+            if (confirm == JOptionPane.OK_OPTION) {
                 UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(correoReserva);
 
                 Reserva reservaActualizada = Reserva.builder()

@@ -53,8 +53,9 @@ public class ReservaController {
     public void eliminarReserva(Integer id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createQuery("DELETE FROM Reserva r WHERE r.id = :id", Reserva.class)
-                    .setParameter("id", id);
+            session.createQuery("DELETE FROM Reserva r WHERE r.id = :id")
+                    .setParameter("id", id)
+                    .executeUpdate();
             session.getTransaction().commit();
             System.out.println("Reserva eliminada con id: " + id);
         }
