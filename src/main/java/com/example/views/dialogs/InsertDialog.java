@@ -23,8 +23,8 @@ import java.awt.GridLayout;
 import java.time.LocalDate;
 
 public class InsertDialog extends JDialog {
-    private final ReservaController reservaController = new ReservaController();
-    private final UsuarioController usuarioController = new UsuarioController();
+    private static final ReservaController reservaController = new ReservaController();
+    private static final UsuarioController usuarioController = new UsuarioController();
     private final JTextField tfDia, tfCorreoReserva;
     private boolean save;
     private final JComboBox horarioComboBox;

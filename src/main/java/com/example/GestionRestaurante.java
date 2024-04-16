@@ -14,9 +14,6 @@ import java.time.LocalDate;
 
 public class GestionRestaurante extends JFrame {
 
-	private final EmpleadoController empleadoController = new EmpleadoController();
-	private final ReservaController reservaController = new ReservaController();
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
             try {
@@ -29,9 +26,7 @@ public class GestionRestaurante extends JFrame {
 	}
 
 	public GestionRestaurante() {
-		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
-		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
-		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
+		insertTestData();
 
 		initialize();
 	}
@@ -44,5 +39,14 @@ public class GestionRestaurante extends JFrame {
 
 		LoginPanel loginPanel = new LoginPanel(this);
 		add(loginPanel, BorderLayout.CENTER);
+	}
+
+	private void insertTestData() {
+		EmpleadoController empleadoController = new EmpleadoController();
+		ReservaController reservaController = new ReservaController();
+
+		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
+		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
+		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
 	}
 }

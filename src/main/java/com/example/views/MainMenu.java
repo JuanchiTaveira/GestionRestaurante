@@ -14,7 +14,7 @@ import javax.swing.JButton;
 public class MainMenu extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private GestionRestaurante gestionRestaurante;
+	private final GestionRestaurante gestionRestaurante;
 	private JButton btnReservar;
 	private JButton btnVerReservas;
 

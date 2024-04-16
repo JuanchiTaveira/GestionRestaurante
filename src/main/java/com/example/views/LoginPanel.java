@@ -20,9 +20,9 @@ import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel implements ActionListener {
 
-    private GestionRestaurante gestionRestaurante;
+    private final GestionRestaurante gestionRestaurante;
 
-    private final EmpleadoController empleadoController = new EmpleadoController();
+    private static final EmpleadoController empleadoController = new EmpleadoController();
 
     private JTextField tfUsuario;
     private JPasswordField tfPassword;

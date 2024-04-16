@@ -1,27 +1,22 @@
 package com.example.views.dialogs;
 
 import com.example.controller.UsuarioController;
-import com.example.model.Reserva;
 import com.example.model.UsuarioReserva;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 public class CreateUserDialog extends JDialog {
-    private final UsuarioController usuarioController = new UsuarioController();
+    private static final UsuarioController usuarioController = new UsuarioController();
     private final JTextField tfCorreoReserva, tfNombre, tfApellido, tfTelefono;
     private boolean save;
 
