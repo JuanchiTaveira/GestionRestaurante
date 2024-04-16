@@ -154,6 +154,9 @@ public class VerReservasPanel extends JPanel implements ActionListener {
                     tableModel.removeRow(selectedRow);
                 }
             }
+        } else if (e.getSource().equals(btnVolverAlMenu)) {
+            this.setVisible(false);
+            new MainMenu(gestionRestaurante);
         }
     }
 
