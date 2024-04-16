@@ -95,7 +95,7 @@ public class LoginPanel extends JPanel implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
             }
-        } else if (e.getSource().equals(tfPassword) && e.getModifiers() == 0) {
+        } else if (e.getSource().equals(tfPassword) && e.getModifiers() == 0) { // si clickeas enter tambien hace login
             btnIniciarSesion.doClick();
         }
     }

@@ -60,7 +60,7 @@ public class MainMenu extends JPanel implements ActionListener {
 			this.setVisible(false);
 			new VerReservasPanel(gestionRestaurante);
 		} else if (e.getSource().equals(btnReservar)) {
-
+			//TODO: agregar panel para reservar
 		}
 	}
 }

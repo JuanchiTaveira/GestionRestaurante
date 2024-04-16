@@ -38,7 +38,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     	setBorder(new EmptyBorder(5, 5, 5, 5));
         this.gestionRestaurante = gestionRestaurante;
 
-        initialize();
+        configureTable();
 
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
         
@@ -56,12 +56,8 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         btnEliminar = new JButton("Eliminar");
         btnEliminar.addActionListener(this);
         panel.add(btnEliminar);
-    }
 
-    private void initialize() {
-
-        configureTable();
-
+        //TODO: agregar boton de volver al main menu
     }
 
     private void configureTable() {
@@ -124,6 +120,8 @@ public class VerReservasPanel extends JPanel implements ActionListener {
             if (dialog.isSave()) {
                 tableModel.addRow(reservaToTableModel(dialog.getNuevaReserva()));
             }
+        } else if (e.getSource().equals(btnEliminar)) {
+            //TODO: eliminar reserva
         }
     }
 
