@@ -6,6 +6,7 @@ import com.example.model.Reserva;
 import com.example.views.dialogs.EditDialog;
 import com.example.views.dialogs.InsertDialog;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,8 +16,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
 
 public class VerReservasPanel extends JPanel implements ActionListener {
 
@@ -32,6 +35,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     private JButton btnInsertar;
     private JButton btnEditar;
     private JButton btnEliminar;
+    private JButton btnVolverAlMenu;
 
     public VerReservasPanel(GestionRestaurante gestionRestaurante) {
         setLayout(new BorderLayout(0, 0));
@@ -41,23 +45,42 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         configureTable();
 
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
+
+        // Panel principal para los botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS)); // Usamos BoxLayout en el eje X
+        add(panelBotones, BorderLayout.SOUTH);
+
+        // Panel para el botón "Volver al menú"
+        JPanel panelVolver = new JPanel();
+        panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
+        btnVolverAlMenu = new JButton("Volver al menú");
         
-        JPanel panel = new JPanel();
-        add(panel, BorderLayout.SOUTH);
-        
+        btnVolverAlMenu = new JButton("Volver al menú");
+        btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnVolverAlMenu.addActionListener(this);
+        panelVolver.add(btnVolverAlMenu);
+
+        // Panel para los otros botones con alineación a la derecha
+        JPanel panelAcciones = new JPanel();
+        panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        btnInsertar = new JButton("Insertar");
+
         btnInsertar = new JButton("Insertar");
         btnInsertar.addActionListener(this);
-        panel.add(btnInsertar);
-        
+        panelAcciones.add(btnInsertar);
+
         btnEditar = new JButton("Editar");
         btnEditar.addActionListener(this);
-        panel.add(btnEditar);
-        
+        panelAcciones.add(btnEditar);
+
         btnEliminar = new JButton("Eliminar");
         btnEliminar.addActionListener(this);
-        panel.add(btnEliminar);
+        panelAcciones.add(btnEliminar);
 
-        //TODO: agregar boton de volver al main menu
+        // Añadir los dos paneles al panel principal de botones
+        panelBotones.add(panelVolver);
+        panelBotones.add(panelAcciones);
     }
 
     private void configureTable() {
