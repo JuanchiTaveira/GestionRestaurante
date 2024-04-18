@@ -3,11 +3,13 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.toedter.calendar.JCalendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class PlanoReservar extends JPanel {
 
@@ -16,21 +18,27 @@ public class PlanoReservar extends JPanel {
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel calendarContainer = new JPanel(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridx = 0; // en la columna cero
-		gbc.gridy = 0; // en la fila cero
-		gbc.anchor = GridBagConstraints.NORTH;
-		gbc.insets = new Insets(10, 10, 10, 10); // márgenes para el calendario
+		JPanel calendarContainer = new JPanel(null);
+		calendarContainer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		add(calendarContainer, BorderLayout.WEST);
 
 		JCalendar calendar = new JCalendar();
-		calendarContainer.add(calendar, gbc);
+		calendar.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 
-		add(calendarContainer, BorderLayout.WEST);
+		GroupLayout gl_calendarContainer = new GroupLayout(calendarContainer);
+		gl_calendarContainer.setHorizontalGroup(
+			gl_calendarContainer.createParallelGroup(Alignment.LEADING)
+				.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_calendarContainer.setVerticalGroup(
+			gl_calendarContainer.createParallelGroup(Alignment.LEADING)
+				.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		);
+
+		calendarContainer.setLayout(gl_calendarContainer);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.setSize(800,500);
 		gestionRestaurante.setLocationRelativeTo(null);
 	}
-
 }
