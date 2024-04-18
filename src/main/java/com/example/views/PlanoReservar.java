@@ -2,6 +2,7 @@ package com.example.views;
 
 import com.example.GestionRestaurante;
 import com.example.model.Reserva;
+import com.example.views.utils.ImagePanel;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.DefaultComboBoxModel;
@@ -13,7 +14,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.JButton;
@@ -64,6 +64,13 @@ public class PlanoReservar extends JPanel {
 		);
 
 		filtersContainer.setLayout(gl_filtersContainer);
+
+
+		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
+		add(imagePanel, BorderLayout.CENTER);
+
+
+
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.setSize(1200,700);
