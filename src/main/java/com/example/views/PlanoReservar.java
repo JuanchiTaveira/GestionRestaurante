@@ -13,11 +13,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+import javax.swing.JButton;
 
 public class PlanoReservar extends JPanel {
 
@@ -26,38 +25,45 @@ public class PlanoReservar extends JPanel {
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel calendarContainer = new JPanel(null);
-		calendarContainer.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		add(calendarContainer, BorderLayout.WEST);
+		JPanel filtersContainer = new JPanel(null);
+		filtersContainer.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		add(filtersContainer, BorderLayout.WEST);
 
 		JCalendar calendar = new JCalendar();
-		calendar.setBorder(new EmptyBorder(10, 10, 10, 10));
+		calendar.setBorder(new EmptyBorder(10, 10, 0, 10));
 
 		JComboBox horarioComboBox = new JComboBox();
 		horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
 		BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		horarioComboBox.setRenderer(basicComboBoxRenderer);
+		
+		JButton btnActualizarPlano = new JButton("Actualizar");
 
-		GroupLayout gl_calendarContainer = new GroupLayout(calendarContainer);
-		gl_calendarContainer.setHorizontalGroup(
-			gl_calendarContainer.createParallelGroup(Alignment.LEADING)
+		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
+		gl_filtersContainer.setHorizontalGroup(
+			gl_filtersContainer.createParallelGroup(Alignment.TRAILING)
 				.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGroup(Alignment.TRAILING, gl_calendarContainer.createSequentialGroup()
+				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(horarioComboBox, 0, 184, Short.MAX_VALUE)
 					.addContainerGap())
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addContainerGap(115, Short.MAX_VALUE)
+					.addComponent(btnActualizarPlano)
+					.addContainerGap())
 		);
-		gl_calendarContainer.setVerticalGroup(
-			gl_calendarContainer.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_calendarContainer.createSequentialGroup()
+		gl_filtersContainer.setVerticalGroup(
+			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(241, Short.MAX_VALUE))
+					.addGap(40)
+					.addComponent(btnActualizarPlano))
 		);
 
-		calendarContainer.setLayout(gl_calendarContainer);
+		filtersContainer.setLayout(gl_filtersContainer);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.setSize(800,500);
