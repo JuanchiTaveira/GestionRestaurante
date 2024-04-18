@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class PlanoReservar extends JPanel {
 
@@ -17,11 +19,11 @@ public class PlanoReservar extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel calendarContainer = new JPanel(null);
-		calendarContainer.setBorder(new EmptyBorder(10, 10, 10, 10));
+		calendarContainer.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		add(calendarContainer, BorderLayout.WEST);
 
 		JCalendar calendar = new JCalendar();
-		calendar.setBorder(null);
+		calendar.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		GroupLayout gl_calendarContainer = new GroupLayout(calendarContainer);
 		gl_calendarContainer.setHorizontalGroup(
