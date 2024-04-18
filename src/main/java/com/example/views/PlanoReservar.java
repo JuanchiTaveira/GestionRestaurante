@@ -42,31 +42,31 @@ public class PlanoReservar extends JPanel {
 
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
 		gl_filtersContainer.setHorizontalGroup(
-			gl_filtersContainer.createParallelGroup(Alignment.TRAILING)
-				.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(horarioComboBox, 0, 184, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap(115, Short.MAX_VALUE)
-					.addComponent(btnActualizarPlano)
-					.addContainerGap())
+				gl_filtersContainer.createParallelGroup(Alignment.TRAILING)
+						.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(horarioComboBox, 0, 184, Short.MAX_VALUE)
+								.addContainerGap())
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addContainerGap(115, Short.MAX_VALUE)
+								.addComponent(btnActualizarPlano)
+								.addContainerGap())
 		);
 		gl_filtersContainer.setVerticalGroup(
-			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addGap(40)
-					.addComponent(btnActualizarPlano))
+				gl_filtersContainer.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addGap(10)
+								.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addGap(20)
+								.addComponent(btnActualizarPlano))
 		);
 
 		filtersContainer.setLayout(gl_filtersContainer);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
-		gestionRestaurante.setSize(800,500);
+		gestionRestaurante.setSize(1200,700);
 		gestionRestaurante.setLocationRelativeTo(null);
 	}
 }
