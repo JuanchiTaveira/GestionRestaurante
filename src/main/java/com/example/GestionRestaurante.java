@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.controller.EmpleadoController;
+import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.model.Empleado;
 import com.example.model.Reserva;
@@ -26,6 +27,7 @@ public class GestionRestaurante extends JFrame {
 	}
 
 	public GestionRestaurante() {
+		crearMesas();
 		insertTestData();
 
 		initialize();
@@ -47,6 +49,24 @@ public class GestionRestaurante extends JFrame {
 
 		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
 		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
-		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
+		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4));
+	}
+
+	private void crearMesas() {
+		MesaController mesaController = new MesaController();
+
+		mesaController.crearMesa(1, 10);
+		mesaController.crearMesa(2, 4);
+		mesaController.crearMesa(3, 4);
+		mesaController.crearMesa(4, 4);
+		mesaController.crearMesa(5, 4);
+		mesaController.crearMesa(6, 4);
+		mesaController.crearMesa(7, 4);
+		mesaController.crearMesa(8, 4);
+		mesaController.crearMesa(9, 4);
+		mesaController.crearMesa(10, 2);
+		mesaController.crearMesa(11, 2);
+		mesaController.crearMesa(12, 2);
+		mesaController.crearMesa(13, 2);
 	}
 }

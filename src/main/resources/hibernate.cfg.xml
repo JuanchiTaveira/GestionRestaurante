@@ -21,6 +21,7 @@
         <mapping class="com.example.model.Empleado"/>
         <mapping class="com.example.model.Reserva"/>
         <mapping class="com.example.model.UsuarioReserva"/>
+        <mapping class="com.example.model.Mesa"/>
 
     </session-factory>
 </hibernate-configuration>
