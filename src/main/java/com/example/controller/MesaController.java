@@ -53,4 +53,12 @@ public class MesaController {
             System.out.println("Mesa eliminada con id: " + id);
         }
     }
+
+    public Integer maxPersonasMesa(Integer id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("SELECT m.maxPersonas FROM Mesa m WHERE m.id = :id", Integer.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        }
+    }
 }

@@ -1,10 +1,12 @@
 package com.example.views.dialogs;
 
+import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
 import com.example.model.UsuarioReserva;
 import com.toedter.calendar.JDateChooser;
+import lombok.Getter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -13,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
@@ -21,18 +24,23 @@ import java.awt.GridLayout;
 import java.sql.Date;
 import java.time.LocalDate;
 import javax.swing.JComboBox;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.JSpinner;
 
-public class EditDialog extends JDialog {
+public class EditDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
     private static final UsuarioController usuarioController = new UsuarioController();
+    private static final MesaController mesaController = new MesaController();
     private final JLabel labelId, labelCorreoReserva;
+    @Getter
     private boolean save;
     private final JComboBox horarioComboBox;
     private final JSpinner spinnerNumeroMesa;
-    private final JSpinner spinnerNumeroPersonas;
+    private JSpinner spinnerNumeroPersonas;
     private final JDateChooser dateChooser;
+    private SpinnerNumberModel model;
 
     public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
         setTitle("Editar Reserva");
@@ -68,6 +76,7 @@ public class EditDialog extends JDialog {
 
         formPanel.add(new JLabel("Numero Mesa:"));
         spinnerNumeroMesa = new JSpinner();
+        spinnerNumeroMesa.addChangeListener(this);
         spinnerNumeroMesa.setValue(Integer.valueOf(numeroMesa));
         formPanel.add(spinnerNumeroMesa);
 
@@ -88,8 +97,9 @@ public class EditDialog extends JDialog {
         formPanel.add(horarioComboBox);
 
         formPanel.add(new JLabel("Cantidad Personas:"));
-        spinnerNumeroPersonas = new JSpinner();
-        spinnerNumeroPersonas.setValue(Integer.valueOf(numeroPersonas));
+        // Crear el modelo del spinner
+        model = new SpinnerNumberModel(Integer.parseInt(numeroPersonas), 1, mesaController.maxPersonasMesa(Integer.valueOf(numeroMesa)).intValue(), 1); // valor inicial, min, max, paso
+        spinnerNumeroPersonas = new JSpinner(model);
         formPanel.add(spinnerNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
@@ -146,6 +156,19 @@ public class EditDialog extends JDialog {
         getContentPane().add(panel);
     }
 
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (e.getSource().equals(spinnerNumeroMesa) && spinnerNumeroPersonas != null) {
+            int maxPersonas = mesaController.maxPersonasMesa(Integer.parseInt(spinnerNumeroMesa.getValue().toString()));
+
+            if (Integer.parseInt(spinnerNumeroPersonas.getValue().toString()) > maxPersonas) {
+                model.setValue(maxPersonas);
+            }
+
+            model.setMaximum(maxPersonas);
+        }
+    }
+
     public String getId() {
         return labelId.getText();
     }
@@ -170,7 +193,4 @@ public class EditDialog extends JDialog {
         return spinnerNumeroPersonas.getValue().toString();
     }
 
-    public boolean isSave() {
-        return save;
-    }
 }

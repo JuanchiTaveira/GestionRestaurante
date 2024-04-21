@@ -1,10 +1,12 @@
 package com.example.views.dialogs;
 
+import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
 import com.example.model.UsuarioReserva;
 import com.toedter.calendar.JDateChooser;
+import lombok.Getter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -15,8 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -24,15 +29,19 @@ import java.awt.GridLayout;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class InsertDialog extends JDialog {
+public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
     private static final UsuarioController usuarioController = new UsuarioController();
+    private static final MesaController mesaController = new MesaController();
     private JTextField tfCorreoReserva;
+    @Getter
     private boolean save;
     private JComboBox horarioComboBox;
     private JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
+    @Getter
     private Reserva nuevaReserva;
     private JDateChooser dateChooser;
+    private SpinnerNumberModel model;
 
     public InsertDialog() {
         initalize();
@@ -64,6 +73,7 @@ public class InsertDialog extends JDialog {
 
         formPanel.add(new JLabel("Numero Mesa:"));
         spinnerNumeroMesa = new JSpinner();
+        spinnerNumeroMesa.addChangeListener(this);
         formPanel.add(spinnerNumeroMesa);
 
         formPanel.add(new JLabel("Dia (AAAA-MM-DD):"));
@@ -84,7 +94,9 @@ public class InsertDialog extends JDialog {
         formPanel.add(horarioComboBox);
 
         formPanel.add(new JLabel("Cantidad Personas:"));
-        spinnerNumeroPersonas = new JSpinner();
+        // Crear el modelo del spinner
+        model = new SpinnerNumberModel(1, 1, 10, 1); // valor inicial, min, max, paso
+        spinnerNumeroPersonas = new JSpinner(model);
         formPanel.add(spinnerNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
@@ -134,11 +146,16 @@ public class InsertDialog extends JDialog {
         getContentPane().add(panel);
     }
 
-    public Reserva getNuevaReserva() {
-        return nuevaReserva;
-    }
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (e.getSource().equals(spinnerNumeroMesa)) {
+            int maxPersonas = mesaController.maxPersonasMesa(Integer.parseInt(spinnerNumeroMesa.getValue().toString()));
 
-    public boolean isSave() {
-        return save;
+            if (Integer.parseInt(spinnerNumeroPersonas.getValue().toString()) > maxPersonas) {
+                model.setValue(maxPersonas);
+            }
+
+            model.setMaximum(maxPersonas);
+        }
     }
 }

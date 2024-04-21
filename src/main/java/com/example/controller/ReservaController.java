@@ -12,6 +12,7 @@ import java.util.List;
 public class ReservaController {
 
     private final SessionFactory sessionFactory;
+    MesaController mesaController = new MesaController();
 
     public ReservaController() {
         sessionFactory = HibernateUtil.getSessionFactory();
@@ -37,12 +38,16 @@ public class ReservaController {
 
     public Boolean insertarReserva(Reserva reserva) {
         try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
 
             if (!verificarDisponibilidadMesa(reserva.getNumeroMesa(), reserva.getDia(), reserva.getHorario())) {
                 return false;
             }
 
+            if(reserva.getNumeroPersonas() > mesaController.maxPersonasMesa(reserva.getNumeroMesa())) {
+                return false;
+            }
+
+            session.beginTransaction();
             session.merge(reserva);
             session.getTransaction().commit();
             System.out.println("Reserva registrada");
@@ -63,10 +68,16 @@ public class ReservaController {
 
     public Boolean editarReserva(Reserva reservaActualizada) {
         try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
+
             if (!verificarDisponibilidadMesa(reservaActualizada.getNumeroMesa(), reservaActualizada.getDia(), reservaActualizada.getHorario())) {
                 return false;
             }
+
+            if(reservaActualizada.getNumeroPersonas() > mesaController.maxPersonasMesa(reservaActualizada.getNumeroMesa())) {
+                return false;
+            }
+
+            session.beginTransaction();
             session.merge(reservaActualizada);
             session.getTransaction().commit();
             System.out.println("Reserva editada con id: " + reservaActualizada.getId());
