@@ -47,7 +47,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel filtersContainer = new JPanel(null);
-		filtersContainer.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		filtersContainer.setBorder(new EmptyBorder(0, 0, 0, 0));
 		add(filtersContainer, BorderLayout.WEST);
 
 		calendar = new JCalendar();
