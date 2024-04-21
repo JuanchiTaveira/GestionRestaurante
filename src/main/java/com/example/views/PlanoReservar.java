@@ -15,7 +15,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
@@ -190,7 +189,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 			if (btnMesa.getBackground().equals(new Color(242, 18, 13))) { // si esta reservada
 				Reserva reserva = reservaController.getReserva(Integer.valueOf(btnMesa.getText()), dateSelected, horarioSelected);
 
-				EditDialog dialog = new EditDialog(reserva.getId().toString(), reserva.getUsuarioReserva().getCorreo().toString(), reserva.getNumeroMesa().toString(), dateSelected.toString(), horarioSelected.toString(), reserva.getNumeroPersonas().toString());
+				EditDialog dialog = new EditDialog(reserva.getId().toString(), reserva.getUsuarioReserva().getCorreo(), reserva.getNumeroMesa().toString(), dateSelected.toString(), horarioSelected.toString(), reserva.getNumeroPersonas().toString());
 				dialog.setLocationRelativeTo(null);
 				dialog.setVisible(true);
 
