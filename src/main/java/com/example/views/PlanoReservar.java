@@ -3,6 +3,7 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.example.controller.ReservaController;
 import com.example.model.Reserva;
+import com.example.views.dialogs.EditDialog;
 import com.example.views.utils.ImagePanel;
 import com.toedter.calendar.JCalendar;
 
@@ -22,17 +23,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private static final ReservaController reservaController = new ReservaController();
-	JButton btnActualizarPlano, btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13;
-	JCalendar calendar;
-	JComboBox horarioComboBox;
-	List<JButton> allBtnMesa;
+	private JButton btnActualizarPlano, btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13;
+	private JCalendar calendar;
+	private JComboBox horarioComboBox;
+	private final List<JButton> allBtnMesa;
+
+	LocalDate dateSelected;
+	Reserva.Horario horarioSelected;
 
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
 		setPreferredSize(new Dimension(1216, 700));
@@ -151,7 +154,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);
 
-		setBtnMesaColorAndAddActionListener();
+		setBtnMesaColor();
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.pack();
@@ -162,16 +165,35 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnActualizarPlano)) {
-			setBtnMesaColorAndAddActionListener();
+			setBtnMesaColor();
+		} else {
+			JButton btnMesa = (JButton) e.getSource();
+
+			if (btnMesa.getBackground().equals(new Color(242, 18, 13))) { // si esta reservada
+				Reserva reserva = reservaController.getReserva(Integer.valueOf(btnMesa.getText()), dateSelected, horarioSelected);
+
+				EditDialog dialog = new EditDialog(reserva.getId().toString(), reserva.getUsuarioReserva().getCorreo().toString(), reserva.getNumeroMesa().toString(), dateSelected.toString(), horarioSelected.toString(), reserva.getNumeroPersonas().toString());
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+
+				// Actualizar los colores en el plano si se guarda el diálogo
+				if (dialog.isSave()) {
+					setBtnMesaColor();
+				}
+
+			} else if (btnMesa.getBackground().equals(new Color(128, 255, 0))) { // si está libre
+
+			}
+
 		}
 	}
 
-	private void setBtnMesaColorAndAddActionListener() {
-		LocalDate dateSelected = LocalDate.of(calendar.getYearChooser().getYear(), calendar.getMonthChooser()
+	private void setBtnMesaColor() {
+		dateSelected = LocalDate.of(calendar.getYearChooser().getYear(), calendar.getMonthChooser()
 				.getMonth() + 1, calendar.getDayChooser().getDay());
-		Reserva.Horario horario = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
+		horarioSelected = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
 
-		List<String> mesasReservadas = reservaController.getMesasReservadas(dateSelected, horario).stream().map(Object::toString).toList();
+		List<String> mesasReservadas = reservaController.getMesasReservadas(dateSelected, horarioSelected).stream().map(Object::toString).toList();
 
 		allBtnMesa.forEach(btn -> {
 			if (mesasReservadas.contains(btn.getText())) {
