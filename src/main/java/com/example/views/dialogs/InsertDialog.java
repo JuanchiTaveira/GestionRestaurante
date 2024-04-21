@@ -4,6 +4,7 @@ import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
 import com.example.model.UsuarioReserva;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -20,16 +21,18 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class InsertDialog extends JDialog {
     private static final ReservaController reservaController = new ReservaController();
     private static final UsuarioController usuarioController = new UsuarioController();
-    private JTextField tfDia, tfCorreoReserva;
+    private JTextField tfCorreoReserva;
     private boolean save;
     private JComboBox horarioComboBox;
     private JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
     private Reserva nuevaReserva;
+    private JDateChooser dateChooser;
 
     public InsertDialog() {
         initalize();
@@ -38,7 +41,7 @@ public class InsertDialog extends JDialog {
     public InsertDialog(String numeroMesa, String dia, Reserva.Horario horario) {
         initalize();
         spinnerNumeroMesa.setValue(Integer.valueOf(numeroMesa));
-        tfDia.setText(dia);
+        dateChooser.setDate(Date.valueOf(dia));
         horarioComboBox.setSelectedItem(horario);
     }
 
@@ -64,9 +67,12 @@ public class InsertDialog extends JDialog {
         formPanel.add(spinnerNumeroMesa);
 
         formPanel.add(new JLabel("Dia (AAAA-MM-DD):"));
-        tfDia = new JTextField();
-        tfDia.setHorizontalAlignment(SwingConstants.CENTER);
-        formPanel.add(tfDia);
+        dateChooser = new JDateChooser();
+        dateChooser.setDateFormatString("yyyy-MM-dd");
+        // Accediendo al JTextField y centrando el texto
+        JTextField dateTextField = (JTextField) dateChooser.getDateEditor().getUiComponent();
+        dateTextField.setHorizontalAlignment(JTextField.CENTER);
+        formPanel.add(dateChooser);
 
         formPanel.add(new JLabel("Horario:"));
         horarioComboBox = new JComboBox();
@@ -98,7 +104,7 @@ public class InsertDialog extends JDialog {
             }
 
             Integer numeroMesa = (Integer) spinnerNumeroMesa.getValue();
-            LocalDate dia = LocalDate.parse(tfDia.getText());
+            LocalDate dia = LocalDate.parse(((JTextField) dateChooser.getDateEditor().getUiComponent()).getText());
             Reserva.Horario horario = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
             Integer numeroPersonas = (Integer) spinnerNumeroPersonas.getValue();
 
