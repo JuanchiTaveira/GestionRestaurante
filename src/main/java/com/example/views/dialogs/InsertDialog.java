@@ -25,13 +25,24 @@ import java.time.LocalDate;
 public class InsertDialog extends JDialog {
     private static final ReservaController reservaController = new ReservaController();
     private static final UsuarioController usuarioController = new UsuarioController();
-    private final JTextField tfDia, tfCorreoReserva;
+    private JTextField tfDia, tfCorreoReserva;
     private boolean save;
-    private final JComboBox horarioComboBox;
-    private final JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
+    private JComboBox horarioComboBox;
+    private JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
     private Reserva nuevaReserva;
 
     public InsertDialog() {
+        initalize();
+    }
+
+    public InsertDialog(String numeroMesa, String dia, Reserva.Horario horario) {
+        initalize();
+        spinnerNumeroMesa.setValue(Integer.valueOf(numeroMesa));
+        tfDia.setText(dia);
+        horarioComboBox.setSelectedItem(horario);
+    }
+
+    private void initalize() {
         setTitle("Insertar Reserva");
         setSize(400, 350);
         setModal(true);

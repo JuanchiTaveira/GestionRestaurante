@@ -4,6 +4,7 @@ import com.example.GestionRestaurante;
 import com.example.controller.ReservaController;
 import com.example.model.Reserva;
 import com.example.views.dialogs.EditDialog;
+import com.example.views.dialogs.InsertDialog;
 import com.example.views.utils.ImagePanel;
 import com.toedter.calendar.JCalendar;
 
@@ -182,7 +183,13 @@ public class PlanoReservar extends JPanel implements ActionListener {
 				}
 
 			} else if (btnMesa.getBackground().equals(new Color(128, 255, 0))) { // si está libre
+				InsertDialog dialog = new InsertDialog(btnMesa.getText(), dateSelected.toString(), horarioSelected);
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
 
+				if (dialog.isSave()) {
+					setBtnMesaColor();
+				}
 			}
 
 		}
