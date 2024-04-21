@@ -34,11 +34,9 @@ public class InsertDialog extends JDialog implements ChangeListener {
     private static final UsuarioController usuarioController = new UsuarioController();
     private static final MesaController mesaController = new MesaController();
     private JTextField tfCorreoReserva;
-    @Getter
     private boolean save;
     private JComboBox horarioComboBox;
     private JSpinner spinnerNumeroMesa, spinnerNumeroPersonas;
-    @Getter
     private Reserva nuevaReserva;
     private JDateChooser dateChooser;
     private SpinnerNumberModel model;
@@ -157,5 +155,13 @@ public class InsertDialog extends JDialog implements ChangeListener {
 
             model.setMaximum(maxPersonas);
         }
+    }
+
+    public Reserva getNuevaReserva() {
+        return nuevaReserva;
+    }
+
+    public boolean isSave() {
+        return save;
     }
 }

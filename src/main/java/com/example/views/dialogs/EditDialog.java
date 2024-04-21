@@ -34,7 +34,6 @@ public class EditDialog extends JDialog implements ChangeListener {
     private static final UsuarioController usuarioController = new UsuarioController();
     private static final MesaController mesaController = new MesaController();
     private final JLabel labelId, labelCorreoReserva;
-    @Getter
     private boolean save;
     private final JComboBox horarioComboBox;
     private final JSpinner spinnerNumeroMesa;
@@ -191,6 +190,10 @@ public class EditDialog extends JDialog implements ChangeListener {
 
     public String getSpinnerNumeroPersonas() {
         return spinnerNumeroPersonas.getValue().toString();
+    }
+
+    public boolean isSave() {
+        return save;
     }
 
 }
