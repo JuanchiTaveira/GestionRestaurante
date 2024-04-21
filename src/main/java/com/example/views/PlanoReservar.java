@@ -25,12 +25,14 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.time.LocalDate;
 import java.util.List;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	private final GestionRestaurante gestionRestaurante;
 	private static final ReservaController reservaController = new ReservaController();
-	private JButton btnActualizarPlano, btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13;
+	private JButton btnActualizarPlano, btnVolverAlMenu, btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13;
 	private JCalendar calendar;
 	private JComboBox horarioComboBox;
 	private final List<JButton> allBtnMesa;
@@ -39,7 +41,9 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	Reserva.Horario horarioSelected;
 
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
-		setPreferredSize(new Dimension(1216, 700));
+		this.gestionRestaurante = gestionRestaurante;
+
+		setPreferredSize(new Dimension(1230, 700));
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel filtersContainer = new JPanel(null);
@@ -57,28 +61,38 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		
 		btnActualizarPlano = new JButton("Actualizar");
 		btnActualizarPlano.addActionListener(this);
+		
+		btnVolverAlMenu = new JButton("Volver al menú");
+		btnVolverAlMenu.addActionListener(this);
 
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
 		gl_filtersContainer.setHorizontalGroup(
-				gl_filtersContainer.createParallelGroup(Alignment.TRAILING)
-						.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_filtersContainer.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(horarioComboBox, 0, 184, Short.MAX_VALUE)
-								.addContainerGap())
-						.addGroup(gl_filtersContainer.createSequentialGroup()
-								.addContainerGap(115, Short.MAX_VALUE)
-								.addComponent(btnActualizarPlano)
-								.addContainerGap())
+			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(horarioComboBox, 0, 198, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addContainerGap(129, Short.MAX_VALUE)
+					.addComponent(btnActualizarPlano)
+					.addContainerGap())
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnVolverAlMenu)
+					.addContainerGap(105, Short.MAX_VALUE))
+				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
 		);
 		gl_filtersContainer.setVerticalGroup(
-				gl_filtersContainer.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_filtersContainer.createSequentialGroup()
-								.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGap(10)
-								.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-								.addGap(20)
-								.addComponent(btnActualizarPlano))
+			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addComponent(btnActualizarPlano)
+					.addPreferredGap(ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
+					.addComponent(btnVolverAlMenu)
+					.addContainerGap())
 		);
 
 		filtersContainer.setLayout(gl_filtersContainer);
@@ -90,7 +104,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		
 		btnMesa1 = new JButton("1");
 		btnMesa1.addActionListener(this);
-		btnMesa1.setBounds(122, 141, 52, 23);
+		btnMesa1.setBounds(119, 140, 52, 23);
 		imagePanel.add(btnMesa1);
 		
 		btnMesa2 = new JButton("2");
@@ -100,7 +114,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		btnMesa3 = new JButton("3");
 		btnMesa3.addActionListener(this);
-		btnMesa3.setBounds(197, 348, 52, 23);
+		btnMesa3.setBounds(195, 348, 52, 23);
 		imagePanel.add(btnMesa3);
 
 		btnMesa4 = new JButton("4");
@@ -110,7 +124,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		btnMesa5 = new JButton("5");
 		btnMesa5.addActionListener(this);
-		btnMesa5.setBounds(197, 530, 52, 23);
+		btnMesa5.setBounds(195, 530, 52, 23);
 		imagePanel.add(btnMesa5);
 
 		btnMesa6 = new JButton("6");
@@ -140,7 +154,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		btnMesa11 = new JButton("11");
 		btnMesa11.addActionListener(this);
-		btnMesa11.setBounds(592, 624, 52, 23);
+		btnMesa11.setBounds(591, 624, 52, 23);
 		imagePanel.add(btnMesa11);
 
 		btnMesa12 = new JButton("12");
@@ -167,6 +181,9 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnActualizarPlano)) {
 			setBtnMesaColor();
+		} else if (e.getSource().equals(btnVolverAlMenu)) {
+			this.setVisible(false);
+			new MainMenu(gestionRestaurante);
 		} else {
 			JButton btnMesa = (JButton) e.getSource();
 
