@@ -25,6 +25,10 @@ import java.awt.Dimension;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.Font;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
@@ -40,28 +44,38 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	Reserva.Horario horarioSelected;
 
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
+		setBackground(new Color(240, 197, 23));
 		this.gestionRestaurante = gestionRestaurante;
 
 		setPreferredSize(new Dimension(1230, 700));
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel filtersContainer = new JPanel(null);
+		filtersContainer.setBackground(new Color(240, 197, 23));
 		filtersContainer.setBorder(new EmptyBorder(0, 0, 0, 0));
 		add(filtersContainer, BorderLayout.WEST);
 
 		calendar = new JCalendar();
+		calendar.getMonthChooser().setBackground(new Color(240, 197, 23));
+		calendar.getDayChooser().getDayPanel().setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		calendar.setBackground(new Color(240, 197, 23));
 		calendar.setBorder(new EmptyBorder(10, 10, 0, 10));
 
 		horarioComboBox = new JComboBox();
+		horarioComboBox.setBackground(UIManager.getColor("Button.background"));
 		horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
 		BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		horarioComboBox.setRenderer(basicComboBoxRenderer);
 		
 		btnActualizarPlano = new JButton("Actualizar");
+		btnActualizarPlano.setBackground(new Color(240, 197, 23));
+		btnActualizarPlano.setFont(new Font("Verdana", btnActualizarPlano.getFont().getStyle() | Font.BOLD, btnActualizarPlano.getFont().getSize() + 5));
 		btnActualizarPlano.addActionListener(this);
 		
 		btnVolverAlMenu = new JButton("Volver al menú");
+		btnVolverAlMenu.setBackground(new Color(240, 197, 23));
+		btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, btnVolverAlMenu.getFont().getSize() + 5));
 		btnVolverAlMenu.addActionListener(this);
 
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
@@ -98,6 +112,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
+		imagePanel.setBackground(new Color(240, 197, 23));
 		add(imagePanel, BorderLayout.CENTER);
 		imagePanel.setLayout(null);
 		

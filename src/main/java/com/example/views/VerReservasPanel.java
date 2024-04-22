@@ -21,6 +21,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class VerReservasPanel extends JPanel implements ActionListener {
 
@@ -39,6 +40,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     private JButton btnVolverAlMenu;
 
     public VerReservasPanel(GestionRestaurante gestionRestaurante) {
+    	setBackground(new Color(240, 197, 23));
         setLayout(new BorderLayout(0, 0));
     	setBorder(new EmptyBorder(5, 5, 5, 5));
         this.gestionRestaurante = gestionRestaurante;
@@ -49,11 +51,13 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
         // Panel principal para los botones
         JPanel panelBotones = new JPanel();
+        panelBotones.setBackground(new Color(240, 197, 23));
         panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS)); // Usamos BoxLayout en el eje X
         add(panelBotones, BorderLayout.SOUTH);
 
         // Panel para el botón "Volver al menú"
         JPanel panelVolver = new JPanel();
+        panelVolver.setBackground(new Color(240, 197, 23));
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         btnVolverAlMenu = new JButton("Volver al menú");
@@ -63,6 +67,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
         // Panel para los otros botones con alineación a la derecha
         JPanel panelAcciones = new JPanel();
+        panelAcciones.setBackground(new Color(240, 197, 23));
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
         btnInsertar = new JButton("Insertar");
 
@@ -88,6 +93,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();
+        table.setBackground(new Color(240, 197, 23));
         scrollPane.setViewportView(table);
 
         tableModel.addColumn("Id");

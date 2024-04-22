@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Color;
 
 public class CreateUserDialog extends JDialog {
     private static final UsuarioController usuarioController = new UsuarioController();
@@ -27,10 +28,12 @@ public class CreateUserDialog extends JDialog {
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(new Color(240, 197, 23));
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 5, 5));
+        formPanel.setBackground(new Color(240, 197, 23));
 
         formPanel.add(new JLabel("Correo usuario:"));
         tfCorreoReserva = new JTextField(correoReserva);
@@ -76,6 +79,7 @@ public class CreateUserDialog extends JDialog {
 
         //Panel del boton de guardar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.setBackground(new Color(240, 197, 23));
         buttonPanel.add(saveButton);
 
         panel.add(formPanel, BorderLayout.CENTER);
