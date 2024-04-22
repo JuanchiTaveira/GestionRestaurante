@@ -9,11 +9,11 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.List;
 
-public class UsuarioController {
+public class ClienteController {
 
     private final SessionFactory sessionFactory;
 
-    public UsuarioController() {
+    public ClienteController() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
