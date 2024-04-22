@@ -4,9 +4,8 @@ import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 import com.toedter.calendar.JDateChooser;
-import lombok.Getter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -107,11 +106,11 @@ public class EditDialog extends JDialog implements ChangeListener {
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
             if (confirm == JOptionPane.OK_OPTION) {
-                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(correoReserva);
+                Cliente usuario = usuarioController.getUsuarioByCorreo(correoReserva);
 
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))
-                        .usuarioReserva(usuario)
+                        .cliente(usuario)
                         .numeroMesa(Integer.valueOf(spinnerNumeroMesa.getValue().toString()))
                         .dia(LocalDate.parse(((JTextField) dateChooser.getDateEditor().getUiComponent()).getText()))
                         .horario(Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString()))
@@ -120,7 +119,7 @@ public class EditDialog extends JDialog implements ChangeListener {
 
                 Reserva oldReserva = Reserva.builder()
                         .id(Integer.valueOf(id))
-                        .usuarioReserva(usuario)
+                        .cliente(usuario)
                         .numeroMesa(Integer.valueOf(numeroMesa))
                         .dia(LocalDate.parse(dia))
                         .horario(Reserva.Horario.valueOf(horario))

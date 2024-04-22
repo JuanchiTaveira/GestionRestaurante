@@ -1,7 +1,7 @@
 package com.example.views.dialogs;
 
 import com.example.controller.UsuarioController;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -60,7 +60,7 @@ public class CreateUserDialog extends JDialog {
             String telefono = tfTelefono.getText();
             String correo = tfCorreoReserva.getText();
 
-            UsuarioReserva nuevoUsuario = new UsuarioReserva(nombre, apellido, telefono, correo);
+            Cliente nuevoUsuario = new Cliente(nombre, apellido, telefono, correo);
 
             Boolean success = usuarioController.insertarUsuarioReserva(nuevoUsuario);
 

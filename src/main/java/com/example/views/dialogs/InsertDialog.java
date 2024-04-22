@@ -4,9 +4,8 @@ import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.controller.UsuarioController;
 import com.example.model.Reserva;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 import com.toedter.calendar.JDateChooser;
-import lombok.Getter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -100,16 +99,16 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
 
-            UsuarioReserva usuarioReserva = usuarioController.getUsuarioByCorreo(tfCorreoReserva.getText());
+            Cliente cliente = usuarioController.getUsuarioByCorreo(tfCorreoReserva.getText());
 
-            if (usuarioReserva == null) {
+            if (cliente == null) {
                 CreateUserDialog dialog = new CreateUserDialog(tfCorreoReserva.getText());
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
 
                 if (dialog.isSave()) {
-                    usuarioReserva = usuarioController.getUsuarioByCorreo(dialog.getTfCorreoReserva());
-                    tfCorreoReserva.setText(usuarioReserva.getCorreo());
+                    cliente = usuarioController.getUsuarioByCorreo(dialog.getTfCorreoReserva());
+                    tfCorreoReserva.setText(cliente.getCorreo());
                 }
             }
 
@@ -118,7 +117,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
             Reserva.Horario horario = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
             Integer numeroPersonas = (Integer) spinnerNumeroPersonas.getValue();
 
-            nuevaReserva = new Reserva(usuarioReserva, numeroMesa, dia, horario, numeroPersonas);
+            nuevaReserva = new Reserva(cliente, numeroMesa, dia, horario, numeroPersonas);
 
             Boolean success = reservaController.insertarReserva(nuevaReserva);
 

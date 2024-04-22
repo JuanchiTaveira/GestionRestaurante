@@ -21,8 +21,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "Usuarios_Reserva")
-public class UsuarioReserva implements Serializable {
+@Table(name = "Clientes")
+public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,10 +40,10 @@ public class UsuarioReserva implements Serializable {
     @Column(unique = true, nullable = false)
     private String correo;
 
-    @OneToMany(mappedBy = "usuarioReserva", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Reserva> reservas;
 
-    public UsuarioReserva(String nombre, String apellido, String telefono, String correo) {
+    public Cliente(String nombre, String apellido, String telefono, String correo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;

@@ -38,7 +38,7 @@ public class Reserva implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_reserva_id", nullable = false) // nombre de la columna en la tabla Reservas que contendrá el ID del usuario de la reserva
-    private UsuarioReserva usuarioReserva;
+    private Cliente cliente;
 
     @Column(name = "numero_mesa", nullable = false)
     private Integer numeroMesa;
@@ -57,8 +57,8 @@ public class Reserva implements Serializable {
         ALMUERZO, CENA
     }
 
-    public Reserva(UsuarioReserva usuarioReserva, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas) {
-        this.usuarioReserva = usuarioReserva;
+    public Reserva(Cliente cliente, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas) {
+        this.cliente = cliente;
         this.numeroMesa = numeroMesa;
         this.dia = dia;
         this.horario = horario;
@@ -70,6 +70,6 @@ public class Reserva implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reserva reserva = (Reserva) o;
-        return Objects.equals(id, reserva.id) && Objects.equals(usuarioReserva, reserva.usuarioReserva) && Objects.equals(numeroMesa, reserva.numeroMesa) && Objects.equals(dia, reserva.dia) && horario == reserva.horario && Objects.equals(numeroPersonas, reserva.numeroPersonas);
+        return Objects.equals(id, reserva.id) && Objects.equals(cliente, reserva.cliente) && Objects.equals(numeroMesa, reserva.numeroMesa) && Objects.equals(dia, reserva.dia) && horario == reserva.horario && Objects.equals(numeroPersonas, reserva.numeroPersonas);
     }
 }
