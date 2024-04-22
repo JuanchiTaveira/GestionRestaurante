@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.config.HibernateUtil;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,17 +9,17 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.List;
 
-public class UsuarioController {
+public class ClienteController {
 
     private final SessionFactory sessionFactory;
 
-    public UsuarioController() {
+    public ClienteController() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
-    public UsuarioReserva getUsuarioByCorreo(String correo) {
+    public Cliente getUsuarioByCorreo(String correo) {
         try (Session session = sessionFactory.openSession()) {
-            UsuarioReserva usuarioEncontrado = session.createQuery("SELECT u FROM UsuarioReserva u WHERE u.correo = :correo", UsuarioReserva.class)
+            Cliente usuarioEncontrado = session.createQuery("SELECT u FROM Cliente u WHERE u.correo = :correo", Cliente.class)
                     .setParameter("correo", correo)
                     .getSingleResult();
 
@@ -32,14 +32,14 @@ public class UsuarioController {
         }
     }
 
-    public List<UsuarioReserva> getAllUsuarios() {
+    public List<Cliente> getAllUsuarios() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT u FROM UsuarioReserva u", UsuarioReserva.class)
+            return session.createQuery("SELECT u FROM Cliente u", Cliente.class)
                     .getResultList();
         }
     }
 
-    public Boolean insertarUsuarioReserva(UsuarioReserva usuario) {
+    public Boolean insertarUsuarioReserva(Cliente usuario) {
         try (Session session = sessionFactory.openSession()) {
 
             if (!isValidUser(usuario)) {
@@ -61,10 +61,10 @@ public class UsuarioController {
         }
     }
 
-    private Boolean isValidUser(UsuarioReserva usuarioReserva) {
-        return !usuarioReserva.getNombre().isBlank()
-                && !usuarioReserva.getApellido().isBlank()
-                && !usuarioReserva.getCorreo().isBlank()
-                && !usuarioReserva.getTelefono().isBlank();
+    private Boolean isValidUser(Cliente cliente) {
+        return !cliente.getNombre().isBlank()
+                && !cliente.getApellido().isBlank()
+                && !cliente.getCorreo().isBlank()
+                && !cliente.getTelefono().isBlank();
     }
 }

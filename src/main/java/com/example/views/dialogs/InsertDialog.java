@@ -2,11 +2,10 @@ package com.example.views.dialogs;
 
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
-import com.example.controller.UsuarioController;
+import com.example.controller.ClienteController;
 import com.example.model.Reserva;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 import com.toedter.calendar.JDateChooser;
-import lombok.Getter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -32,7 +31,7 @@ import java.awt.Color;
 
 public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
-    private static final UsuarioController usuarioController = new UsuarioController();
+    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
     private static final MesaController mesaController = new MesaController();
     private JTextField tfCorreoReserva;
     private boolean save;
@@ -106,16 +105,16 @@ public class InsertDialog extends JDialog implements ChangeListener {
         saveButton.setBackground(new Color(240, 197, 23));
         saveButton.addActionListener(e -> {
 
-            UsuarioReserva usuarioReserva = usuarioController.getUsuarioByCorreo(tfCorreoReserva.getText());
+            Cliente cliente = CLIENTE_CONTROLLER.getUsuarioByCorreo(tfCorreoReserva.getText());
 
-            if (usuarioReserva == null) {
+            if (cliente == null) {
                 CreateUserDialog dialog = new CreateUserDialog(tfCorreoReserva.getText());
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
 
                 if (dialog.isSave()) {
-                    usuarioReserva = usuarioController.getUsuarioByCorreo(dialog.getTfCorreoReserva());
-                    tfCorreoReserva.setText(usuarioReserva.getCorreo());
+                    cliente = CLIENTE_CONTROLLER.getUsuarioByCorreo(dialog.getTfCorreoReserva());
+                    tfCorreoReserva.setText(cliente.getCorreo());
                 }
             }
 
@@ -124,7 +123,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
             Reserva.Horario horario = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
             Integer numeroPersonas = (Integer) spinnerNumeroPersonas.getValue();
 
-            nuevaReserva = new Reserva(usuarioReserva, numeroMesa, dia, horario, numeroPersonas);
+            nuevaReserva = new Reserva(cliente, numeroMesa, dia, horario, numeroPersonas);
 
             Boolean success = reservaController.insertarReserva(nuevaReserva);
 

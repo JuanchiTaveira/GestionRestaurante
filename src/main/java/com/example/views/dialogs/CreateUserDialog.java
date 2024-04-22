@@ -1,7 +1,7 @@
 package com.example.views.dialogs;
 
-import com.example.controller.UsuarioController;
-import com.example.model.UsuarioReserva;
+import com.example.controller.ClienteController;
+import com.example.model.Cliente;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,7 +17,7 @@ import java.awt.GridLayout;
 import java.awt.Color;
 
 public class CreateUserDialog extends JDialog {
-    private static final UsuarioController usuarioController = new UsuarioController();
+    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
     private final JTextField tfCorreoReserva, tfNombre, tfApellido, tfTelefono;
     private boolean save;
 
@@ -63,9 +63,9 @@ public class CreateUserDialog extends JDialog {
             String telefono = tfTelefono.getText();
             String correo = tfCorreoReserva.getText();
 
-            UsuarioReserva nuevoUsuario = new UsuarioReserva(nombre, apellido, telefono, correo);
+            Cliente nuevoUsuario = new Cliente(nombre, apellido, telefono, correo);
 
-            Boolean success = usuarioController.insertarUsuarioReserva(nuevoUsuario);
+            Boolean success = CLIENTE_CONTROLLER.insertarUsuarioReserva(nuevoUsuario);
 
             if (!success) {
                 JOptionPane.showMessageDialog(this, "ERROR: Usuario invalido o ya existente.");

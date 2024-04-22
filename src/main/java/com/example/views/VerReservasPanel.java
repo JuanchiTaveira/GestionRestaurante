@@ -138,7 +138,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         String[] data = new String[6];
 
         data[0] = reserva.getId().toString();
-        data[1] = reserva.getUsuarioReserva().getCorreo();
+        data[1] = reserva.getCliente().getCorreo();
         data[2] = reserva.getNumeroMesa().toString();
         data[3] = reserva.getDia().toString();
         data[4] = reserva.getHorario().toString();

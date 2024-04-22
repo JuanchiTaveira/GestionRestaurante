@@ -2,11 +2,10 @@ package com.example.views.dialogs;
 
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
-import com.example.controller.UsuarioController;
+import com.example.controller.ClienteController;
 import com.example.model.Reserva;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 import com.toedter.calendar.JDateChooser;
-import lombok.Getter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -34,7 +33,7 @@ import java.awt.SystemColor;
 
 public class EditDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
-    private static final UsuarioController usuarioController = new UsuarioController();
+    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
     private static final MesaController mesaController = new MesaController();
     private final JLabel labelId, labelCorreoReserva;
     private boolean save;
@@ -117,11 +116,11 @@ public class EditDialog extends JDialog implements ChangeListener {
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
             if (confirm == JOptionPane.OK_OPTION) {
-                UsuarioReserva usuario = usuarioController.getUsuarioByCorreo(correoReserva);
+                Cliente usuario = CLIENTE_CONTROLLER.getUsuarioByCorreo(correoReserva);
 
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))
-                        .usuarioReserva(usuario)
+                        .cliente(usuario)
                         .numeroMesa(Integer.valueOf(spinnerNumeroMesa.getValue().toString()))
                         .dia(LocalDate.parse(((JTextField) dateChooser.getDateEditor().getUiComponent()).getText()))
                         .horario(Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString()))
@@ -130,7 +129,7 @@ public class EditDialog extends JDialog implements ChangeListener {
 
                 Reserva oldReserva = Reserva.builder()
                         .id(Integer.valueOf(id))
-                        .usuarioReserva(usuario)
+                        .cliente(usuario)
                         .numeroMesa(Integer.valueOf(numeroMesa))
                         .dia(LocalDate.parse(dia))
                         .horario(Reserva.Horario.valueOf(horario))

@@ -5,7 +5,7 @@ import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.model.Empleado;
 import com.example.model.Reserva;
-import com.example.model.UsuarioReserva;
+import com.example.model.Cliente;
 import com.example.views.LoginPanel;
 
 import javax.swing.JFrame;
@@ -48,8 +48,8 @@ public class GestionRestaurante extends JFrame {
 		ReservaController reservaController = new ReservaController();
 
 		empleadoController.insertarEmpleado(new Empleado("juan", "juan"));
-		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
-		reservaController.insertarReserva(new Reserva(new UsuarioReserva("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4));
+		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
+		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4));
 	}
 
 	private void crearMesas() {
