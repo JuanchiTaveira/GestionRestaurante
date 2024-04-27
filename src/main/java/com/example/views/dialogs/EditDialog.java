@@ -34,11 +34,13 @@ public class EditDialog extends JDialog implements ChangeListener {
     private static final MesaController mesaController = new MesaController();
     private final JLabel labelId, labelCorreoReserva;
     private boolean save;
+    private boolean deleted;
     private final JComboBox horarioComboBox;
     private final JSpinner spinnerNumeroMesa;
     private JSpinner spinnerNumeroPersonas;
     private final JDateChooser dateChooser;
     private SpinnerNumberModel model;
+    private JButton btnEliminar;
 
     public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
         setTitle("Editar Reserva");
@@ -100,6 +102,23 @@ public class EditDialog extends JDialog implements ChangeListener {
         spinnerNumeroPersonas = new JSpinner(model);
         formPanel.add(spinnerNumeroPersonas);
 
+        //Panel del boton de guardar y eliminar
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+        btnEliminar = new JButton("Eliminar");
+        btnEliminar.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(this, "Quieres eliminar la reserva con ID: " + id + "?");
+
+            if (confirm == JOptionPane.OK_OPTION) {
+                reservaController.eliminarReserva(Integer.valueOf(id));
+                save = true;
+                deleted = true;
+            }
+
+            dispose();
+        });
+        buttonPanel.add(btnEliminar);
+
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
             // Guardar los valores y cerrar el diálogo
@@ -143,9 +162,6 @@ public class EditDialog extends JDialog implements ChangeListener {
 
             dispose();
         });
-
-        //Panel del boton de guardar
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.add(saveButton);
 
         panel.add(formPanel, BorderLayout.CENTER);
@@ -195,4 +211,7 @@ public class EditDialog extends JDialog implements ChangeListener {
         return save;
     }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
 }
