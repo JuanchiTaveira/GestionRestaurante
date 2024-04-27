@@ -8,23 +8,19 @@ import com.example.views.dialogs.InsertDialog;
 import com.example.views.utils.ImagePanel;
 import com.toedter.calendar.JCalendar;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.BorderLayout;
-import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.time.LocalDate;
 import java.util.List;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
@@ -35,6 +31,14 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	private JCalendar calendar;
 	private JComboBox horarioComboBox;
 	private final List<JButton> allBtnMesa;
+	private JTable tableReservas;
+	private JScrollPane scrollPaneReservas;
+	private final DefaultTableModel tableModel = new DefaultTableModel() {
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return false; // Esto hace que todas las celdas sean no editables
+		}
+	};
 
 	LocalDate dateSelected;
 	Reserva.Horario horarioSelected;
@@ -57,12 +61,16 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		horarioComboBox.setRenderer(basicComboBoxRenderer);
-		
+
 		btnActualizarPlano = new JButton("Actualizar");
 		btnActualizarPlano.addActionListener(this);
-		
+
 		btnVolverAlMenu = new JButton("Volver al menú");
 		btnVolverAlMenu.addActionListener(this);
+
+		tableReservas = new JTable();
+		configureTableReservas();
+		updateTableReservas();
 
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
 		gl_filtersContainer.setHorizontalGroup(
@@ -80,6 +88,10 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					.addComponent(btnVolverAlMenu)
 					.addContainerGap(105, Short.MAX_VALUE))
 				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_filtersContainer.setVerticalGroup(
 			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
@@ -89,7 +101,9 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(btnActualizarPlano)
-					.addPreferredGap(ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+					.addGap(18)
 					.addComponent(btnVolverAlMenu)
 					.addContainerGap())
 		);
@@ -170,6 +184,8 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		setBtnMesaColor();
 
+		//TODO: lista con numero de mesa y apellido
+
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.pack();
 		gestionRestaurante.setLocationRelativeTo(null);
@@ -216,7 +232,10 @@ public class PlanoReservar extends JPanel implements ActionListener {
 				.getMonth() + 1, calendar.getDayChooser().getDay());
 		horarioSelected = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
 
-		List<String> mesasReservadas = reservaController.getMesasReservadas(dateSelected, horarioSelected).stream().map(Object::toString).toList();
+		List<String> mesasReservadas = reservaController.getMesasReservadas(dateSelected, horarioSelected)
+				.stream()
+				.map(Object::toString)
+				.toList();
 
 		allBtnMesa.forEach(btn -> {
 			if (mesasReservadas.contains(btn.getText())) {
@@ -225,5 +244,37 @@ public class PlanoReservar extends JPanel implements ActionListener {
 				btn.setBackground(new Color(128, 255, 0));
 			}
 		});
+
+		updateTableReservas();
+	}
+
+	private void configureTableReservas() {
+		scrollPaneReservas = new JScrollPane();
+		scrollPaneReservas.setViewportView(tableReservas);
+
+		tableModel.addColumn("Mesa");
+		tableModel.addColumn("Cliente");
+		tableReservas.setModel(tableModel);
+
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //centra el contenido de las columnas de la tabla
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		for (int i = 0; i < tableReservas.getColumnCount(); i++) {
+			tableReservas.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+		}
+	}
+
+	private void updateTableReservas() {
+
+		tableModel.setRowCount(0);
+
+		reservaController.getReservasDia(dateSelected, horarioSelected)
+				.forEach(reserva -> {
+					String[] data = new String[2];
+					data[0] = reserva.getNumeroMesa().toString();
+					data[1] = reserva.getCliente().getNombre() + " " + reserva.getCliente().getApellido();
+
+					tableModel.addRow(data);
+				}); //inserta las reservas a la tabla
+
 	}
 }

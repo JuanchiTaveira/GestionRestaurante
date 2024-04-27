@@ -53,6 +53,8 @@ public class Reserva implements Serializable {
     @Column(name = "numero_personas", nullable = false)
     private Integer numeroPersonas;
 
+    //TODO: agregar empleado que hizo la reserva (QUIZAS)
+
     public enum Horario {
         ALMUERZO, CENA
     }
