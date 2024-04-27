@@ -70,7 +70,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		tableReservas = new JTable();
 		configureTableReservas();
-		fillTableReservas();
+		updateTableReservas();
 
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
 		gl_filtersContainer.setHorizontalGroup(
@@ -90,7 +90,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
 				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(tableReservas, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_filtersContainer.setVerticalGroup(
@@ -102,7 +102,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					.addGap(20)
 					.addComponent(btnActualizarPlano)
 					.addGap(18)
-					.addComponent(tableReservas, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(btnVolverAlMenu)
 					.addContainerGap())
@@ -245,10 +245,13 @@ public class PlanoReservar extends JPanel implements ActionListener {
 			}
 		});
 
-		fillTableReservas();
+		updateTableReservas();
 	}
 
 	private void configureTableReservas() {
+		scrollPaneReservas = new JScrollPane();
+		scrollPaneReservas.setViewportView(tableReservas);
+
 		tableModel.addColumn("Mesa");
 		tableModel.addColumn("Cliente");
 		tableReservas.setModel(tableModel);
@@ -260,7 +263,9 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		}
 	}
 
-	private void fillTableReservas() {
+	private void updateTableReservas() {
+
+		tableModel.setRowCount(0);
 
 		reservaController.getReservasDia(dateSelected, horarioSelected)
 				.forEach(reserva -> {
