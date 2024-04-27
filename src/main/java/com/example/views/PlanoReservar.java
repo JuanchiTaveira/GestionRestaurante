@@ -249,7 +249,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	}
 
 	private void configureTableReservas() {
-		tableModel.addColumn("Id");
+		tableModel.addColumn("Mesa");
 		tableModel.addColumn("Cliente");
 		tableReservas.setModel(tableModel);
 
@@ -265,7 +265,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		reservaController.getReservasDia(dateSelected, horarioSelected)
 				.forEach(reserva -> {
 					String[] data = new String[2];
-					data[0] = reserva.getId().toString();
+					data[0] = reserva.getNumeroMesa().toString();
 					data[1] = reserva.getCliente().getNombre() + " " + reserva.getCliente().getApellido();
 
 					tableModel.addRow(data);
