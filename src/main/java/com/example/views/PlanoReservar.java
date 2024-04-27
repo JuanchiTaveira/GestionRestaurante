@@ -170,6 +170,9 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		setBtnMesaColor();
 
+		//TODO: lista con numero de mesa y apellido
+		//TODO: boton eliminar reserva
+
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.pack();
 		gestionRestaurante.setLocationRelativeTo(null);

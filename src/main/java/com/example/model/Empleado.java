@@ -28,6 +28,8 @@ public class Empleado implements Serializable {
 
     private String password;
 
+    //TODO: agregar nombre, apellido, DNI
+
     public Empleado(String usuario, String password) {
         this.usuario = usuario;
         this.password = password;
