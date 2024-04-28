@@ -2,7 +2,7 @@ package com.example.views.dialogs;
 
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
-import com.example.controller.UsuarioController;
+import com.example.controller.ClienteController;
 import com.example.model.Reserva;
 import com.example.model.Cliente;
 import com.toedter.calendar.JDateChooser;
@@ -30,7 +30,7 @@ import java.time.LocalDate;
 
 public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
-    private static final UsuarioController usuarioController = new UsuarioController();
+    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
     private static final MesaController mesaController = new MesaController();
     private JTextField tfCorreoReserva;
     private boolean save;
@@ -63,7 +63,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
 
-        formPanel.add(new JLabel("Correo usuario:"));
+        formPanel.add(new JLabel("Correo:"));
         tfCorreoReserva = new JTextField();
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfCorreoReserva);
@@ -99,15 +99,15 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
 
-            Cliente cliente = usuarioController.getUsuarioByCorreo(tfCorreoReserva.getText());
+            Cliente cliente = CLIENTE_CONTROLLER.getClienteByCorreo(tfCorreoReserva.getText());
 
             if (cliente == null) {
-                CreateUserDialog dialog = new CreateUserDialog(tfCorreoReserva.getText());
+                CreateClienteDialog dialog = new CreateClienteDialog(tfCorreoReserva.getText());
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
 
                 if (dialog.isSave()) {
-                    cliente = usuarioController.getUsuarioByCorreo(dialog.getTfCorreoReserva());
+                    cliente = CLIENTE_CONTROLLER.getClienteByCorreo(dialog.getTfCorreoReserva());
                     tfCorreoReserva.setText(cliente.getCorreo());
                 }
             }
