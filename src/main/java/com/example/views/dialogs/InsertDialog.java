@@ -63,7 +63,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
 
-        formPanel.add(new JLabel("Correo usuario:"));
+        formPanel.add(new JLabel("Correo cliente:"));
         tfCorreoReserva = new JTextField();
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfCorreoReserva);
@@ -99,15 +99,15 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
 
-            Cliente cliente = CLIENTE_CONTROLLER.getUsuarioByCorreo(tfCorreoReserva.getText());
+            Cliente cliente = CLIENTE_CONTROLLER.getClienteByCorreo(tfCorreoReserva.getText());
 
             if (cliente == null) {
-                CreateUserDialog dialog = new CreateUserDialog(tfCorreoReserva.getText());
+                CreateClienteDialog dialog = new CreateClienteDialog(tfCorreoReserva.getText());
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
 
                 if (dialog.isSave()) {
-                    cliente = CLIENTE_CONTROLLER.getUsuarioByCorreo(dialog.getTfCorreoReserva());
+                    cliente = CLIENTE_CONTROLLER.getClienteByCorreo(dialog.getTfCorreoReserva());
                     tfCorreoReserva.setText(cliente.getCorreo());
                 }
             }

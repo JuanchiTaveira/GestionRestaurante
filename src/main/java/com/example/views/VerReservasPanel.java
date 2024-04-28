@@ -91,7 +91,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         scrollPane.setViewportView(table);
 
         tableModel.addColumn("Id");
-        tableModel.addColumn("Usuario reserva");
+        tableModel.addColumn("Cliente reserva");
         tableModel.addColumn("Numero mesa");
         tableModel.addColumn("Dia (AAAA-MM-DD)");
         tableModel.addColumn("Horario");

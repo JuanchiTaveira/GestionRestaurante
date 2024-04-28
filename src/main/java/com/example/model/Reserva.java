@@ -37,7 +37,7 @@ public class Reserva implements Serializable {
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_reserva_id", nullable = false) // nombre de la columna en la tabla Reservas que contendrá el ID del usuario de la reserva
+    @JoinColumn(name = "usuario_reserva_id", nullable = false) // nombre de la columna en la tabla Reservas que contendrá el ID del cliente de la reserva
     private Cliente cliente;
 
     @Column(name = "numero_mesa", nullable = false)

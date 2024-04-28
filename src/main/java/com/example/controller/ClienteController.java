@@ -17,51 +17,51 @@ public class ClienteController {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
-    public Cliente getUsuarioByCorreo(String correo) {
+    public Cliente getClienteByCorreo(String correo) {
         try (Session session = sessionFactory.openSession()) {
-            Cliente usuarioEncontrado = session.createQuery("SELECT u FROM Cliente u WHERE u.correo = :correo", Cliente.class)
+            Cliente clienteEncontrado = session.createQuery("SELECT u FROM Cliente u WHERE u.correo = :correo", Cliente.class)
                     .setParameter("correo", correo)
                     .getSingleResult();
 
-            System.out.println("Usuario encontrado."); //TODO: cambiar por un logger
+            System.out.println("Cliente encontrado."); //TODO: cambiar por un logger
 
-            return usuarioEncontrado;
+            return clienteEncontrado;
         } catch (NoResultException e) {
-            System.err.println("ERROR: Usuario no encontrado.");
+            System.err.println("ERROR: Cliente no encontrado.");
             return null;
         }
     }
 
-    public List<Cliente> getAllUsuarios() {
+    public List<Cliente> getAllClientes() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("SELECT u FROM Cliente u", Cliente.class)
                     .getResultList();
         }
     }
 
-    public Boolean insertarUsuarioReserva(Cliente usuario) {
+    public Boolean insertarClienteReserva(Cliente cliente) {
         try (Session session = sessionFactory.openSession()) {
 
-            if (!isValidUser(usuario)) {
-                throw new Exception("ERROR: usuario no valido");
+            if (!isValidCliente(cliente)) {
+                throw new Exception("ERROR: cliente no valido");
             }
 
             session.beginTransaction();
-            session.persist(usuario);
+            session.persist(cliente);
             session.getTransaction().commit();
-            System.out.println("Usuario registrado");
+            System.out.println("Cliente registrado");
 
             return true;
         } catch (ConstraintViolationException e) {
-            System.out.println("ERROR: usuario ya existente");
+            System.out.println("ERROR: cliente ya existente");
             return false;
         } catch (Exception e) {
-            System.out.println("ERROR: usuario invalido");
+            System.out.println("ERROR: cliente invalido");
             return false;
         }
     }
 
-    private Boolean isValidUser(Cliente cliente) {
+    private Boolean isValidCliente(Cliente cliente) {
         return !cliente.getNombre().isBlank()
                 && !cliente.getApellido().isBlank()
                 && !cliente.getCorreo().isBlank()

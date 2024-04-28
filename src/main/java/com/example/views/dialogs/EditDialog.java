@@ -71,7 +71,7 @@ public class EditDialog extends JDialog implements ChangeListener {
         formPanel.add(new JLabel("ID:"));
         formPanel.add(labelId);
 
-        formPanel.add(new JLabel("Usuario Reserva:"));
+        formPanel.add(new JLabel("Cliente Reserva:"));
         formPanel.add(labelCorreoReserva);
 
         formPanel.add(new JLabel("Numero Mesa:"));
@@ -125,7 +125,7 @@ public class EditDialog extends JDialog implements ChangeListener {
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
             if (confirm == JOptionPane.OK_OPTION) {
-                Cliente usuario = CLIENTE_CONTROLLER.getUsuarioByCorreo(correoReserva);
+                Cliente usuario = CLIENTE_CONTROLLER.getClienteByCorreo(correoReserva);
 
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))
