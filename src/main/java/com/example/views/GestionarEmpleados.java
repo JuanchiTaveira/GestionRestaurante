@@ -1,46 +1,37 @@
 package com.example.views;
 
 import com.example.GestionRestaurante;
-import com.example.controller.ReservaController;
-import com.example.model.Reserva;
+import com.example.controller.EmpleadoController;
+import com.example.model.Empleado;
 import com.example.views.dialogs.EditDialog;
-import com.example.views.dialogs.InsertDialog;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.SwingConstants;
 
-public class VerReservasPanel extends JPanel implements ActionListener {
+public class GestionarEmpleados extends JPanel implements ActionListener {
+        private final GestionRestaurante gestionRestaurante;
+        private JTable table;
+        private final DefaultTableModel tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Esto hace que todas las celdas sean no editables
+            }
+        };
+        private static final EmpleadoController empleadoController = new EmpleadoController();
+        private JButton btnAgregarEmpleado;
+        private JButton btnEditar;
+        private JButton btnEliminar;
+        private JButton btnVolverAlMenu;
 
-    private final GestionRestaurante gestionRestaurante;
-    private JTable table;
-    private final DefaultTableModel tableModel = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false; // Esto hace que todas las celdas sean no editables
-        }
-    };
-    private static final ReservaController reservaController = new ReservaController();
-    private JButton btnInsertar;
-    private JButton btnEditar;
-    private JButton btnEliminar;
-    private JButton btnVolverAlMenu;
+    public GestionarEmpleados(GestionRestaurante gestionRestaurante) {
 
-    public VerReservasPanel(GestionRestaurante gestionRestaurante) {
         setLayout(new BorderLayout(0, 0));
-    	setBorder(new EmptyBorder(5, 5, 5, 5));
+        setBorder(new EmptyBorder(5, 5, 5, 5));
         this.gestionRestaurante = gestionRestaurante;
 
         configureTable();
@@ -65,9 +56,9 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         JPanel panelAcciones = new JPanel();
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        btnInsertar = new JButton("Insertar");
-        btnInsertar.addActionListener(this);
-        panelAcciones.add(btnInsertar);
+        btnAgregarEmpleado = new JButton("Agregar");
+        btnAgregarEmpleado.addActionListener(this);
+        panelAcciones.add(btnAgregarEmpleado);
 
         btnEditar = new JButton("Editar");
         btnEditar.addActionListener(this);
@@ -90,11 +81,11 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         scrollPane.setViewportView(table);
 
         tableModel.addColumn("Id");
-        tableModel.addColumn("Usuario reserva");
-        tableModel.addColumn("Numero mesa");
-        tableModel.addColumn("Dia (AAAA-MM-DD)");
-        tableModel.addColumn("Horario");
-        tableModel.addColumn("Cantidad pers.");
+        tableModel.addColumn("Usuario");
+        tableModel.addColumn("Nombre");
+        tableModel.addColumn("Apellido");
+        tableModel.addColumn("DNI");
+        tableModel.addColumn("Admin");
         table.setModel(tableModel);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //centra el contenido de las columnas de la tabla
@@ -103,7 +94,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        reservaController.getAllReservas().forEach(reserva -> tableModel.addRow(reservaToTableModel(reserva))); //inserta las reservas a la tabla
+        empleadoController.getAllEmpleados().forEach(reserva -> tableModel.addRow(EmpleadoToTableModel(reserva))); //inserta las reservas a la tabla
     }
 
     @Override
@@ -113,7 +104,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
             if (selectedRow != -1) { // Si hay una fila seleccionada
                 editarReserva(selectedRow);
             }
-        } else if (e.getSource().equals(btnInsertar)) {
+        } else if (e.getSource().equals(btnAgregarEmpleado)) {
             insertarReserva();
         } else if (e.getSource().equals(btnEliminar)) {
             int selectedRow = table.getSelectedRow();
@@ -127,15 +118,15 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     }
 
 
-    private String[] reservaToTableModel(Reserva reserva) {
+    private String[] EmpleadoToTableModel(Empleado empleado) {
         String[] data = new String[6];
 
-        data[0] = reserva.getId().toString();
-        data[1] = reserva.getCliente().getCorreo();
-        data[2] = reserva.getNumeroMesa().toString();
-        data[3] = reserva.getDia().toString();
-        data[4] = reserva.getHorario().toString();
-        data[5] = reserva.getNumeroPersonas().toString();
+        data[0] = empleado.getId().toString();
+        data[1] = empleado.getUsuario();
+        data[2] = empleado.getNombre();
+        data[3] = empleado.getApellido();
+        data[4] = empleado.getDni();
+        data[5] = empleado.isAdmin() ? "SI" : "NO";
 
         return data;
     }
@@ -170,22 +161,22 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     }
 
     private void insertarReserva() {
-        InsertDialog dialog = new InsertDialog();
+        /*InsertDialog dialog = new InsertDialog();
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
 
         if (dialog.isSave()) {
-            tableModel.addRow(reservaToTableModel(dialog.getNuevaReserva()));
-        }
+            tableModel.addRow(EmpleadoToTableModel(dialog.getNuevaReserva()));
+        }*/
     }
 
     private void eliminarReserva(int selectedRow) {
-        Integer id = Integer.valueOf(table.getValueAt(selectedRow, 0).toString());
-        int confirm = JOptionPane.showConfirmDialog(this, "Quieres eliminar la reserva con ID: " + id + "?");
+        /*Integer id = Integer.valueOf(table.getValueAt(selectedRow, 0).toString());
+        int confirm = JOptionPane.showConfirmDialog(this, "Quieres eliminar al empleado con ID: " + id + "?");
 
         if (confirm == JOptionPane.OK_OPTION) {
-            reservaController.eliminarReserva(id);
+            empleadoController.eliminarEmpleado(id);
             tableModel.removeRow(selectedRow);
-        }
+        }*/
     }
 }

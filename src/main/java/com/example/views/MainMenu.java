@@ -53,7 +53,7 @@ public class MainMenu extends JPanel implements ActionListener {
 			gbc.insets = insets;
 			gbc.gridx = 0;
 			gbc.gridy = 2;
-			btnVerReservas.addActionListener(this);
+			btnGestionarEmpleados.addActionListener(this);
 			centerPanel.add(btnGestionarEmpleados, gbc);
 		}
 
@@ -87,6 +87,7 @@ public class MainMenu extends JPanel implements ActionListener {
 			new PlanoReservar(gestionRestaurante);
 		} else if (e.getSource().equals(btnGestionarEmpleados)) {
 			this.setVisible(false);
+			new GestionarEmpleados(gestionRestaurante);
 		} else if (e.getSource().equals(btnLogout)) {
 			this.setVisible(false);
 			EmpleadoController.authUser = null;
