@@ -3,13 +3,7 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -33,6 +27,10 @@ public class LoginPanel extends JPanel implements ActionListener {
 
     public LoginPanel(GestionRestaurante gestionRestaurante) {
         this.gestionRestaurante = gestionRestaurante;
+        gestionRestaurante.setSize(500, 300);
+        gestionRestaurante.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gestionRestaurante.setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        gestionRestaurante.add(this, BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
 

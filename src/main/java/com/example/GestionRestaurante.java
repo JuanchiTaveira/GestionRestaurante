@@ -35,12 +35,8 @@ public class GestionRestaurante extends JFrame {
 
 	private void initialize() {
 		setTitle("JAJ - Gestión de Restaurante");
-		setSize(500, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
-		LoginPanel loginPanel = new LoginPanel(this);
-		add(loginPanel, BorderLayout.CENTER);
+		new LoginPanel(this);
 	}
 
 	private void insertTestData() {

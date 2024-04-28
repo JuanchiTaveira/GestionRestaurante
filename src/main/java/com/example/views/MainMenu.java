@@ -3,14 +3,11 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
 public class MainMenu extends JPanel implements ActionListener {
 
@@ -19,6 +16,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	private JButton btnReservar;
 	private JButton btnVerReservas;
 	private JButton btnGestionarEmpleados;
+	private JButton btnLogout;
 
     /**
 	 * Create the panel.
@@ -62,6 +60,19 @@ public class MainMenu extends JPanel implements ActionListener {
 		add(centerPanel, BorderLayout.CENTER);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
+
+		// Panel para el botón "Cerrar sesion"
+		JPanel panelLogout = new JPanel();
+		panelLogout.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelLogout.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+		btnLogout = new JButton("Cerrar sesión");
+		btnLogout.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnLogout.addActionListener(this);
+		panelLogout.add(btnLogout);
+
+		add(panelLogout, BorderLayout.SOUTH);
+
 		gestionRestaurante.setSize(800,500);
 		gestionRestaurante.setLocationRelativeTo(null);
 	}
@@ -76,6 +87,10 @@ public class MainMenu extends JPanel implements ActionListener {
 			new PlanoReservar(gestionRestaurante);
 		} else if (e.getSource().equals(btnGestionarEmpleados)) {
 			this.setVisible(false);
+		} else if (e.getSource().equals(btnLogout)) {
+			this.setVisible(false);
+			EmpleadoController.authUser = null;
+			new LoginPanel(gestionRestaurante);
 		}
 	}
 }
