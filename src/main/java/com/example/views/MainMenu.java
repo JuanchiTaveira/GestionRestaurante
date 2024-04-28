@@ -1,6 +1,7 @@
 package com.example.views;
 
 import com.example.GestionRestaurante;
+import com.example.controller.EmpleadoController;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -17,6 +18,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	private final GestionRestaurante gestionRestaurante;
 	private JButton btnReservar;
 	private JButton btnVerReservas;
+	private JButton btnGestionarEmpleados;
 
     /**
 	 * Create the panel.
@@ -47,6 +49,16 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnVerReservas.addActionListener(this);
 		centerPanel.add(btnVerReservas, gbc);
 
+		if (EmpleadoController.authUser.isAdmin()) {
+			btnGestionarEmpleados = new JButton("Gestionar Empleados");
+			gbc = new GridBagConstraints();
+			gbc.insets = insets;
+			gbc.gridx = 0;
+			gbc.gridy = 2;
+			btnVerReservas.addActionListener(this);
+			centerPanel.add(btnGestionarEmpleados, gbc);
+		}
+
 		add(centerPanel, BorderLayout.CENTER);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
@@ -62,6 +74,8 @@ public class MainMenu extends JPanel implements ActionListener {
 		} else if (e.getSource().equals(btnReservar)) {
 			this.setVisible(false);
 			new PlanoReservar(gestionRestaurante);
+		} else if (e.getSource().equals(btnGestionarEmpleados)) {
+			this.setVisible(false);
 		}
 	}
 }

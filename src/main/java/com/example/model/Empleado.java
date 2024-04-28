@@ -13,7 +13,6 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -34,8 +33,18 @@ public class Empleado implements Serializable {
 
     private String dni;
 
-    public Empleado(String usuario, String password) {
+    private Boolean admin;
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public Empleado(String usuario, String password, String nombre, String apellido, String dni, Boolean admin) {
         this.usuario = usuario;
         this.password = password;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.admin = admin;
     }
 }

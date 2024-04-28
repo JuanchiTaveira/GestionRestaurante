@@ -11,6 +11,7 @@ import java.util.List;
 public class EmpleadoController {
 
     private final SessionFactory sessionFactory;
+    public static Empleado authUser;
 
     public EmpleadoController() {
         sessionFactory = HibernateUtil.getSessionFactory();
@@ -18,6 +19,8 @@ public class EmpleadoController {
 
     public Boolean iniciarSesion(String usuario, String password) {
         Empleado result = getEmpleado(usuario, password);
+
+        authUser = result;
 
         return result != null;
     }
