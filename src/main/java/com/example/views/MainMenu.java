@@ -1,6 +1,7 @@
 package com.example.views;
 
 import com.example.GestionRestaurante;
+import com.example.views.utils.ImagePanel;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -14,6 +15,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Dimension;
 
 public class MainMenu extends JPanel implements ActionListener {
 
@@ -27,51 +29,55 @@ public class MainMenu extends JPanel implements ActionListener {
 	 */
 	public MainMenu(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
+		gestionRestaurante.setSize(500,300);
 
         setLayout(new BorderLayout(0, 0));
-		
-		JPanel centerPanel = new JPanel();
+
+		JPanel centerPanel = new JPanel(new GridBagLayout());
 		centerPanel.setBackground(new Color(240, 197, 23));
 
 		GridBagConstraints gbc;
 		Insets insets = new Insets(5, 5, 5, 5); // padding
+
+		JLabel imagenLogo = new JLabel("");
+		imagenLogo.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		centerPanel.add(imagenLogo, gbc);
 		
 		btnReservar = new JButton("Reservar");
 		btnReservar.setForeground(new Color(240, 197, 23));
 		btnReservar.setBackground(new Color(0, 0, 0));
 		btnReservar.setBorderPainted(false);
 		btnReservar.setFont(new Font("Verdana", btnReservar.getFont().getStyle() | Font.BOLD, btnReservar.getFont().getSize() + 2));
-		btnReservar.setBounds(160, 119, 120, 25);
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		btnReservar.addActionListener(this);
-		centerPanel.setLayout(null);
-		centerPanel.add(btnReservar);
+		centerPanel.add(btnReservar, gbc);
 
 		btnVerReservas = new JButton("Ver Reservas");
 		btnVerReservas.setForeground(new Color(240, 197, 23));
 		btnVerReservas.setBackground(new Color(0, 0, 0));
-		btnVerReservas.setBorderPainted(false);
 		btnVerReservas.setFont(new Font("Verdana", btnVerReservas.getFont().getStyle() | Font.BOLD, btnVerReservas.getFont().getSize() + 1));
-		btnVerReservas.setBounds(149, 155, 148, 25);
+		btnVerReservas.setBorderPainted(false);
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 0;
+		gbc.gridy = 2;
 		btnVerReservas.addActionListener(this);
-		centerPanel.add(btnVerReservas);
+		centerPanel.add(btnVerReservas, gbc);
 
 		add(centerPanel, BorderLayout.CENTER);
-		
-		JLabel imagenLogo = new JLabel("");
-		imagenLogo.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
-		imagenLogo.setBounds(181, 27, 80, 82);
-		centerPanel.add(imagenLogo);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
-		
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
-		
-		JLabel imagenFooter = new JLabel("");
-		imagenFooter.setIcon(new ImageIcon("src/main/resources/images/logopie.png"));
-		panel.add(imagenFooter);
-		gestionRestaurante.setSize(500,300);
-		
+
+		ImagePanel imagePanel = new ImagePanel("/images/logopie.png");
+		imagePanel.setPreferredSize(new Dimension(300, 65));
+		add(imagePanel, BorderLayout.SOUTH);
 	}
 
 	@Override
