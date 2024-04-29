@@ -28,7 +28,6 @@ public class MainMenu extends JPanel implements ActionListener {
 	public MainMenu(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
 
-
         setLayout(new BorderLayout(0, 0));
 		
 		JPanel centerPanel = new JPanel();
@@ -58,19 +57,19 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		add(centerPanel, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
-		lblNewLabel_1.setBounds(181, 27, 80, 82);
-		centerPanel.add(lblNewLabel_1);
+		JLabel imagenLogo = new JLabel("");
+		imagenLogo.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
+		imagenLogo.setBounds(181, 27, 80, 82);
+		centerPanel.add(imagenLogo);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("src/main/resources/images/logopie.png"));
-		panel.add(lblNewLabel);
+		JLabel imagenFooter = new JLabel("");
+		imagenFooter.setIcon(new ImageIcon("src/main/resources/images/logopie.png"));
+		panel.add(imagenFooter);
 		gestionRestaurante.setSize(500,300);
 		
 	}
