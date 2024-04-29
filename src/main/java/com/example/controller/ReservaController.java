@@ -121,4 +121,16 @@ public class ReservaController {
             return null;
         }
     }
+
+    public List<Reserva> getReservasDia(LocalDate dia, Reserva.Horario horario) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("SELECT r FROM Reserva r WHERE r.dia = :dia AND r.horario = :horario", Reserva.class)
+                    .setParameter("dia", dia)
+                    .setParameter("horario", horario)
+                    .getResultList();
+        } catch (NoResultException e) {
+            System.err.println("No hay reservas en ese dia y horario.");
+            return null;
+        }
+    }
 }
