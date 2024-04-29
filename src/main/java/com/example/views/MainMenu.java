@@ -30,6 +30,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	public MainMenu(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
 		gestionRestaurante.setSize(500,300);
+		gestionRestaurante.setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(0, 0));
 

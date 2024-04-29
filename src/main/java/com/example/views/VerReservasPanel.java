@@ -40,10 +40,13 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     private JButton btnVolverAlMenu;
 
     public VerReservasPanel(GestionRestaurante gestionRestaurante) {
+        this.gestionRestaurante = gestionRestaurante;
+        gestionRestaurante.setSize(800,500);
+        gestionRestaurante.setLocationRelativeTo(null);
+
     	setBackground(new Color(240, 197, 23));
         setLayout(new BorderLayout(0, 0));
     	setBorder(new EmptyBorder(5, 5, 5, 5));
-        this.gestionRestaurante = gestionRestaurante;
 
         configureTable();
 
