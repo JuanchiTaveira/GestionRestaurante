@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
@@ -52,7 +51,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		setBackground(new Color(240, 197, 23));
 		this.gestionRestaurante = gestionRestaurante;
 
-		setPreferredSize(new Dimension(1230, 700));
+		setPreferredSize(new Dimension(1288, 700));
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel filtersContainer = new JPanel(null);

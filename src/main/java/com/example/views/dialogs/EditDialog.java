@@ -173,11 +173,6 @@ public class EditDialog extends JDialog implements ChangeListener {
             dispose();
         });
 
-        //Panel del boton de guardar
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(new Color(240, 197, 23));
-        buttonPanel.add(saveButton);
-
         panel.add(formPanel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
