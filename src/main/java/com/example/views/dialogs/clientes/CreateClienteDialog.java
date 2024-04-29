@@ -1,4 +1,4 @@
-package com.example.views.dialogs;
+package com.example.views.dialogs.clientes;
 
 import com.example.controller.ClienteController;
 import com.example.model.Cliente;

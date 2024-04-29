@@ -67,4 +67,26 @@ public class EmpleadoController {
         }
     }
 
+    public Empleado getEmpleadoById(String id) {
+        try (Session session = sessionFactory.openSession()) {
+            Empleado empleadoEncontrado = session.createQuery("SELECT u FROM Empleado u WHERE u.id = :id", Empleado.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+
+            return empleadoEncontrado;
+        } catch (NoResultException e) {
+            System.err.println("ERROR: Usuario o contraseña incorrectos.");
+            return null;
+        }
+    }
+
+    public Boolean editarEmpleado(Empleado empleadoActualizado) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(empleadoActualizado);
+            session.getTransaction().commit();
+            System.out.println("Empleado editado con id: " + empleadoActualizado.getId());
+            return true;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.views.dialogs;
+package com.example.views.dialogs.reservas;
 
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
@@ -30,7 +30,7 @@ import javax.swing.JSpinner;
 
 public class EditDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
-    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
+    private static final ClienteController clienteController = new ClienteController();
     private static final MesaController mesaController = new MesaController();
     private final JLabel labelId, labelCorreoReserva;
     private boolean save;
@@ -125,7 +125,7 @@ public class EditDialog extends JDialog implements ChangeListener {
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");
 
             if (confirm == JOptionPane.OK_OPTION) {
-                Cliente usuario = CLIENTE_CONTROLLER.getClienteByCorreo(correoReserva);
+                Cliente usuario = clienteController.getClienteByCorreo(correoReserva);
 
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))

@@ -3,8 +3,8 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.example.controller.ReservaController;
 import com.example.model.Reserva;
-import com.example.views.dialogs.EditDialog;
-import com.example.views.dialogs.InsertDialog;
+import com.example.views.dialogs.reservas.EditDialog;
+import com.example.views.dialogs.reservas.InsertDialog;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;

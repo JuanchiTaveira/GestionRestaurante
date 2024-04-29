@@ -3,7 +3,7 @@ package com.example.views;
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 import com.example.model.Empleado;
-import com.example.views.dialogs.EditDialog;
+import com.example.views.dialogs.empleados.EditEmpleadoDialog;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -102,7 +102,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         if (e.getSource().equals(btnEditar)) {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) { // Si hay una fila seleccionada
-                editarReserva(selectedRow);
+                editarEmpleado(selectedRow);
             }
         } else if (e.getSource().equals(btnAgregarEmpleado)) {
             insertarReserva();
@@ -131,32 +131,28 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         return data;
     }
 
-    private void editarReserva(int selectedRow) {
+    private void editarEmpleado(int selectedRow) {
         // Obtener los valores de la fila seleccionada
         String id = table.getValueAt(selectedRow, 0).toString();
-        String usuarioReserva = table.getValueAt(selectedRow, 1).toString();
-        String numeroMesa = table.getValueAt(selectedRow, 2).toString();
-        String dia = table.getValueAt(selectedRow, 3).toString();
-        String horario = table.getValueAt(selectedRow, 4).toString();
-        String numeroPersonas = table.getValueAt(selectedRow, 5).toString();
+        String usuario = table.getValueAt(selectedRow, 1).toString();
+        String nombre = table.getValueAt(selectedRow, 2).toString();
+        String apellido = table.getValueAt(selectedRow, 3).toString();
+        String dni = table.getValueAt(selectedRow, 4).toString();
+        String admin = table.getValueAt(selectedRow, 5).toString();
 
         // Crear y mostrar el diálogo de edición
-        EditDialog dialog = new EditDialog(id, usuarioReserva, numeroMesa, dia, horario, numeroPersonas);
+        EditEmpleadoDialog dialog = new EditEmpleadoDialog(id, usuario, nombre, apellido, dni, admin);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
 
         // Actualizar los valores en la tabla si se guarda el diálogo
         if (dialog.isSave()) {
-            if (dialog.isDeleted()) {
-                tableModel.removeRow(selectedRow);
-            } else {
-                table.setValueAt(dialog.getId(), selectedRow, 0);
-                table.setValueAt(dialog.getCorreoReserva(), selectedRow, 1);
-                table.setValueAt(dialog.getSpinnerNumeroMesa(), selectedRow, 2);
-                table.setValueAt(dialog.getTfDia(), selectedRow, 3);
-                table.setValueAt(dialog.getHorario(), selectedRow, 4);
-                table.setValueAt(dialog.getSpinnerNumeroPersonas(), selectedRow, 5);
-            }
+            table.setValueAt(dialog.getId(), selectedRow, 0);
+            table.setValueAt(dialog.getUsuario(), selectedRow, 1);
+            table.setValueAt(dialog.getNombre(), selectedRow, 2);
+            table.setValueAt(dialog.getApellido(), selectedRow, 3);
+            table.setValueAt(dialog.getDni(), selectedRow, 4);
+            table.setValueAt(dialog.getAdmin(), selectedRow, 5);
         }
     }
 

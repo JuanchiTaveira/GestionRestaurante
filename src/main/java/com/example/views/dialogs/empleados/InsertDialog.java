@@ -1,30 +1,19 @@
-package com.example.views.dialogs;
+package com.example.views.dialogs.empleados;
 
+import com.example.controller.ClienteController;
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
-import com.example.controller.ClienteController;
-import com.example.model.Reserva;
 import com.example.model.Cliente;
+import com.example.model.Reserva;
+import com.example.views.dialogs.clientes.CreateClienteDialog;
 import com.toedter.calendar.JDateChooser;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.sql.Date;
 import java.time.LocalDate;
 
