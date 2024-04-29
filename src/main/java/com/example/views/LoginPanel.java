@@ -76,7 +76,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         Insets insets = new Insets(5, 5, 5, 5); // padding
         
         lblIconoLogo = new JLabel("");
-        lblIconoLogo.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo.png"));
+        lblIconoLogo.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
         GridBagConstraints gbc_lblIconoLogo = new GridBagConstraints();
         gbc_lblIconoLogo.gridwidth = 4;
         gbc_lblIconoLogo.insets = new Insets(0, 0, 5, 0);
@@ -85,7 +85,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         centerPanel.add(lblIconoLogo, gbc_lblIconoLogo);
         
         lblIconoUsuario = new JLabel("");
-        lblIconoUsuario.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\Usuario.png"));
+        lblIconoUsuario.setIcon(new ImageIcon("src/main/resources/images/Usuario.png"));
         GridBagConstraints gbc_lblIconoUsuario = new GridBagConstraints();
         gbc_lblIconoUsuario.insets = new Insets(0, 0, 5, 5);
         gbc_lblIconoUsuario.gridx = 0;
@@ -113,7 +113,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         centerPanel.add(tfUsuario, gbc_1);
         
         lbIconoCandado = new JLabel("");
-        lbIconoCandado.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\candado.png"));
+        lbIconoCandado.setIcon(new ImageIcon("src/main/resources/images/candado.png"));
         GridBagConstraints gbc_lbIconoCandado = new GridBagConstraints();
         gbc_lbIconoCandado.insets = new Insets(0, 0, 5, 5);
         gbc_lbIconoCandado.gridx = 0;

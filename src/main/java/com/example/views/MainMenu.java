@@ -38,6 +38,9 @@ public class MainMenu extends JPanel implements ActionListener {
 		Insets insets = new Insets(5, 5, 5, 5); // padding
 		
 		btnReservar = new JButton("Reservar");
+		btnReservar.setForeground(new Color(240, 197, 23));
+		btnReservar.setBackground(new Color(0, 0, 0));
+		btnReservar.setBorderPainted(false);
 		btnReservar.setFont(new Font("Verdana", btnReservar.getFont().getStyle() | Font.BOLD, btnReservar.getFont().getSize() + 2));
 		btnReservar.setBounds(160, 119, 120, 25);
 		btnReservar.addActionListener(this);
@@ -45,15 +48,18 @@ public class MainMenu extends JPanel implements ActionListener {
 		centerPanel.add(btnReservar);
 
 		btnVerReservas = new JButton("Ver Reservas");
+		btnVerReservas.setForeground(new Color(240, 197, 23));
+		btnVerReservas.setBackground(new Color(0, 0, 0));
+		btnVerReservas.setBorderPainted(false);
 		btnVerReservas.setFont(new Font("Verdana", btnVerReservas.getFont().getStyle() | Font.BOLD, btnVerReservas.getFont().getSize() + 1));
-		btnVerReservas.setBounds(160, 155, 120, 25);
+		btnVerReservas.setBounds(149, 155, 148, 25);
 		btnVerReservas.addActionListener(this);
 		centerPanel.add(btnVerReservas);
 
 		add(centerPanel, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\iconos\\logo.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
 		lblNewLabel_1.setBounds(181, 27, 80, 82);
 		centerPanel.add(lblNewLabel_1);
 
@@ -63,9 +69,9 @@ public class MainMenu extends JPanel implements ActionListener {
 		add(panel, BorderLayout.SOUTH);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\iconos\\logopie.png"));
+		lblNewLabel.setIcon(new ImageIcon("src/main/resources/images/logopie.png"));
 		panel.add(lblNewLabel);
-		gestionRestaurante.setSize(800,500);
+		gestionRestaurante.setSize(500,300);
 		
 	}
 
