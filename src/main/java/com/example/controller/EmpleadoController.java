@@ -102,4 +102,11 @@ public class EmpleadoController {
             return true;
         }
     }
+
+    public long getEmpleadosAdminCount() {
+        try (Session session = sessionFactory.openSession()) {
+            long adminsCount = session.createQuery("SELECT count(u) FROM Empleado u WHERE u.admin = true").getFirstResult();
+            return adminsCount;
+        }
+    }
 }

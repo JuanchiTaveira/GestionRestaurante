@@ -109,6 +109,11 @@ public class EditEmpleadoDialog extends JDialog {
                 return;
             }
 
+            if (admin.equals("SI") && !nuevoAdmin && empleadoController.getEmpleadosAdminCount() < 2) {
+                JOptionPane.showMessageDialog(this, "ERROR: No puede revocar permisos de administrador, ya que éste usuario es el único administrador.");
+                return;
+            }
+
             if (confirm == JOptionPane.OK_OPTION) {
                 Empleado oldEmpleado = empleadoController.getEmpleadoById(id);
 
