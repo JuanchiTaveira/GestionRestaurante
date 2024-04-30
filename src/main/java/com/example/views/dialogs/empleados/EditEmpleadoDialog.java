@@ -18,7 +18,7 @@ public class EditEmpleadoDialog extends JDialog {
     private JComboBox adminComboBox;
 
     public EditEmpleadoDialog(String id, String usuario, String nombre, String apellido, String dni, String admin) {
-        setTitle("Editar Reserva");
+        setTitle("Editar Empleado");
         setSize(400, 350);
         setModal(true);
 

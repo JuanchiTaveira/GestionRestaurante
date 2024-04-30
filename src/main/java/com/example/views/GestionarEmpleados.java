@@ -4,6 +4,7 @@ import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 import com.example.model.Empleado;
 import com.example.views.dialogs.empleados.EditEmpleadoDialog;
+import com.example.views.dialogs.empleados.InsertEmpleadoDialog;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -157,13 +158,13 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
     }
 
     private void insertarReserva() {
-        /*InsertDialog dialog = new InsertDialog();
+        InsertEmpleadoDialog dialog = new InsertEmpleadoDialog();
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
 
         if (dialog.isSave()) {
-            tableModel.addRow(EmpleadoToTableModel(dialog.getNuevaReserva()));
-        }*/
+            tableModel.addRow(EmpleadoToTableModel(dialog.getNuevoEmpleado()));
+        }
     }
 
     private void eliminarReserva(int selectedRow) {

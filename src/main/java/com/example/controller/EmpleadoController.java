@@ -80,6 +80,19 @@ public class EmpleadoController {
         }
     }
 
+    public Empleado getEmpleadoByUsuario(String usuario) {
+        try (Session session = sessionFactory.openSession()) {
+            Empleado empleadoEncontrado = session.createQuery("SELECT u FROM Empleado u WHERE u.usuario = :usuario", Empleado.class)
+                    .setParameter("usuario", usuario)
+                    .getSingleResult();
+
+            return empleadoEncontrado;
+        } catch (NoResultException e) {
+            System.err.println("Usuario no encontrado.");
+            return null;
+        }
+    }
+
     public Boolean editarEmpleado(Empleado empleadoActualizado) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
