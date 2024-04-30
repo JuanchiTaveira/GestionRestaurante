@@ -203,7 +203,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 			if (btnMesa.getBackground().equals(new Color(242, 18, 13))) { // si esta reservada
 				Reserva reserva = reservaController.getReserva(Integer.valueOf(btnMesa.getText()), dateSelected, horarioSelected);
 
-				EditDialog dialog = new EditDialog(reserva.getId().toString(), reserva.getCliente().getCorreo(), reserva.getNumeroMesa().toString(), dateSelected.toString(), horarioSelected.toString(), reserva.getNumeroPersonas().toString());
+				EditDialog dialog = new EditDialog(reserva.getId().toString(), reserva.getCliente().getCorreo(), reserva.getNumeroMesa().toString(), dateSelected.toString(), horarioSelected.toString(), reserva.getNumeroPersonas().toString(), reserva.getEmpleado().getUsuario());
 				dialog.setLocationRelativeTo(null);
 				dialog.setVisible(true);
 

@@ -23,6 +23,8 @@ public class MainMenu extends JPanel implements ActionListener {
 	 */
 	public MainMenu(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
+		gestionRestaurante.setSize(800,500);
+		gestionRestaurante.setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(0, 0));
 		
@@ -72,9 +74,6 @@ public class MainMenu extends JPanel implements ActionListener {
 		panelLogout.add(btnLogout);
 
 		add(panelLogout, BorderLayout.SOUTH);
-
-		gestionRestaurante.setSize(800,500);
-		gestionRestaurante.setLocationRelativeTo(null);
 	}
 
 	@Override

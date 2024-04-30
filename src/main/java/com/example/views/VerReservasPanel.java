@@ -39,13 +39,15 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     private JButton btnVolverAlMenu;
 
     public VerReservasPanel(GestionRestaurante gestionRestaurante) {
+        this.gestionRestaurante = gestionRestaurante;
+        gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
+        gestionRestaurante.setSize(1000, 500);
+        gestionRestaurante.setLocationRelativeTo(null);
+
         setLayout(new BorderLayout(0, 0));
     	setBorder(new EmptyBorder(5, 5, 5, 5));
-        this.gestionRestaurante = gestionRestaurante;
 
         configureTable();
-
-        gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
         // Panel principal para los botones
         JPanel panelBotones = new JPanel();
@@ -90,11 +92,12 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         scrollPane.setViewportView(table);
 
         tableModel.addColumn("Id");
-        tableModel.addColumn("Usuario reserva");
+        tableModel.addColumn("Cliente");
         tableModel.addColumn("Numero mesa");
         tableModel.addColumn("Dia (AAAA-MM-DD)");
         tableModel.addColumn("Horario");
         tableModel.addColumn("Cantidad pers.");
+        tableModel.addColumn("Empleado");
         table.setModel(tableModel);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //centra el contenido de las columnas de la tabla
@@ -128,7 +131,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
 
     private String[] reservaToTableModel(Reserva reserva) {
-        String[] data = new String[6];
+        String[] data = new String[7];
 
         data[0] = reserva.getId().toString();
         data[1] = reserva.getCliente().getCorreo();
@@ -136,6 +139,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         data[3] = reserva.getDia().toString();
         data[4] = reserva.getHorario().toString();
         data[5] = reserva.getNumeroPersonas().toString();
+        data[6] = reserva.getEmpleado().getUsuario();
 
         return data;
     }
@@ -148,9 +152,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         String dia = table.getValueAt(selectedRow, 3).toString();
         String horario = table.getValueAt(selectedRow, 4).toString();
         String numeroPersonas = table.getValueAt(selectedRow, 5).toString();
+        String empleado = table.getValueAt(selectedRow, 6).toString();
 
         // Crear y mostrar el diálogo de edición
-        EditDialog dialog = new EditDialog(id, usuarioReserva, numeroMesa, dia, horario, numeroPersonas);
+        EditDialog dialog = new EditDialog(id, usuarioReserva, numeroMesa, dia, horario, numeroPersonas, empleado);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
 

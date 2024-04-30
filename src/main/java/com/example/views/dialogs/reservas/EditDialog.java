@@ -1,8 +1,10 @@
 package com.example.views.dialogs.reservas;
 
+import com.example.controller.EmpleadoController;
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.controller.ClienteController;
+import com.example.model.Empleado;
 import com.example.model.Reserva;
 import com.example.model.Cliente;
 import com.toedter.calendar.JDateChooser;
@@ -42,7 +44,7 @@ public class EditDialog extends JDialog implements ChangeListener {
     private SpinnerNumberModel model;
     private JButton btnEliminar;
 
-    public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas) {
+    public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas, String empleado) {
         setTitle("Editar Reserva");
         setSize(400, 350);
         setModal(true);
@@ -126,6 +128,7 @@ public class EditDialog extends JDialog implements ChangeListener {
 
             if (confirm == JOptionPane.OK_OPTION) {
                 Cliente usuario = clienteController.getClienteByCorreo(correoReserva);
+                Empleado empleadoReserva = new EmpleadoController().getEmpleadoByUsuario(empleado);
 
                 Reserva reservaActualizada = Reserva.builder()
                         .id(Integer.valueOf(id))
@@ -134,6 +137,7 @@ public class EditDialog extends JDialog implements ChangeListener {
                         .dia(LocalDate.parse(((JTextField) dateChooser.getDateEditor().getUiComponent()).getText()))
                         .horario(Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString()))
                         .numeroPersonas(Integer.valueOf(spinnerNumeroPersonas.getValue().toString()))
+                        .empleado(empleadoReserva)
                         .build();
 
                 Reserva oldReserva = Reserva.builder()
@@ -143,6 +147,7 @@ public class EditDialog extends JDialog implements ChangeListener {
                         .dia(LocalDate.parse(dia))
                         .horario(Reserva.Horario.valueOf(horario))
                         .numeroPersonas(Integer.valueOf(numeroPersonas))
+                        .empleado(empleadoReserva)
                         .build();
 
                 if (reservaActualizada.equals(oldReserva)) {

@@ -1,5 +1,6 @@
 package com.example.views.dialogs.reservas;
 
+import com.example.controller.EmpleadoController;
 import com.example.controller.MesaController;
 import com.example.controller.ReservaController;
 import com.example.controller.ClienteController;
@@ -118,7 +119,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
             Reserva.Horario horario = Reserva.Horario.valueOf(horarioComboBox.getSelectedItem().toString());
             Integer numeroPersonas = (Integer) spinnerNumeroPersonas.getValue();
 
-            nuevaReserva = new Reserva(cliente, numeroMesa, dia, horario, numeroPersonas);
+            nuevaReserva = new Reserva(cliente, numeroMesa, dia, horario, numeroPersonas, EmpleadoController.authUser);
 
             Boolean success = reservaController.insertarReserva(nuevaReserva);
 

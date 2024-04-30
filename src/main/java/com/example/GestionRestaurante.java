@@ -42,10 +42,12 @@ public class GestionRestaurante extends JFrame {
 		EmpleadoController empleadoController = new EmpleadoController();
 		ReservaController reservaController = new ReservaController();
 
-		empleadoController.insertarEmpleado(new Empleado("admin", "admin", "Admin", "Admin", "12345678", true));
-		empleadoController.insertarEmpleado(new Empleado("juan", "juan", "Juan", "Taveira", "Y123456Z", false));
-		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5));
-		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4));
+		Empleado empleado = new Empleado("admin", "admin", "Admin", "Admin", "12345678", true);
+		Empleado empleado1 = new Empleado("juan", "juan", "Juan", "Taveira", "Y123456Z", false);
+		empleadoController.insertarEmpleado(empleado);
+		empleadoController.insertarEmpleado(empleado1);
+		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
+		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado1));
 	}
 
 	private void crearMesas() {

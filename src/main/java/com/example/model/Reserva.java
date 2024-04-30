@@ -43,7 +43,7 @@ public class Reserva implements Serializable {
     @Column(name = "numero_mesa", nullable = false)
     private Integer numeroMesa;
 
-    @Column(name = "dia")
+    @Column(name = "dia", nullable = false)
     private LocalDate dia;
 
     @Enumerated(EnumType.STRING)
@@ -53,18 +53,21 @@ public class Reserva implements Serializable {
     @Column(name = "numero_personas", nullable = false)
     private Integer numeroPersonas;
 
-    //TODO: agregar empleado que hizo la reserva (QUIZAS)
+    @ManyToOne
+    @JoinColumn(name = "empleado_id", nullable = false)
+    private Empleado empleado;
 
     public enum Horario {
         ALMUERZO, CENA
     }
 
-    public Reserva(Cliente cliente, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas) {
+    public Reserva(Cliente cliente, Integer numeroMesa, LocalDate dia, Horario horario, Integer numeroPersonas, Empleado empleado) {
         this.cliente = cliente;
         this.numeroMesa = numeroMesa;
         this.dia = dia;
         this.horario = horario;
         this.numeroPersonas = numeroPersonas;
+        this.empleado = empleado;
     }
 
     @Override
