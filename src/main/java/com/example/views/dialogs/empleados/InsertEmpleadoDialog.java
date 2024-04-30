@@ -1,20 +1,23 @@
 package com.example.views.dialogs.empleados;
 
 import com.example.controller.EmpleadoController;
-import com.example.model.Cliente;
 import com.example.model.Empleado;
-import com.example.model.Reserva;
-import com.example.views.dialogs.clientes.CreateClienteDialog;
 
-import javax.swing.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
-import java.awt.*;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Objects;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class InsertEmpleadoDialog extends JDialog {
     private static final EmpleadoController empleadoController = new EmpleadoController();

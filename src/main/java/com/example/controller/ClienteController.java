@@ -23,7 +23,7 @@ public class ClienteController {
                     .setParameter("correo", correo)
                     .getSingleResult();
 
-            System.out.println("Cliente encontrado."); //TODO: cambiar por un logger
+            System.out.println("Cliente encontrado.");
 
             return clienteEncontrado;
         } catch (NoResultException e) {

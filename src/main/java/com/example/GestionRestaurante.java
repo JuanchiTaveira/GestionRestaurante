@@ -9,7 +9,6 @@ import com.example.model.Cliente;
 import com.example.views.LoginPanel;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.time.LocalDate;
 
