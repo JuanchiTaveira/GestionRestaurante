@@ -15,6 +15,8 @@ public class EditEmpleadoDialog extends JDialog {
     private JTextField tfNombre;
     private JTextField tfApellido;
     private JTextField tfDni;
+    private JPasswordField passwordField;
+    private JPasswordField repeatPasswordField;
     private JComboBox adminComboBox;
 
     public EditEmpleadoDialog(String id, String usuario, String nombre, String apellido, String dni, String admin) {
@@ -27,7 +29,7 @@ public class EditEmpleadoDialog extends JDialog {
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
-        JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
+        JPanel formPanel = new JPanel(new GridLayout(8, 2, 5, 5));
 
         formPanel.add(new JLabel("ID:"));
         labelId = new JLabel(id);
@@ -38,6 +40,18 @@ public class EditEmpleadoDialog extends JDialog {
         labelUsuario = new JLabel(usuario);
         labelUsuario.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(labelUsuario);
+
+        String actualPassword = empleadoController.getEmpleadoById(id).getPassword();
+
+        formPanel.add(new JLabel("Contraseña:"));
+        passwordField = new JPasswordField(actualPassword);
+        passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+        formPanel.add(passwordField);
+
+        formPanel.add(new JLabel("Repetir contraseña:"));
+        repeatPasswordField = new JPasswordField(actualPassword);
+        repeatPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
+        formPanel.add(repeatPasswordField);
 
         formPanel.add(new JLabel("Nombre:"));
         tfNombre = new JTextField(nombre);
@@ -78,17 +92,34 @@ public class EditEmpleadoDialog extends JDialog {
             // Guardar los valores y cerrar el diálogo
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre el empleado con ID: " + id + "?");
 
+            String password = passwordField.getText();
+            String repeatPassword = repeatPasswordField.getText();
+            String nuevoNombre = tfNombre.getText();
+            String nuevoApellido = tfApellido.getText();
+            String nuevoDni = tfDni.getText();
+            Boolean nuevoAdmin = adminComboBox.getSelectedItem().toString().equals("SI");
+
+            if (password.isBlank() || repeatPassword.isBlank() || nuevoNombre.isBlank() || nuevoApellido.isBlank() || nuevoDni.isBlank()) {
+                JOptionPane.showMessageDialog(this, "ERROR: Debe completar todos los campos");
+                return;
+            }
+
+            if (!password.equals(repeatPassword)) {
+                JOptionPane.showMessageDialog(this, "ERROR: Las contraseñas no coinciden.");
+                return;
+            }
+
             if (confirm == JOptionPane.OK_OPTION) {
                 Empleado oldEmpleado = empleadoController.getEmpleadoById(id);
 
                 Empleado empleadoActualizado = Empleado.builder()
                         .id(Integer.valueOf(id))
                         .usuario(usuario)
-                        .password(oldEmpleado.getPassword())
-                        .nombre(tfNombre.getText())
-                        .apellido(tfApellido.getText())
-                        .dni(tfDni.getText())
-                        .admin(adminComboBox.getSelectedItem().toString() == "SI")
+                        .password(password)
+                        .nombre(nuevoNombre)
+                        .apellido(nuevoApellido)
+                        .dni(nuevoDni)
+                        .admin(nuevoAdmin)
                         .build();
 
                 if (oldEmpleado.equals(empleadoActualizado)) {
