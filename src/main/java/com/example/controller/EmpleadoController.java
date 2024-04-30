@@ -60,8 +60,9 @@ public class EmpleadoController {
     public void eliminarEmpleado(Integer id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createQuery("DELETE FROM Empleado u WHERE u.id = :id", Empleado.class)
-                    .setParameter("id", id);
+            session.createQuery("DELETE FROM Empleado u WHERE u.id = :id")
+                    .setParameter("id", id)
+                    .executeUpdate();
             session.getTransaction().commit();
             System.out.println("Empleado eliminado con id: " + id);
         }
@@ -105,7 +106,7 @@ public class EmpleadoController {
 
     public long getEmpleadosAdminCount() {
         try (Session session = sessionFactory.openSession()) {
-            long adminsCount = session.createQuery("SELECT count(u) FROM Empleado u WHERE u.admin = true").getFirstResult();
+            long adminsCount = session.createQuery("SELECT u FROM Empleado u WHERE u.admin = true").stream().count();
             return adminsCount;
         }
     }

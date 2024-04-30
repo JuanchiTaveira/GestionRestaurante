@@ -106,11 +106,11 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
                 editarEmpleado(selectedRow);
             }
         } else if (e.getSource().equals(btnAgregarEmpleado)) {
-            insertarReserva();
+            insertarEmpleado();
         } else if (e.getSource().equals(btnEliminar)) {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {
-                eliminarReserva(selectedRow);
+                eliminarEmpleado(selectedRow);
             }
         } else if (e.getSource().equals(btnVolverAlMenu)) {
             this.setVisible(false);
@@ -157,7 +157,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         }
     }
 
-    private void insertarReserva() {
+    private void insertarEmpleado() {
         InsertEmpleadoDialog dialog = new InsertEmpleadoDialog();
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
@@ -167,13 +167,26 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         }
     }
 
-    private void eliminarReserva(int selectedRow) {
-        /*Integer id = Integer.valueOf(table.getValueAt(selectedRow, 0).toString());
+    private void eliminarEmpleado(int selectedRow) {
+        Integer id = Integer.valueOf(table.getValueAt(selectedRow, 0).toString());
         int confirm = JOptionPane.showConfirmDialog(this, "Quieres eliminar al empleado con ID: " + id + "?");
 
         if (confirm == JOptionPane.OK_OPTION) {
+
+            Boolean isAdmin = table.getValueAt(selectedRow, 5).toString().equals("SI");
+
+            if (EmpleadoController.authUser.getId() == id) {
+                JOptionPane.showMessageDialog(this, "ERROR: No puedes eliminarte a ti mismo.");
+                return;
+            }
+
+            if (isAdmin && empleadoController.getEmpleadosAdminCount() < 2) {
+                JOptionPane.showMessageDialog(this, "ERROR: No puede revocar permisos de administrador, ya que éste usuario es el único administrador.");
+                return;
+            }
+
             empleadoController.eliminarEmpleado(id);
             tableModel.removeRow(selectedRow);
-        }*/
+        }
     }
 }
