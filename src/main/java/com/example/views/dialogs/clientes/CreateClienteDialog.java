@@ -60,6 +60,11 @@ public class CreateClienteDialog extends JDialog {
             String telefono = tfTelefono.getText();
             String correo = tfCorreoReserva.getText();
 
+            if (nombre.isBlank() || apellido.isBlank() || telefono.isBlank() || correo.isBlank()) {
+                JOptionPane.showMessageDialog(this, "ERROR: Debe completar todos los campos");
+                return;
+            }
+
             Cliente nuevoUsuario = new Cliente(nombre, apellido, telefono, correo);
 
             Boolean success = CLIENTE_CONTROLLER.insertarClienteReserva(nuevoUsuario);
