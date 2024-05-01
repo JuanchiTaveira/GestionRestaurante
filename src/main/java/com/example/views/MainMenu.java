@@ -2,12 +2,19 @@ package com.example.views;
 
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
+import com.example.views.utils.ImagePanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Dimension;
 
 public class MainMenu extends JPanel implements ActionListener {
 
@@ -23,29 +30,46 @@ public class MainMenu extends JPanel implements ActionListener {
 	 */
 	public MainMenu(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
-		gestionRestaurante.setSize(800,500);
+		gestionRestaurante.setSize(500,300);
 		gestionRestaurante.setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel centerPanel = new JPanel(new GridBagLayout());
+		centerPanel.setBackground(new Color(240, 197, 23));
 
 		GridBagConstraints gbc;
 		Insets insets = new Insets(5, 5, 5, 5); // padding
-		
-		btnReservar = new JButton("Reservar");
+
+		JLabel imagenLogo = new JLabel("");
+		imagenLogo.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		btnReservar.addActionListener(this);
-		centerPanel.add(btnReservar, gbc);
+		centerPanel.add(imagenLogo, gbc);
 
-		btnVerReservas = new JButton("Ver Reservas");
+		btnReservar = new JButton("Reservar");
+		btnReservar.setForeground(new Color(240, 197, 23));
+		btnReservar.setBackground(new Color(0, 0, 0));
+		btnReservar.setBorderPainted(false);
+		btnReservar.setFont(new Font("Verdana", btnReservar.getFont().getStyle() | Font.BOLD, btnReservar.getFont().getSize() + 2));
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
+		btnReservar.addActionListener(this);
+		centerPanel.add(btnReservar, gbc);
+
+		btnVerReservas = new JButton("Ver Reservas");
+		btnVerReservas.setForeground(new Color(240, 197, 23));
+		btnVerReservas.setBackground(new Color(0, 0, 0));
+		btnVerReservas.setFont(new Font("Verdana", btnVerReservas.getFont().getStyle() | Font.BOLD, btnVerReservas.getFont().getSize() + 1));
+		btnVerReservas.setBorderPainted(false);
+		gbc = new GridBagConstraints();
+		gbc.insets = insets;
+		gbc.gridx = 0;
+		gbc.gridy = 2;
 		btnVerReservas.addActionListener(this);
 		centerPanel.add(btnVerReservas, gbc);
 
@@ -54,7 +78,7 @@ public class MainMenu extends JPanel implements ActionListener {
 			gbc = new GridBagConstraints();
 			gbc.insets = insets;
 			gbc.gridx = 0;
-			gbc.gridy = 2;
+			gbc.gridy = 3;
 			btnGestionarEmpleados.addActionListener(this);
 			centerPanel.add(btnGestionarEmpleados, gbc);
 		}
@@ -62,6 +86,10 @@ public class MainMenu extends JPanel implements ActionListener {
 		add(centerPanel, BorderLayout.CENTER);
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
+
+		ImagePanel imagePanel = new ImagePanel("/images/logopie.png");
+		imagePanel.setPreferredSize(new Dimension(300, 65));
+		add(imagePanel, BorderLayout.SOUTH);
 
 		// Panel para el botón "Cerrar sesion"
 		JPanel panelLogout = new JPanel();

@@ -29,6 +29,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.awt.Color;
 
 public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
@@ -60,10 +61,12 @@ public class InsertDialog extends JDialog implements ChangeListener {
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(new Color(240, 197, 23));
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
+        formPanel.setBackground(new Color(240, 197, 23));
 
         formPanel.add(new JLabel("Correo:"));
         tfCorreoReserva = new JTextField();
@@ -75,7 +78,9 @@ public class InsertDialog extends JDialog implements ChangeListener {
         spinnerNumeroMesa.addChangeListener(this);
         formPanel.add(spinnerNumeroMesa);
 
-        formPanel.add(new JLabel("Dia (AAAA-MM-DD):"));
+        JLabel label = new JLabel("Dia (AAAA-MM-DD):");
+        label.setBackground(new Color(240, 197, 23));
+        formPanel.add(label);
         dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("yyyy-MM-dd");
         // Accediendo al JTextField y centrando el texto
@@ -99,6 +104,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
         formPanel.add(spinnerNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
+        saveButton.setBackground(new Color(240, 197, 23));
         saveButton.addActionListener(e -> {
 
             Cliente cliente = clienteController.getClienteByCorreo(tfCorreoReserva.getText());
@@ -137,6 +143,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
 
         //Panel del boton de guardar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.setBackground(new Color(240, 197, 23));
         buttonPanel.add(saveButton);
 
         panel.add(formPanel, BorderLayout.CENTER);

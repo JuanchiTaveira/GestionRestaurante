@@ -21,6 +21,10 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.UIManager;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.Font;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
@@ -44,28 +48,37 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	Reserva.Horario horarioSelected;
 
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
+		setBackground(new Color(240, 197, 23));
 		this.gestionRestaurante = gestionRestaurante;
 
-		setPreferredSize(new Dimension(1230, 700));
+		setPreferredSize(new Dimension(1248, 700));
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel filtersContainer = new JPanel(null);
+		filtersContainer.setBackground(new Color(240, 197, 23));
 		filtersContainer.setBorder(new EmptyBorder(0, 0, 0, 0));
 		add(filtersContainer, BorderLayout.WEST);
 
 		calendar = new JCalendar();
+		calendar.getMonthChooser().setBackground(new Color(240, 197, 23));
+		calendar.setBackground(new Color(240, 197, 23));
 		calendar.setBorder(new EmptyBorder(10, 10, 0, 10));
 
 		horarioComboBox = new JComboBox();
+		horarioComboBox.setBackground(UIManager.getColor("Button.background"));
 		horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
 		BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		horarioComboBox.setRenderer(basicComboBoxRenderer);
 
 		btnActualizarPlano = new JButton("Actualizar");
+		btnActualizarPlano.setBackground(new Color(240, 197, 23));
+		btnActualizarPlano.setFont(new Font("Verdana", btnActualizarPlano.getFont().getStyle() | Font.BOLD, btnActualizarPlano.getFont().getSize()));
 		btnActualizarPlano.addActionListener(this);
 
 		btnVolverAlMenu = new JButton("Volver al menú");
+		btnVolverAlMenu.setBackground(new Color(240, 197, 23));
+		btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, btnVolverAlMenu.getFont().getSize()));
 		btnVolverAlMenu.addActionListener(this);
 
 		tableReservas = new JTable();
@@ -112,6 +125,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
+		imagePanel.setBackground(new Color(240, 197, 23));
 		add(imagePanel, BorderLayout.CENTER);
 		imagePanel.setLayout(null);
 		
@@ -147,17 +161,17 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		btnMesa7 = new JButton("7");
 		btnMesa7.addActionListener(this);
-		btnMesa7.setBounds(579, 486, 52, 23);
+		btnMesa7.setBounds(580, 486, 52, 23);
 		imagePanel.add(btnMesa7);
 
 		btnMesa8 = new JButton("8");
 		btnMesa8.addActionListener(this);
-		btnMesa8.setBounds(721, 486, 52, 23);
+		btnMesa8.setBounds(723, 486, 52, 23);
 		imagePanel.add(btnMesa8);
 
 		btnMesa9 = new JButton("9");
 		btnMesa9.addActionListener(this);
-		btnMesa9.setBounds(864, 486, 52, 23);
+		btnMesa9.setBounds(866, 486, 52, 23);
 		imagePanel.add(btnMesa9);
 
 		btnMesa10 = new JButton("10");
@@ -167,17 +181,17 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		btnMesa11 = new JButton("11");
 		btnMesa11.addActionListener(this);
-		btnMesa11.setBounds(591, 624, 52, 23);
+		btnMesa11.setBounds(593, 624, 52, 23);
 		imagePanel.add(btnMesa11);
 
 		btnMesa12 = new JButton("12");
 		btnMesa12.addActionListener(this);
-		btnMesa12.setBounds(734, 624, 52, 23);
+		btnMesa12.setBounds(737, 624, 52, 23);
 		imagePanel.add(btnMesa12);
 
 		btnMesa13 = new JButton("13");
 		btnMesa13.addActionListener(this);
-		btnMesa13.setBounds(877, 624, 52, 23);
+		btnMesa13.setBounds(880, 624, 52, 23);
 		imagePanel.add(btnMesa13);
 
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);

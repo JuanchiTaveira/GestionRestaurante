@@ -29,6 +29,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.JSpinner;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 public class EditDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
@@ -48,9 +51,12 @@ public class EditDialog extends JDialog implements ChangeListener {
         setTitle("Editar Reserva");
         setSize(400, 350);
         setModal(true);
+    	setBackground(new Color(240, 197, 23));
+    	getContentPane().setBackground(new Color(240, 197, 23));
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(new Color(240, 197, 23));
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Crear labels y textFields
@@ -69,8 +75,11 @@ public class EditDialog extends JDialog implements ChangeListener {
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
+        formPanel.setBackground(new Color(240, 197, 23));
 
         formPanel.add(new JLabel("ID:"));
+        labelId.setForeground(UIManager.getColor("Button.focus"));
+        labelId.setBackground(new Color(0, 0, 0));
         formPanel.add(labelId);
 
         formPanel.add(new JLabel("Correo:"));
