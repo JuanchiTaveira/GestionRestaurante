@@ -30,14 +30,16 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         private JButton btnVolverAlMenu;
 
     public GestionarEmpleados(GestionRestaurante gestionRestaurante) {
+        this.gestionRestaurante = gestionRestaurante;
+        gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
+        gestionRestaurante.setSize(800, 500);
+        gestionRestaurante.setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(0, 0));
         setBorder(new EmptyBorder(5, 5, 5, 5));
-        this.gestionRestaurante = gestionRestaurante;
 
         configureTable();
 
-        gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
         // Panel principal para los botones
         JPanel panelBotones = new JPanel();

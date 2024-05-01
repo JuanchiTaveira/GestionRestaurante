@@ -30,7 +30,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	 */
 	public MainMenu(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
-		gestionRestaurante.setSize(500,300);
+		gestionRestaurante.setSize(800,500);
 		gestionRestaurante.setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(0, 0));
@@ -101,7 +101,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnLogout.addActionListener(this);
 		panelLogout.add(btnLogout);
 
-		add(panelLogout, BorderLayout.SOUTH);
+		add(panelLogout, BorderLayout.NORTH);
 	}
 
 	@Override
