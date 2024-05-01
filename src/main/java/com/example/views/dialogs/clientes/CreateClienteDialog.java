@@ -16,7 +16,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 public class CreateClienteDialog extends JDialog {
-    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
+    private static final ClienteController clienteController = new ClienteController();
     private final JTextField tfCorreoReserva, tfNombre, tfApellido, tfTelefono;
     private boolean save;
 
@@ -67,7 +67,7 @@ public class CreateClienteDialog extends JDialog {
 
             Cliente nuevoUsuario = new Cliente(nombre, apellido, telefono, correo);
 
-            Boolean success = CLIENTE_CONTROLLER.insertarClienteReserva(nuevoUsuario);
+            Boolean success = clienteController.insertarClienteReserva(nuevoUsuario);
 
             if (!success) {
                 JOptionPane.showMessageDialog(this, "ERROR: Usuario invalido o ya existente.");

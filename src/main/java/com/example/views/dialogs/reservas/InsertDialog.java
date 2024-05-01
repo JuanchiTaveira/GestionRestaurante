@@ -32,7 +32,7 @@ import java.time.LocalDate;
 
 public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
-    private static final ClienteController CLIENTE_CONTROLLER = new ClienteController();
+    private static final ClienteController clienteController = new ClienteController();
     private static final MesaController mesaController = new MesaController();
     private JTextField tfCorreoReserva;
     private boolean save;
@@ -101,7 +101,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JButton saveButton = new JButton("Guardar");
         saveButton.addActionListener(e -> {
 
-            Cliente cliente = CLIENTE_CONTROLLER.getClienteByCorreo(tfCorreoReserva.getText());
+            Cliente cliente = clienteController.getClienteByCorreo(tfCorreoReserva.getText());
 
             if (cliente == null) {
                 CreateClienteDialog dialog = new CreateClienteDialog(tfCorreoReserva.getText());
@@ -109,7 +109,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
                 dialog.setVisible(true);
 
                 if (dialog.isSave()) {
-                    cliente = CLIENTE_CONTROLLER.getClienteByCorreo(dialog.getTfCorreoReserva());
+                    cliente = clienteController.getClienteByCorreo(dialog.getTfCorreoReserva());
                     tfCorreoReserva.setText(cliente.getCorreo());
                 }
             }
