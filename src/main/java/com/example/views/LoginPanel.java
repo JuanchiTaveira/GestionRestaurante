@@ -43,29 +43,31 @@ public class LoginPanel extends JPanel implements ActionListener {
     private GridBagConstraints gbc_2;
     private GridBagConstraints gbc_3;
     private GridBagConstraints gbc_4;
-    private JButton btnRegistrarse;
 
 
     public LoginPanel(GestionRestaurante gestionRestaurante) {
     	setBackground(new Color(240, 197, 23));
         this.gestionRestaurante = gestionRestaurante;
-        gestionRestaurante.setSize(500, 300);
+        gestionRestaurante.setSize(600, 450);
         gestionRestaurante.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gestionRestaurante.setLocationRelativeTo(null); // Centra la ventana en la pantalla
-        gestionRestaurante.add(this, BorderLayout.CENTER);
+        gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
 
 
         setLayout(new BorderLayout(0,0));
 
         labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
+        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+        labelTitulo.setFocusCycleRoot(true);
         labelTitulo.setBackground(new Color(240, 197, 23));
-        labelTitulo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 18));
+        labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         add(labelTitulo, BorderLayout.NORTH);
 
         GridBagLayout gbl_centerPanel = new GridBagLayout();
-        gbl_centerPanel.rowHeights = new int[]{0, 22, 0, 42, 23};
+        gbl_centerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+        gbl_centerPanel.rowHeights = new int[]{100, 19, 0, 42, 23};
         gbl_centerPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
         JPanel centerPanel = new JPanel(gbl_centerPanel); // contenedor central
         centerPanel.setBackground(new Color(240, 197, 23));
@@ -74,7 +76,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         Insets insets = new Insets(5, 5, 5, 5); // padding
         
         lblIconoLogo = new JLabel("");
-        lblIconoLogo.setIcon(new ImageIcon("src/main/resources/images/logo.png"));
+        lblIconoLogo.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\lOGO_G.png"));
         GridBagConstraints gbc_lblIconoLogo = new GridBagConstraints();
         gbc_lblIconoLogo.gridwidth = 4;
         gbc_lblIconoLogo.insets = new Insets(0, 0, 5, 0);
@@ -91,7 +93,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         centerPanel.add(lblIconoUsuario, gbc_lblIconoUsuario);
 
         labelUsuario = new JLabel("Usuario");
-        labelUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        labelUsuario.setFont(new Font("Rockwell Nova", labelUsuario.getFont().getStyle(), 13));
         gbc = new GridBagConstraints();
         gbc.insets = insets;
         gbc.gridx = 1;
@@ -99,9 +101,10 @@ public class LoginPanel extends JPanel implements ActionListener {
         centerPanel.add(labelUsuario, gbc);
 
         tfUsuario = new JTextField(15);
+        tfUsuario.setFont(new Font("Rockwell Nova", tfUsuario.getFont().getStyle(), tfUsuario.getFont().getSize()));
         tfUsuario.setSelectedTextColor(new Color(255, 255, 255));
-        tfUsuario.setToolTipText("Introduce tu usuario");
-        tfUsuario.setCaretColor(new Color(240, 197, 23));
+        tfUsuario.setToolTipText("");
+        tfUsuario.setCaretColor(new Color(0, 0, 0));
         tfUsuario.setBackground(new Color(255, 255, 255));
         gbc_1 = new GridBagConstraints();
         gbc_1.anchor = GridBagConstraints.WEST;
@@ -119,7 +122,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         centerPanel.add(lbIconoCandado, gbc_lbIconoCandado);
         
                 labelPassword = new JLabel("Contraseña");
-                labelPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
+                labelPassword.setFont(new Font("Rockwell Nova", labelPassword.getFont().getStyle(), 13));
                 gbc_4 = new GridBagConstraints();
                 gbc_4.insets = insets;
                 gbc_4.gridx = 1;
@@ -127,7 +130,8 @@ public class LoginPanel extends JPanel implements ActionListener {
                 centerPanel.add(labelPassword, gbc_4);
         
                 tfPassword = new JPasswordField(15);
-                tfPassword.setToolTipText("Introduce tu contraseña ");
+                tfPassword.setFont(new Font("Rockwell Nova", tfPassword.getFont().getStyle(), tfPassword.getFont().getSize()));
+                tfPassword.setToolTipText("");
                 gbc_2 = new GridBagConstraints();
                 gbc_2.anchor = GridBagConstraints.WEST;
                 gbc_2.insets = new Insets(5, 5, 5, 0);
@@ -136,38 +140,19 @@ public class LoginPanel extends JPanel implements ActionListener {
                 tfPassword.putClientProperty("JComponent.roundRect",true);
                 tfPassword.addActionListener(this);
                 centerPanel.add(tfPassword, gbc_2);
-        
-        btnRegistrarse = new JButton("Registrarse");
-        btnRegistrarse.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnRegistrarse.setBorderPainted(false);
-        btnRegistrarse.setForeground(new Color(240, 197, 23));
-        btnRegistrarse.setBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(240, 197, 23), new Color(0, 0, 0)));
-        btnRegistrarse.setFont(new Font("Verdana", btnRegistrarse.getFont().getStyle() | Font.BOLD, btnRegistrarse.getFont().getSize() + 5));
-        btnRegistrarse.setActionCommand("Registrarse");
-        btnRegistrarse.setBackground(new Color(0, 0, 0));
-        GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
-        gbc_btnRegistrarse.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnRegistrarse.anchor = GridBagConstraints.SOUTH;
-        gbc_btnRegistrarse.gridwidth = 2;
-        gbc_btnRegistrarse.insets = new Insets(0, 0, 5, 5);
-        gbc_btnRegistrarse.gridx = 0;
-        gbc_btnRegistrarse.gridy = 3;
-        centerPanel.add(btnRegistrarse, gbc_btnRegistrarse);
 
         add(centerPanel, BorderLayout.CENTER); // agrego el contenedor central al contenedor principal
         
                 btnIniciarSesion = new JButton("Iniciar sesión");
-                btnIniciarSesion.setForeground(new Color(240, 197, 23));
                 btnIniciarSesion.setBorderPainted(false);
-                btnIniciarSesion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+                btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
+                btnIniciarSesion.setForeground(new Color(240, 197, 23));
                 btnIniciarSesion.setIconTextGap(5);
                 btnIniciarSesion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
                 btnIniciarSesion.setBackground(new Color(0, 0, 0));
-                btnIniciarSesion.setFont(new Font("Verdana", btnIniciarSesion.getFont().getStyle() | Font.BOLD, btnIniciarSesion.getFont().getSize() + 5));
+                btnIniciarSesion.setFont(new Font("Verdana", btnIniciarSesion.getFont().getStyle() | Font.BOLD, 15));
                 gbc_3 = new GridBagConstraints();
+                gbc_3.fill = GridBagConstraints.HORIZONTAL;
                 gbc_3.anchor = GridBagConstraints.SOUTH;
                 gbc_3.insets = new Insets(5, 5, 5, 0);
                 gbc_3.gridx = 3;

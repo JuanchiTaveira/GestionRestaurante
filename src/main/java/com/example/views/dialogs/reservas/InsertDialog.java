@@ -30,6 +30,15 @@ import java.awt.GridLayout;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.Dialog.ModalityType;
+import java.awt.Font;
+import java.awt.Window.Type;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
+import java.awt.Cursor;
+import javax.swing.ImageIcon;
+import javax.swing.border.MatteBorder;
 
 public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
@@ -44,6 +53,11 @@ public class InsertDialog extends JDialog implements ChangeListener {
     private SpinnerNumberModel model;
 
     public InsertDialog() {
+    	setBackground(new Color(240, 197, 23));
+    	setFont(new Font("Dialog", Font.BOLD, 12));
+    	setModalityType(ModalityType.APPLICATION_MODAL);
+    	setOpacity(1.5f);
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo_pestaña.png"));
         initalize();
     }
 
@@ -68,28 +82,52 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
         formPanel.setBackground(new Color(240, 197, 23));
 
-        formPanel.add(new JLabel("Correo:"));
+        JLabel label_1 = new JLabel("Correo:");
+        label_1.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\correo.png"));
+        label_1.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
+        formPanel.add(label_1);
         tfCorreoReserva = new JTextField();
+        tfCorreoReserva.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        tfCorreoReserva.setFont(new Font("Rockwell Nova", tfCorreoReserva.getFont().getStyle(), 11));
+        tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfCorreoReserva);
 
-        formPanel.add(new JLabel("Numero Mesa:"));
+        JLabel label_2 = new JLabel("Numero Mesa:");
+        label_2.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\comedor.png"));
+        label_2.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
+        formPanel.add(label_2);
         spinnerNumeroMesa = new JSpinner();
+        spinnerNumeroMesa.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        spinnerNumeroMesa.setFont(new Font("Rockwell Nova", spinnerNumeroMesa.getFont().getStyle(), 11));
         spinnerNumeroMesa.addChangeListener(this);
         formPanel.add(spinnerNumeroMesa);
 
         JLabel label = new JLabel("Dia (AAAA-MM-DD):");
+        label.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\calendario.png"));
+        label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), 11));
         label.setBackground(new Color(240, 197, 23));
         formPanel.add(label);
         dateChooser = new JDateChooser();
+        dateChooser.getCalendarButton().setFont(new Font("Rockwell Nova", dateChooser.getCalendarButton().getFont().getStyle(), dateChooser.getCalendarButton().getFont().getSize()));
+        dateChooser.setForeground(new Color(0, 0, 0));
+        dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        dateChooser.setFont(new Font("Rockwell Nova", dateChooser.getFont().getStyle(), 12));
         dateChooser.setDateFormatString("yyyy-MM-dd");
         // Accediendo al JTextField y centrando el texto
         JTextField dateTextField = (JTextField) dateChooser.getDateEditor().getUiComponent();
         dateTextField.setHorizontalAlignment(JTextField.CENTER);
         formPanel.add(dateChooser);
 
-        formPanel.add(new JLabel("Horario:"));
+        JLabel label_3 = new JLabel("Horario:");
+        label_3.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\reloj.png"));
+        label_3.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
+        formPanel.add(label_3);
         horarioComboBox = new JComboBox();
+        horarioComboBox.setOpaque(false);
+        horarioComboBox.setFont(new Font("Rockwell Nova", horarioComboBox.getFont().getStyle(), 11));
+        horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        horarioComboBox.setBackground(new Color(255, 255, 255));
         horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
         horarioComboBox.setSelectedIndex(0);
         BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
@@ -97,14 +135,25 @@ public class InsertDialog extends JDialog implements ChangeListener {
         horarioComboBox.setRenderer(basicComboBoxRenderer);
         formPanel.add(horarioComboBox);
 
-        formPanel.add(new JLabel("Cantidad Personas:"));
+        JLabel label_4 = new JLabel("Cantidad Personas:");
+        label_4.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\grupo.png"));
+        label_4.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
+        formPanel.add(label_4);
         // Crear el modelo del spinner
         model = new SpinnerNumberModel(1, 1, 10, 1); // valor inicial, min, max, paso
         spinnerNumeroPersonas = new JSpinner(model);
+        spinnerNumeroPersonas.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        spinnerNumeroPersonas.setFont(new Font("Rockwell Nova", spinnerNumeroPersonas.getFont().getStyle(), 11));
+        spinnerNumeroPersonas.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        spinnerNumeroPersonas.setBackground(new Color(240, 197, 23));
         formPanel.add(spinnerNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
-        saveButton.setBackground(new Color(240, 197, 23));
+        saveButton.setBorderPainted(false);
+        saveButton.setForeground(new Color(240, 197, 23));
+        saveButton.setBorder(UIManager.getBorder("Button.border"));
+        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 13));
+        saveButton.setBackground(new Color(0, 0, 0));
         saveButton.addActionListener(e -> {
 
             Cliente cliente = clienteController.getClienteByCorreo(tfCorreoReserva.getText());

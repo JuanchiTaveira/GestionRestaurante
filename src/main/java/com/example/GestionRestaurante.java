@@ -10,6 +10,7 @@ import com.example.views.LoginPanel;
 
 import javax.swing.JFrame;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 
 public class GestionRestaurante extends JFrame {
@@ -34,6 +35,7 @@ public class GestionRestaurante extends JFrame {
 
 	private void initialize() {
 		setTitle("JAJ - Gestión de Restaurante");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo_pestaña.png"));
 
 		new LoginPanel(this);
 	}

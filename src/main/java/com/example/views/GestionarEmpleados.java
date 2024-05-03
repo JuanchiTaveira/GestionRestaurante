@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.border.LineBorder;
 
 public class GestionarEmpleados extends JPanel implements ActionListener {
         private final GestionRestaurante gestionRestaurante;
@@ -30,6 +31,8 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         private JButton btnVolverAlMenu;
 
     public GestionarEmpleados(GestionRestaurante gestionRestaurante) {
+    	setBackground(new Color(240, 197, 23));
+    	setForeground(new Color(240, 197, 23));
         this.gestionRestaurante = gestionRestaurante;
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
         gestionRestaurante.setSize(800, 500);
@@ -48,26 +51,44 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         // Panel para el botón "Volver al menú"
         JPanel panelVolver = new JPanel();
+        panelVolver.setBackground(new Color(240, 197, 23));
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         btnVolverAlMenu = new JButton("Volver al menú");
+        btnVolverAlMenu.setForeground(new Color(240, 197, 23));
+        btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 11));
+        btnVolverAlMenu.setBackground(new Color(0, 0, 0));
+        btnVolverAlMenu.setBorderPainted(false);
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
         panelVolver.add(btnVolverAlMenu);
 
         // Panel para los otros botones con alineación a la derecha
         JPanel panelAcciones = new JPanel();
+        panelAcciones.setBackground(new Color(240, 197, 23));
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         btnAgregarEmpleado = new JButton("Agregar");
+        btnAgregarEmpleado.setForeground(new Color(240, 197, 23));
+        btnAgregarEmpleado.setFont(new Font("Verdana", btnAgregarEmpleado.getFont().getStyle() | Font.BOLD, btnAgregarEmpleado.getFont().getSize()));
+        btnAgregarEmpleado.setBackground(new Color(0, 0, 0));
+        btnAgregarEmpleado.setBorderPainted(false);
         btnAgregarEmpleado.addActionListener(this);
         panelAcciones.add(btnAgregarEmpleado);
 
         btnEditar = new JButton("Editar");
+        btnEditar.setForeground(new Color(240, 197, 23));
+        btnEditar.setFont(new Font("Verdana", btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
+        btnEditar.setBackground(new Color(0, 0, 0));
+        btnEditar.setBorderPainted(false);
         btnEditar.addActionListener(this);
         panelAcciones.add(btnEditar);
 
         btnEliminar = new JButton("Eliminar");
+        btnEliminar.setForeground(new Color(240, 197, 23));
+        btnEliminar.setFont(new Font("Verdana", btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setBackground(new Color(0, 0, 0));
         btnEliminar.addActionListener(this);
         panelAcciones.add(btnEliminar);
 
@@ -78,6 +99,8 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
     private void configureTable() {
         JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+        scrollPane.setBackground(new Color(240, 197, 23));
         add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();

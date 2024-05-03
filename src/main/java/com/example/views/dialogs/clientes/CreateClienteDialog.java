@@ -15,6 +15,10 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import javax.swing.border.LineBorder;
 
 public class CreateClienteDialog extends JDialog {
     private static final ClienteController clienteController = new ClienteController();
@@ -22,6 +26,7 @@ public class CreateClienteDialog extends JDialog {
     private boolean save;
 
     public CreateClienteDialog(String correoReserva) {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo_pestaña.png"));
         setTitle("Crear Cliente");
         setSize(400, 264);
         setModal(true);
@@ -35,27 +40,51 @@ public class CreateClienteDialog extends JDialog {
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 5, 5));
         formPanel.setBackground(new Color(240, 197, 23));
 
-        formPanel.add(new JLabel("Correo:"));
-        tfCorreoReserva = new JTextField(correoReserva);
+        JLabel label = new JLabel("Correo:");
+        label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), label.getFont().getSize()));
+        label.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\correo.png"));
+        formPanel.add(label);
+        tfCorreoReserva = new JTextField("");
+        tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfCorreoReserva.setFont(new Font("Rockwell Nova", tfCorreoReserva.getFont().getStyle(), tfCorreoReserva.getFont().getSize()));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfCorreoReserva);
 
-        formPanel.add(new JLabel("Nombre:"));
+        JLabel label_1 = new JLabel("Nombre:");
+        label_1.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\firma.png"));
+        label_1.setFont(new Font("Rockwell Nova", label_1.getFont().getStyle(), label_1.getFont().getSize()));
+        formPanel.add(label_1);
         tfNombre = new JTextField();
+        tfNombre.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfNombre.setFont(new Font("Rockwell Nova", tfNombre.getFont().getStyle(), tfNombre.getFont().getSize()));
         tfNombre.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfNombre);
 
-        formPanel.add(new JLabel("Apellido:"));
+        JLabel label_2 = new JLabel("Apellido:");
+        label_2.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\firma.png"));
+        label_2.setFont(new Font("Rockwell Nova", label_2.getFont().getStyle(), label_2.getFont().getSize()));
+        formPanel.add(label_2);
         tfApellido = new JTextField();
+        tfApellido.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfApellido.setFont(new Font("Rockwell Nova", tfApellido.getFont().getStyle(), tfApellido.getFont().getSize()));
         tfApellido.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfApellido);
 
-        formPanel.add(new JLabel("Telefono:"));
+        JLabel label_3 = new JLabel("Telefono:");
+        label_3.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\telefono.png"));
+        label_3.setFont(new Font("Rockwell Nova", label_3.getFont().getStyle(), label_3.getFont().getSize()));
+        formPanel.add(label_3);
         tfTelefono = new JTextField();
+        tfTelefono.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfTelefono.setFont(new Font("Rockwell Nova", tfTelefono.getFont().getStyle(), tfTelefono.getFont().getSize()));
         tfTelefono.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfTelefono);
 
         JButton saveButton = new JButton("Guardar");
+        saveButton.setBorderPainted(false);
+        saveButton.setForeground(new Color(240, 197, 23));
+        saveButton.setBackground(new Color(0, 0, 0));
+        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 12));
         saveButton.addActionListener(e -> {
 
             String nombre = tfNombre.getText();
