@@ -31,7 +31,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	public MainMenu(GestionRestaurante gestionRestaurante) {
     	setBackground(new Color(240, 197, 23));
 		this.gestionRestaurante = gestionRestaurante;
-		gestionRestaurante.setSize(700,450);
+		gestionRestaurante.setSize(600,450);
 		gestionRestaurante.setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(0, 0));
@@ -77,6 +77,10 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		if (EmpleadoController.authUser.isAdmin()) {
 			btnGestionarEmpleados = new JButton("Gestionar Empleados");
+			btnGestionarEmpleados.setForeground(new Color(240, 197, 23));
+			btnGestionarEmpleados.setBackground(new Color(0, 0, 0));
+			btnGestionarEmpleados.setFont(new Font("Verdana", btnGestionarEmpleados.getFont().getStyle() | Font.BOLD, 14));
+			btnGestionarEmpleados.setBorderPainted(false);
 			gbc = new GridBagConstraints();
 			gbc.insets = insets;
 			gbc.gridx = 0;
