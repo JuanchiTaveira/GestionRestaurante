@@ -22,11 +22,9 @@ import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import java.awt.Font;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
@@ -112,19 +110,19 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					.addContainerGap()
 					.addComponent(horarioComboBox, 0, 226, Short.MAX_VALUE)
 					.addContainerGap())
+				.addGroup(gl_filtersContainer.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnVolverAlMenu)
+					.addContainerGap(105, Short.MAX_VALUE))
 				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
 				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(Alignment.TRAILING, gl_filtersContainer.createSequentialGroup()
-					.addContainerGap(127, Short.MAX_VALUE)
-					.addComponent(btnActualizarPlano, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(137, Short.MAX_VALUE)
+					.addComponent(btnActualizarPlano)
 					.addContainerGap())
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnVolverAlMenu, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(85, Short.MAX_VALUE))
 		);
 		gl_filtersContainer.setVerticalGroup(
 			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
@@ -132,13 +130,13 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addGap(20)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnActualizarPlano)
-					.addGap(18)
-					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+					.addGap(27)
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(btnVolverAlMenu)
-					.addGap(5))
+					.addContainerGap())
 		);
 
 		filtersContainer.setLayout(gl_filtersContainer);
