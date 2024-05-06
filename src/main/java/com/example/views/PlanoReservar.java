@@ -75,7 +75,6 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		horarioComboBox = new JComboBox();
 		horarioComboBox.setFont(new Font("Rockwell Nova", horarioComboBox.getFont().getStyle(), horarioComboBox.getFont().getSize()));
-		horarioComboBox.setVisible(false);
 		horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		horarioComboBox.setBackground(new Color(255, 255, 255));
 		horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));

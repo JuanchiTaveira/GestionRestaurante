@@ -87,7 +87,6 @@ public class InsertDialog extends JDialog implements ChangeListener {
         label_1.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
         formPanel.add(label_1);
         tfCorreoReserva = new JTextField();
-        tfCorreoReserva.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         tfCorreoReserva.setFont(new Font("Rockwell Nova", tfCorreoReserva.getFont().getStyle(), 11));
         tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);

@@ -30,8 +30,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.JSpinner;
 import java.awt.Color;
-import javax.swing.UIManager;
-import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Toolkit;

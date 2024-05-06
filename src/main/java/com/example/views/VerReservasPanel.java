@@ -23,10 +23,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
 
 public class VerReservasPanel extends JPanel implements ActionListener {
