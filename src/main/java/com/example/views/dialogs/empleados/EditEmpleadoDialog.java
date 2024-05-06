@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 public class EditEmpleadoDialog extends JDialog {
     private static final EmpleadoController empleadoController = new EmpleadoController();
@@ -20,59 +22,102 @@ public class EditEmpleadoDialog extends JDialog {
     private JComboBox adminComboBox;
 
     public EditEmpleadoDialog(String id, String usuario, String nombre, String apellido, String dni, String admin) {
+    	getContentPane().setBackground(new Color(240, 197, 23));
+    	setBackground(new Color(240, 197, 23));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
         setTitle("Editar Empleado");
         setSize(400, 350);
         setModal(true);
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(new Color(240, 197, 23));
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(8, 2, 5, 5));
+        formPanel.setBackground(new Color(240, 197, 23));
 
-        formPanel.add(new JLabel("ID:"));
+        JLabel label = new JLabel("ID:");
+        label.setIcon(new ImageIcon("src/main/resources/images/id.png"));
+        label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), label.getFont().getSize()));
+        formPanel.add(label);
         labelId = new JLabel(id);
+        labelId.setFont(new Font("Rockwell Nova", labelId.getFont().getStyle(), labelId.getFont().getSize()));
         labelId.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(labelId);
 
-        formPanel.add(new JLabel("Usuario:"));
+        JLabel label_1 = new JLabel("Usuario:");
+        label_1.setIcon(new ImageIcon("src/main/resources/images/usuario_p.png"));
+        label_1.setFont(new Font("Rockwell Nova", label_1.getFont().getStyle(), label_1.getFont().getSize()));
+        formPanel.add(label_1);
         labelUsuario = new JLabel(usuario);
+        labelUsuario.setFont(new Font("Rockwell Nova", labelUsuario.getFont().getStyle(), labelUsuario.getFont().getSize()));
         labelUsuario.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(labelUsuario);
 
         String actualPassword = empleadoController.getEmpleadoById(id).getPassword();
 
-        formPanel.add(new JLabel("Contraseña:"));
+        JLabel label_2 = new JLabel("Contraseña:");
+        label_2.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
+        label_2.setFont(new Font("Rockwell Nova", label_2.getFont().getStyle(), label_2.getFont().getSize()));
+        formPanel.add(label_2);
         passwordField = new JPasswordField(actualPassword);
+        passwordField.setFont(new Font("Rockwell Nova", passwordField.getFont().getStyle(), passwordField.getFont().getSize()));
+        passwordField.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(passwordField);
 
-        formPanel.add(new JLabel("Repetir contraseña:"));
+        JLabel label_3 = new JLabel("Repetir contraseña:");
+        label_3.setFont(new Font("Rockwell Nova", label_3.getFont().getStyle(), label_3.getFont().getSize()));
+        label_3.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
+        formPanel.add(label_3);
         repeatPasswordField = new JPasswordField(actualPassword);
+        repeatPasswordField.setFont(new Font("Rockwell Nova", repeatPasswordField.getFont().getStyle(), repeatPasswordField.getFont().getSize()));
+        repeatPasswordField.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         repeatPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(repeatPasswordField);
 
-        formPanel.add(new JLabel("Nombre:"));
+        JLabel label_4 = new JLabel("Nombre:");
+        label_4.setFont(new Font("Rockwell Nova", label_4.getFont().getStyle(), label_4.getFont().getSize()));
+        label_4.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
+        formPanel.add(label_4);
         tfNombre = new JTextField(nombre);
+        tfNombre.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfNombre.setFont(new Font("Rockwell Nova", tfNombre.getFont().getStyle(), tfNombre.getFont().getSize()));
         tfNombre.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfNombre);
         tfNombre.setColumns(10);
 
-        formPanel.add(new JLabel("Apellido:"));
+        JLabel label_5 = new JLabel("Apellido:");
+        label_5.setFont(new Font("Rockwell Nova", label_5.getFont().getStyle(), label_5.getFont().getSize()));
+        label_5.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
+        formPanel.add(label_5);
         tfApellido = new JTextField(apellido);
+        tfApellido.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfApellido.setFont(new Font("Rockwell Nova", tfApellido.getFont().getStyle(), tfApellido.getFont().getSize()));
         tfApellido.setHorizontalAlignment(SwingConstants.CENTER);
         tfApellido.setColumns(10);
         formPanel.add(tfApellido);
 
-        formPanel.add(new JLabel("DNI:"));
+        JLabel label_7 = new JLabel("DNI:");
+        label_7.setIcon(new ImageIcon("src/main/resources/images/dni.png"));
+        label_7.setFont(new Font("Rockwell Nova", label_7.getFont().getStyle(), label_7.getFont().getSize()));
+        formPanel.add(label_7);
         tfDni = new JTextField(dni);
+        tfDni.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfDni.setFont(new Font("Rockwell Nova", tfDni.getFont().getStyle(), tfDni.getFont().getSize()));
         tfDni.setHorizontalAlignment(SwingConstants.CENTER);
         tfDni.setColumns(10);
         formPanel.add(tfDni);
 
-        formPanel.add(new JLabel("Admin:"));
+        JLabel label_6 = new JLabel("Admin:");
+        label_6.setFont(new Font("Rockwell Nova", label_6.getFont().getStyle(), label_6.getFont().getSize()));
+        label_6.setIcon(new ImageIcon("src/main/resources/images/admin.png"));
+        formPanel.add(label_6);
         adminComboBox = new JComboBox();
+        adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+        adminComboBox.setFont(new Font("Rockwell Nova", adminComboBox.getFont().getStyle(), adminComboBox.getFont().getSize()));
         adminComboBox.setModel(new DefaultComboBoxModel(new String[] {"SI", "NO"}));
         if (admin.equals("SI")) {
             adminComboBox.setSelectedIndex(0);
@@ -86,8 +131,13 @@ public class EditEmpleadoDialog extends JDialog {
 
         //Panel del boton de guardar y eliminar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.setBackground(new Color(240, 197, 23));
 
         JButton saveButton = new JButton("Guardar");
+        saveButton.setForeground(new Color(240, 197, 23));
+        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 12));
+        saveButton.setBackground(new Color(0, 0, 0));
+        saveButton.setBorderPainted(false);
         saveButton.addActionListener(e -> {
             // Guardar los valores y cerrar el diálogo
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre el empleado con ID: " + id + "?");

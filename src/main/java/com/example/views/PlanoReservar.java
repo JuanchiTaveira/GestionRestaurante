@@ -22,9 +22,9 @@ import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import java.awt.Font;
+import javax.swing.border.LineBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PlanoReservar extends JPanel implements ActionListener {
 
@@ -60,25 +60,43 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		add(filtersContainer, BorderLayout.WEST);
 
 		calendar = new JCalendar();
+		calendar.getDayChooser().setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		calendar.getDayChooser().setFont(new Font("Rockwell Nova", calendar.getDayChooser().getFont().getStyle(), calendar.getDayChooser().getFont().getSize()));
+		calendar.getDayChooser().getDayPanel().setFont(new Font("Rockwell Nova", calendar.getDayChooser().getDayPanel().getFont().getStyle(), calendar.getDayChooser().getDayPanel().getFont().getSize()));
+		calendar.getYearChooser().getSpinner().setFont(new Font("Rockwell Nova", calendar.getYearChooser().getSpinner().getFont().getStyle(), calendar.getYearChooser().getSpinner().getFont().getSize()));
+		calendar.getMonthChooser().getSpinner().setFont(new Font("Rockwell Nova", calendar.getMonthChooser().getSpinner().getFont().getStyle(), calendar.getMonthChooser().getSpinner().getFont().getSize()));
+		calendar.getDayChooser().setAlwaysFireDayProperty(false);
+		calendar.getYearChooser().getSpinner().setForeground(new Color(240, 197, 23));
+		calendar.getMonthChooser().getComboBox().setBackground(new Color(255, 255, 255));
+		calendar.getMonthChooser().getComboBox().setForeground(new Color(0, 0, 0));
 		calendar.getMonthChooser().setBackground(new Color(240, 197, 23));
 		calendar.setBackground(new Color(240, 197, 23));
 		calendar.setBorder(new EmptyBorder(10, 10, 0, 10));
 
 		horarioComboBox = new JComboBox();
-		horarioComboBox.setBackground(UIManager.getColor("Button.background"));
+		horarioComboBox.setFont(new Font("Rockwell Nova", horarioComboBox.getFont().getStyle(), horarioComboBox.getFont().getSize()));
+		horarioComboBox.setVisible(false);
+		horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		horarioComboBox.setBackground(new Color(255, 255, 255));
 		horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
 		BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		horarioComboBox.setRenderer(basicComboBoxRenderer);
 
 		btnActualizarPlano = new JButton("Actualizar");
-		btnActualizarPlano.setBackground(new Color(240, 197, 23));
-		btnActualizarPlano.setFont(new Font("Verdana", btnActualizarPlano.getFont().getStyle() | Font.BOLD, btnActualizarPlano.getFont().getSize()));
+		btnActualizarPlano.setBorderPainted(false);
+		btnActualizarPlano.setBorder(UIManager.getBorder("Button.border"));
+		btnActualizarPlano.setForeground(new Color(240, 197, 23));
+		btnActualizarPlano.setBackground(new Color(0, 0, 0));
+		btnActualizarPlano.setFont(new Font("Verdana", btnActualizarPlano.getFont().getStyle() | Font.BOLD, 12));
 		btnActualizarPlano.addActionListener(this);
 
 		btnVolverAlMenu = new JButton("Volver al menú");
-		btnVolverAlMenu.setBackground(new Color(240, 197, 23));
-		btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, btnVolverAlMenu.getFont().getSize()));
+		btnVolverAlMenu.setForeground(new Color(240, 197, 23));
+		btnVolverAlMenu.setBorderPainted(false);
+		btnVolverAlMenu.setBorder(UIManager.getBorder("ToggleButton.border"));
+		btnVolverAlMenu.setBackground(new Color(0, 0, 0));
+		btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
 		btnVolverAlMenu.addActionListener(this);
 
 		tableReservas = new JTable();
@@ -90,20 +108,20 @@ public class PlanoReservar extends JPanel implements ActionListener {
 			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(horarioComboBox, 0, 198, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap(129, Short.MAX_VALUE)
-					.addComponent(btnActualizarPlano)
+					.addComponent(horarioComboBox, 0, 226, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnVolverAlMenu)
 					.addContainerGap(105, Short.MAX_VALUE))
-				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
 				.addGroup(gl_filtersContainer.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_filtersContainer.createSequentialGroup()
+					.addContainerGap(137, Short.MAX_VALUE)
+					.addComponent(btnActualizarPlano)
 					.addContainerGap())
 		);
 		gl_filtersContainer.setVerticalGroup(
@@ -112,10 +130,10 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addGap(20)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnActualizarPlano)
-					.addGap(18)
-					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+					.addGap(27)
+					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(btnVolverAlMenu)
 					.addContainerGap())
@@ -125,73 +143,88 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
+		imagePanel.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		imagePanel.setBackground(new Color(240, 197, 23));
 		add(imagePanel, BorderLayout.CENTER);
 		imagePanel.setLayout(null);
 		
 		btnMesa1 = new JButton("1");
+		btnMesa1.setIconTextGap(5);
+		btnMesa1.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa1.addActionListener(this);
 		btnMesa1.setBounds(119, 140, 52, 23);
 		imagePanel.add(btnMesa1);
 		
 		btnMesa2 = new JButton("2");
+		btnMesa2.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa2.addActionListener(this);
 		btnMesa2.setBounds(42, 348, 52, 23);
 		imagePanel.add(btnMesa2);
 
 		btnMesa3 = new JButton("3");
+		btnMesa3.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa3.addActionListener(this);
 		btnMesa3.setBounds(195, 348, 52, 23);
 		imagePanel.add(btnMesa3);
 
 		btnMesa4 = new JButton("4");
+		btnMesa4.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa4.addActionListener(this);
 		btnMesa4.setBounds(42, 530, 52, 23);
 		imagePanel.add(btnMesa4);
 
 		btnMesa5 = new JButton("5");
+		btnMesa5.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa5.addActionListener(this);
 		btnMesa5.setBounds(195, 530, 52, 23);
 		imagePanel.add(btnMesa5);
 
 		btnMesa6 = new JButton("6");
+		btnMesa6.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa6.addActionListener(this);
 		btnMesa6.setBounds(436, 486, 52, 23);
 		imagePanel.add(btnMesa6);
 
 		btnMesa7 = new JButton("7");
+		btnMesa7.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa7.addActionListener(this);
 		btnMesa7.setBounds(580, 486, 52, 23);
 		imagePanel.add(btnMesa7);
 
 		btnMesa8 = new JButton("8");
+		btnMesa8.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa8.addActionListener(this);
 		btnMesa8.setBounds(723, 486, 52, 23);
 		imagePanel.add(btnMesa8);
 
 		btnMesa9 = new JButton("9");
+		btnMesa9.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa9.addActionListener(this);
 		btnMesa9.setBounds(866, 486, 52, 23);
 		imagePanel.add(btnMesa9);
 
 		btnMesa10 = new JButton("10");
+		btnMesa10.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa10.addActionListener(this);
 		btnMesa10.setBounds(450, 624, 52, 23);
 		imagePanel.add(btnMesa10);
 
 		btnMesa11 = new JButton("11");
+		btnMesa11.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa11.addActionListener(this);
-		btnMesa11.setBounds(593, 624, 52, 23);
+		btnMesa11.setBounds(595, 624, 52, 23);
 		imagePanel.add(btnMesa11);
 
 		btnMesa12 = new JButton("12");
+		btnMesa12.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa12.addActionListener(this);
 		btnMesa12.setBounds(737, 624, 52, 23);
 		imagePanel.add(btnMesa12);
 
 		btnMesa13 = new JButton("13");
+		btnMesa13.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa13.addActionListener(this);
-		btnMesa13.setBounds(880, 624, 52, 23);
+		btnMesa13.setBounds(882, 624, 52, 23);
 		imagePanel.add(btnMesa13);
 
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);
@@ -262,6 +295,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 	private void configureTableReservas() {
 		scrollPaneReservas = new JScrollPane();
+		scrollPaneReservas.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		scrollPaneReservas.setViewportView(tableReservas);
 
 		tableModel.addColumn("Mesa");
