@@ -212,7 +212,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnMesa11 = new JButton("11");
 		btnMesa11.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa11.addActionListener(this);
-		btnMesa11.setBounds(595, 624, 52, 23);
+		btnMesa11.setBounds(593, 624, 52, 23);
 		imagePanel.add(btnMesa11);
 
 		btnMesa12 = new JButton("12");
