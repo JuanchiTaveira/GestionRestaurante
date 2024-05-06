@@ -34,7 +34,7 @@ public class InsertEmpleadoDialog extends JDialog {
     private JTextField tfNombre, tfApellido, tfUsuario, tfDni;
 
     public InsertEmpleadoDialog() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
     	getContentPane().setBackground(new Color(240, 197, 23));
     	setBackground(new Color(240, 197, 23));
     	setForeground(new Color(0, 0, 0));

@@ -68,7 +68,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
     }
 
     private void initalize() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
         setTitle("Insertar Reserva");
         setSize(400, 350);
         setModal(true);

@@ -24,7 +24,7 @@ public class EditEmpleadoDialog extends JDialog {
     public EditEmpleadoDialog(String id, String usuario, String nombre, String apellido, String dni, String admin) {
     	getContentPane().setBackground(new Color(240, 197, 23));
     	setBackground(new Color(240, 197, 23));
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
         setTitle("Editar Empleado");
         setSize(400, 350);
         setModal(true);

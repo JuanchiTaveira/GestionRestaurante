@@ -26,7 +26,7 @@ public class CreateClienteDialog extends JDialog {
     private boolean save;
 
     public CreateClienteDialog(String correoReserva) {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
         setTitle("Crear Cliente");
         setSize(400, 264);
         setModal(true);

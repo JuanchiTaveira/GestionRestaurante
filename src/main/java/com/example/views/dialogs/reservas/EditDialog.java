@@ -53,7 +53,7 @@ public class EditDialog extends JDialog implements ChangeListener {
     private JButton btnEliminar;
 
     public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas, String empleado) {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
         setTitle("Editar Reserva");
         setSize(400, 350);
         setModal(true);

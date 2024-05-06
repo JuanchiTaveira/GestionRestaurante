@@ -35,7 +35,7 @@ public class GestionRestaurante extends JFrame {
 
 	private void initialize() {
 		setTitle("JAJ - Gestión de Restaurante");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
 
 		new LoginPanel(this);
 	}
