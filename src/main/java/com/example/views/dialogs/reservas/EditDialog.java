@@ -53,7 +53,7 @@ public class EditDialog extends JDialog implements ChangeListener {
     private JButton btnEliminar;
 
     public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas, String empleado) {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
         setTitle("Editar Reserva");
         setSize(400, 350);
         setModal(true);
@@ -90,7 +90,7 @@ public class EditDialog extends JDialog implements ChangeListener {
         formPanel.setBackground(new Color(240, 197, 23));
 
         JLabel label = new JLabel("ID:");
-        label.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\id.png"));
+        label.setIcon(new ImageIcon("src/main/resources/images/id.png"));
         label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), label.getFont().getSize()));
         formPanel.add(label);
         labelId.setForeground(new Color(0, 0, 0));
@@ -98,14 +98,14 @@ public class EditDialog extends JDialog implements ChangeListener {
         formPanel.add(labelId);
 
         JLabel label_1 = new JLabel("Correo:");
-        label_1.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\correo.png"));
+        label_1.setIcon(new ImageIcon("src/main/resources/images/correo.png"));
         label_1.setAlignmentX(Component.RIGHT_ALIGNMENT);
         label_1.setFont(new Font("Rockwell Nova", label_1.getFont().getStyle(), label_1.getFont().getSize()));
         formPanel.add(label_1);
         formPanel.add(labelCorreoReserva);
 
         JLabel label_2 = new JLabel("Numero Mesa:");
-        label_2.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\comedor.png"));
+        label_2.setIcon(new ImageIcon("src/main/resources/images/comedor.png"));
         label_2.setFont(new Font("Rockwell Nova", label_2.getFont().getStyle(), label_2.getFont().getSize()));
         formPanel.add(label_2);
         spinnerNumeroMesa = new JSpinner();
@@ -116,13 +116,13 @@ public class EditDialog extends JDialog implements ChangeListener {
         formPanel.add(spinnerNumeroMesa);
 
         JLabel label_3 = new JLabel("Dia (AAAA-MM-DD):");
-        label_3.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\calendario.png"));
+        label_3.setIcon(new ImageIcon("src/main/resources/images/calendario.png"));
         label_3.setFont(new Font("Rockwell Nova", label_3.getFont().getStyle(), label_3.getFont().getSize()));
         formPanel.add(label_3);
         formPanel.add(dateChooser);
 
         JLabel label_4 = new JLabel("Horario:");
-        label_4.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\reloj.png"));
+        label_4.setIcon(new ImageIcon("src/main/resources/images/reloj.png"));
         label_4.setFont(new Font("Rockwell Nova", label_4.getFont().getStyle(), label_4.getFont().getSize()));
         formPanel.add(label_4);
         horarioComboBox = new JComboBox();
@@ -141,7 +141,7 @@ public class EditDialog extends JDialog implements ChangeListener {
         formPanel.add(horarioComboBox);
 
         JLabel label_5 = new JLabel("Cantidad Personas:");
-        label_5.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\grupo.png"));
+        label_5.setIcon(new ImageIcon("src/main/resources/images/grupo.png"));
         label_5.setFont(new Font("Rockwell Nova", label_5.getFont().getStyle(), label_5.getFont().getSize()));
         formPanel.add(label_5);
         // Crear el modelo del spinner

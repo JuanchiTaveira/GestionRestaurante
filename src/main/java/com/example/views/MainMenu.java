@@ -43,7 +43,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		Insets insets = new Insets(5, 5, 5, 5); // padding
 
 		JLabel imagenLogo = new JLabel("");
-		imagenLogo.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\lOGO_G.png"));
+		imagenLogo.setIcon(new ImageIcon("src/main/resources/images/lOGO_G.png"));
 		gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.insets = insets;

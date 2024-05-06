@@ -24,7 +24,7 @@ public class EditEmpleadoDialog extends JDialog {
     public EditEmpleadoDialog(String id, String usuario, String nombre, String apellido, String dni, String admin) {
     	getContentPane().setBackground(new Color(240, 197, 23));
     	setBackground(new Color(240, 197, 23));
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
         setTitle("Editar Empleado");
         setSize(400, 350);
         setModal(true);
@@ -39,7 +39,7 @@ public class EditEmpleadoDialog extends JDialog {
         formPanel.setBackground(new Color(240, 197, 23));
 
         JLabel label = new JLabel("ID:");
-        label.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\id.png"));
+        label.setIcon(new ImageIcon("src/main/resources/images/id.png"));
         label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), label.getFont().getSize()));
         formPanel.add(label);
         labelId = new JLabel(id);
@@ -48,7 +48,7 @@ public class EditEmpleadoDialog extends JDialog {
         formPanel.add(labelId);
 
         JLabel label_1 = new JLabel("Usuario:");
-        label_1.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\usuario_p.png"));
+        label_1.setIcon(new ImageIcon("src/main/resources/images/usuario_p.png"));
         label_1.setFont(new Font("Rockwell Nova", label_1.getFont().getStyle(), label_1.getFont().getSize()));
         formPanel.add(label_1);
         labelUsuario = new JLabel(usuario);
@@ -59,7 +59,7 @@ public class EditEmpleadoDialog extends JDialog {
         String actualPassword = empleadoController.getEmpleadoById(id).getPassword();
 
         JLabel label_2 = new JLabel("Contraseña:");
-        label_2.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\candado_p.png"));
+        label_2.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
         label_2.setFont(new Font("Rockwell Nova", label_2.getFont().getStyle(), label_2.getFont().getSize()));
         formPanel.add(label_2);
         passwordField = new JPasswordField(actualPassword);
@@ -70,7 +70,7 @@ public class EditEmpleadoDialog extends JDialog {
 
         JLabel label_3 = new JLabel("Repetir contraseña:");
         label_3.setFont(new Font("Rockwell Nova", label_3.getFont().getStyle(), label_3.getFont().getSize()));
-        label_3.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\candado_p.png"));
+        label_3.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
         formPanel.add(label_3);
         repeatPasswordField = new JPasswordField(actualPassword);
         repeatPasswordField.setFont(new Font("Rockwell Nova", repeatPasswordField.getFont().getStyle(), repeatPasswordField.getFont().getSize()));
@@ -80,7 +80,7 @@ public class EditEmpleadoDialog extends JDialog {
 
         JLabel label_4 = new JLabel("Nombre:");
         label_4.setFont(new Font("Rockwell Nova", label_4.getFont().getStyle(), label_4.getFont().getSize()));
-        label_4.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\firma.png"));
+        label_4.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
         formPanel.add(label_4);
         tfNombre = new JTextField(nombre);
         tfNombre.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -91,7 +91,7 @@ public class EditEmpleadoDialog extends JDialog {
 
         JLabel label_5 = new JLabel("Apellido:");
         label_5.setFont(new Font("Rockwell Nova", label_5.getFont().getStyle(), label_5.getFont().getSize()));
-        label_5.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\candado_p.png"));
+        label_5.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
         formPanel.add(label_5);
         tfApellido = new JTextField(apellido);
         tfApellido.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -101,7 +101,7 @@ public class EditEmpleadoDialog extends JDialog {
         formPanel.add(tfApellido);
 
         JLabel label_7 = new JLabel("DNI:");
-        label_7.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\dni.png"));
+        label_7.setIcon(new ImageIcon("src/main/resources/images/dni.png"));
         label_7.setFont(new Font("Rockwell Nova", label_7.getFont().getStyle(), label_7.getFont().getSize()));
         formPanel.add(label_7);
         tfDni = new JTextField(dni);
@@ -113,7 +113,7 @@ public class EditEmpleadoDialog extends JDialog {
 
         JLabel label_6 = new JLabel("Admin:");
         label_6.setFont(new Font("Rockwell Nova", label_6.getFont().getStyle(), label_6.getFont().getSize()));
-        label_6.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\admin.png"));
+        label_6.setIcon(new ImageIcon("src/main/resources/images/admin.png"));
         formPanel.add(label_6);
         adminComboBox = new JComboBox();
         adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));

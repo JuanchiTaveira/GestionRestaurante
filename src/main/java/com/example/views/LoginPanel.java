@@ -76,7 +76,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         Insets insets = new Insets(5, 5, 5, 5); // padding
         
         lblIconoLogo = new JLabel("");
-        lblIconoLogo.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\lOGO_G.png"));
+        lblIconoLogo.setIcon(new ImageIcon("src/main/resources/images/lOGO_G.png"));
         GridBagConstraints gbc_lblIconoLogo = new GridBagConstraints();
         gbc_lblIconoLogo.gridwidth = 4;
         gbc_lblIconoLogo.insets = new Insets(0, 0, 5, 0);

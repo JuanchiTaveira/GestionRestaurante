@@ -26,7 +26,7 @@ public class CreateClienteDialog extends JDialog {
     private boolean save;
 
     public CreateClienteDialog(String correoReserva) {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\logo_pestaña.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestaña.png"));
         setTitle("Crear Cliente");
         setSize(400, 264);
         setModal(true);
@@ -42,7 +42,7 @@ public class CreateClienteDialog extends JDialog {
 
         JLabel label = new JLabel("Correo:");
         label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), label.getFont().getSize()));
-        label.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\correo.png"));
+        label.setIcon(new ImageIcon("src/main/resources/images/correo.png"));
         formPanel.add(label);
         tfCorreoReserva = new JTextField("");
         tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -51,7 +51,7 @@ public class CreateClienteDialog extends JDialog {
         formPanel.add(tfCorreoReserva);
 
         JLabel label_1 = new JLabel("Nombre:");
-        label_1.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\firma.png"));
+        label_1.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
         label_1.setFont(new Font("Rockwell Nova", label_1.getFont().getStyle(), label_1.getFont().getSize()));
         formPanel.add(label_1);
         tfNombre = new JTextField();
@@ -61,7 +61,7 @@ public class CreateClienteDialog extends JDialog {
         formPanel.add(tfNombre);
 
         JLabel label_2 = new JLabel("Apellido:");
-        label_2.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\firma.png"));
+        label_2.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
         label_2.setFont(new Font("Rockwell Nova", label_2.getFont().getStyle(), label_2.getFont().getSize()));
         formPanel.add(label_2);
         tfApellido = new JTextField();
@@ -71,7 +71,7 @@ public class CreateClienteDialog extends JDialog {
         formPanel.add(tfApellido);
 
         JLabel label_3 = new JLabel("Telefono:");
-        label_3.setIcon(new ImageIcon("C:\\Users\\juanjose\\Documents\\GitHub\\GestionRestaurante\\src\\main\\resources\\images\\telefono.png"));
+        label_3.setIcon(new ImageIcon("src/main/resources/images/telefono.png"));
         label_3.setFont(new Font("Rockwell Nova", label_3.getFont().getStyle(), label_3.getFont().getSize()));
         formPanel.add(label_3);
         tfTelefono = new JTextField();
