@@ -48,6 +48,7 @@ public class CreateClienteDialog extends JDialog {
         tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         tfCorreoReserva.setFont(new Font("Rockwell Nova", tfCorreoReserva.getFont().getStyle(), tfCorreoReserva.getFont().getSize()));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
+        tfCorreoReserva.setText(correoReserva);
         formPanel.add(tfCorreoReserva);
 
         JLabel label_1 = new JLabel("Nombre:");
