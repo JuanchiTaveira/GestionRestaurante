@@ -34,7 +34,7 @@ public class GestionRestaurante extends JFrame {
 	}
 
 	private void initialize() {
-		setTitle("JAJ - Gestión de Restaurante");
+		setTitle("JAJ - Gestión de Restaurantes");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
 
 		new LoginPanel(this);
@@ -46,10 +46,13 @@ public class GestionRestaurante extends JFrame {
 
 		Empleado empleado = new Empleado("admin", "admin", "Admin", "Admin", "12345678", true);
 		Empleado empleado1 = new Empleado("juan", "juan", "Juan", "Taveira", "Y123456Z", false);
+		Empleado empleado2 = new Empleado("asier", "asier", "Asier", "Azpiazu", "12345678Z", false);
 		empleadoController.insertarEmpleado(empleado);
 		empleadoController.insertarEmpleado(empleado1);
+		empleadoController.insertarEmpleado(empleado2);
 		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
-		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado1));
+		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado2));
+		reservaController.insertarReserva(new Reserva(new Cliente("Asier", "Azpiazu", "+34666000666", "asier@gmail.com"), 2, LocalDate.now(), Reserva.Horario.ALMUERZO, 3, empleado1));
 	}
 
 	private void crearMesas() {

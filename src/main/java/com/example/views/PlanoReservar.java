@@ -56,7 +56,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		JPanel filtersContainer = new JPanel(null);
 		filtersContainer.setBackground(new Color(240, 197, 23));
-		filtersContainer.setBorder(new EmptyBorder(0, 0, 0, 0));
+		filtersContainer.setBorder(new EmptyBorder(10, 10, 5, 0));
 		add(filtersContainer, BorderLayout.WEST);
 
 		calendar = new JCalendar();
@@ -142,7 +142,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
-		imagePanel.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		//imagePanel.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		imagePanel.setBackground(new Color(240, 197, 23));
 		add(imagePanel, BorderLayout.CENTER);
 		imagePanel.setLayout(null);

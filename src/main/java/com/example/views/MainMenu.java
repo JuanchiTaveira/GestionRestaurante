@@ -43,7 +43,11 @@ public class MainMenu extends JPanel implements ActionListener {
 		Insets insets = new Insets(5, 5, 5, 5); // padding
 
 		JLabel imagenLogo = new JLabel("");
-		imagenLogo.setIcon(new ImageIcon("src/main/resources/images/lOGO_G.png"));
+		ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3a.png");
+		Image image = icono.getImage(); // Obtener la imagen del ImageIcon
+		Image nuevaImagen = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalar la imagen
+		icono = new ImageIcon(nuevaImagen); // Crear un nuevo ImageIcon con la imagen escalada
+		imagenLogo.setIcon(icono); // Establecer el ImageIcon en el JLabel
 		gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.insets = insets;
@@ -93,9 +97,9 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
-		ImagePanel imagePanel = new ImagePanel("/images/logopie.png");
+		ImagePanel imagePanel = new ImagePanel("/images/logopie1.png");
 		imagePanel.setBackground(new Color(240, 197, 23));
-		imagePanel.setPreferredSize(new Dimension(300, 65));
+		imagePanel.setPreferredSize(new Dimension(300, 50));
 		add(imagePanel, BorderLayout.SOUTH);
 
 

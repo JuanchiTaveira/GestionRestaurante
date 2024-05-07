@@ -56,7 +56,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
     	setBackground(new Color(240, 197, 23));
     	setFont(new Font("Dialog", Font.BOLD, 12));
     	setModalityType(ModalityType.APPLICATION_MODAL);
-    	setOpacity(1.5f);
+    	setOpacity(1.0f);
         initalize();
     }
 
