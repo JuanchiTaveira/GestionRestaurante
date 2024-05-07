@@ -4,24 +4,16 @@ import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
-import java.awt.Rectangle;
-import java.awt.Component;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.Dimension;
 import javax.swing.UIManager;
 
 public class LoginPanel extends JPanel implements ActionListener {
@@ -76,7 +68,11 @@ public class LoginPanel extends JPanel implements ActionListener {
         Insets insets = new Insets(5, 5, 5, 5); // padding
         
         lblIconoLogo = new JLabel("");
-        lblIconoLogo.setIcon(new ImageIcon("src/main/resources/images/lOGO_G.png"));
+        ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3b.png");
+        Image image = icono.getImage(); // Obtener la imagen del ImageIcon
+        Image nuevaImagen = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalar la imagen
+        icono = new ImageIcon(nuevaImagen); // Crear un nuevo ImageIcon con la imagen escalada
+        lblIconoLogo.setIcon(icono); // Establecer el ImageIcon en el JLabel
         GridBagConstraints gbc_lblIconoLogo = new GridBagConstraints();
         gbc_lblIconoLogo.gridwidth = 4;
         gbc_lblIconoLogo.insets = new Insets(0, 0, 5, 0);
@@ -152,10 +148,11 @@ public class LoginPanel extends JPanel implements ActionListener {
                 btnIniciarSesion.setBackground(new Color(0, 0, 0));
                 btnIniciarSesion.setFont(new Font("Verdana", btnIniciarSesion.getFont().getStyle() | Font.BOLD, 15));
                 gbc_3 = new GridBagConstraints();
+                gbc_3.gridwidth = 3;
                 gbc_3.fill = GridBagConstraints.HORIZONTAL;
                 gbc_3.anchor = GridBagConstraints.SOUTH;
                 gbc_3.insets = new Insets(5, 5, 5, 0);
-                gbc_3.gridx = 3;
+                gbc_3.gridx = 1;
                 gbc_3.gridy = 3;
                 centerPanel.add(btnIniciarSesion, gbc_3);
                 btnIniciarSesion.addActionListener(this);
