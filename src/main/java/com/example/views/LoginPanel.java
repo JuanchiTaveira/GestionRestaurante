@@ -97,9 +97,9 @@ public class LoginPanel extends JPanel implements ActionListener {
         centerPanel.add(labelUsuario, gbc);
 
         tfUsuario = new JTextField(15);
+        tfUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         tfUsuario.setFont(new Font("Rockwell Nova", tfUsuario.getFont().getStyle(), tfUsuario.getFont().getSize()));
         tfUsuario.setSelectedTextColor(new Color(255, 255, 255));
-        tfUsuario.setToolTipText("");
         tfUsuario.setCaretColor(new Color(0, 0, 0));
         tfUsuario.setBackground(new Color(255, 255, 255));
         gbc_1 = new GridBagConstraints();
@@ -127,7 +127,6 @@ public class LoginPanel extends JPanel implements ActionListener {
         
                 tfPassword = new JPasswordField(15);
                 tfPassword.setFont(new Font("Rockwell Nova", tfPassword.getFont().getStyle(), tfPassword.getFont().getSize()));
-                tfPassword.setToolTipText("");
                 gbc_2 = new GridBagConstraints();
                 gbc_2.anchor = GridBagConstraints.WEST;
                 gbc_2.insets = new Insets(5, 5, 5, 0);

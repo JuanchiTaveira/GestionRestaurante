@@ -31,16 +31,16 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         private JButton btnVolverAlMenu;
 
     public GestionarEmpleados(GestionRestaurante gestionRestaurante) {
-    	setBackground(new Color(240, 197, 23));
-    	setForeground(new Color(240, 197, 23));
+
+    	
         this.gestionRestaurante = gestionRestaurante;
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
         gestionRestaurante.setSize(800, 500);
         gestionRestaurante.setLocationRelativeTo(null);
-
+        
+    	setBackground(new Color(240, 197, 23));
         setLayout(new BorderLayout(0, 0));
-        setBorder(new EmptyBorder(5, 5, 5, 5));
-
+        setBorder(new EmptyBorder(7, 5, 5, 5));
         configureTable();
 
 
@@ -104,6 +104,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();
+        table.setBackground(new Color(240, 197, 23));
         scrollPane.setViewportView(table);
 
         tableModel.addColumn("Id");
