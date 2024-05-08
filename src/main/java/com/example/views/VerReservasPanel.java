@@ -66,10 +66,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         btnVolverAlMenu = new JButton("Volver al menú");
-        btnVolverAlMenu.setBackground(new Color(0, 0, 0));
+        btnVolverAlMenu.setBackground(new Color(208, 82, 82));
         btnVolverAlMenu.setBorderPainted(false);
         btnVolverAlMenu.setBorder(UIManager.getBorder("Button.border"));
-        btnVolverAlMenu.setForeground(new Color(240, 197, 23));
+        btnVolverAlMenu.setForeground(new Color(0, 0, 0));
         btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
@@ -80,7 +80,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         panelAcciones.setBackground(new Color(240, 197, 23));
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        btnInsertar = new JButton("Insertar");
+        btnInsertar = new JButton("Agregar");
         btnInsertar.setBackground(new Color(0, 0, 0));
         btnInsertar.setFont(new Font("Verdana Pro", btnInsertar.getFont().getStyle() | Font.BOLD, 12));
         btnInsertar.setForeground(new Color(240, 197, 23));

@@ -45,7 +45,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		JLabel imagenLogo = new JLabel("");
 		ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3a.png");
 		Image image = icono.getImage(); // Obtener la imagen del ImageIcon
-		Image nuevaImagen = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalar la imagen
+		Image nuevaImagen = image.getScaledInstance(150, 150, Image.SCALE_SMOOTH); // Escalar la imagen
 		icono = new ImageIcon(nuevaImagen); // Crear un nuevo ImageIcon con la imagen escalada
 		imagenLogo.setIcon(icono); // Establecer el ImageIcon en el JLabel
 		gbc = new GridBagConstraints();
@@ -55,11 +55,11 @@ public class MainMenu extends JPanel implements ActionListener {
 		gbc.gridy = 0;
 		centerPanel.add(imagenLogo, gbc);
 
-		btnReservar = new JButton("Reservar");
-		btnReservar.setForeground(new Color(240, 197, 23));
+		btnReservar = new JButton("          Reservar           ");
+		btnReservar.setForeground(new Color(255, 255, 255));
 		btnReservar.setBackground(new Color(0, 0, 0));
 		btnReservar.setBorderPainted(false);
-		btnReservar.setFont(new Font("Verdana", btnReservar.getFont().getStyle() | Font.BOLD, 14));
+		btnReservar.setFont(new Font("Verdana", btnReservar.getFont().getStyle() | Font.BOLD, 18));
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
 		gbc.gridx = 0;
@@ -67,8 +67,8 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnReservar.addActionListener(this);
 		centerPanel.add(btnReservar, gbc);
 
-		btnVerReservas = new JButton("Ver Reservas");
-		btnVerReservas.setForeground(new Color(240, 197, 23));
+		btnVerReservas = new JButton("  Gestionar Reservas  ");
+		btnVerReservas.setForeground(new Color(255, 255, 255));
 		btnVerReservas.setBackground(new Color(0, 0, 0));
 		btnVerReservas.setFont(new Font("Verdana", btnVerReservas.getFont().getStyle() | Font.BOLD, 14));
 		btnVerReservas.setBorderPainted(false);
@@ -81,7 +81,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		if (EmpleadoController.authUser.isAdmin()) {
 			btnGestionarEmpleados = new JButton("Gestionar Empleados");
-			btnGestionarEmpleados.setForeground(new Color(240, 197, 23));
+			btnGestionarEmpleados.setForeground(new Color(255, 255, 255));
 			btnGestionarEmpleados.setBackground(new Color(0, 0, 0));
 			btnGestionarEmpleados.setFont(new Font("Verdana", btnGestionarEmpleados.getFont().getStyle() | Font.BOLD, 14));
 			btnGestionarEmpleados.setBorderPainted(false);
@@ -97,7 +97,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
-		ImagePanel imagePanel = new ImagePanel("/images/logopie1.png");
+		ImagePanel imagePanel = new ImagePanel("/images/logopie1b.png");
 		imagePanel.setBackground(new Color(240, 197, 23));
 		imagePanel.setPreferredSize(new Dimension(300, 50));
 		add(imagePanel, BorderLayout.SOUTH);
@@ -110,9 +110,9 @@ public class MainMenu extends JPanel implements ActionListener {
 		panelLogout.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		btnLogout = new JButton("Cerrar sesión");
-		btnLogout.setForeground(new Color(240, 197, 23));
+		btnLogout.setForeground(new Color(0, 0, 0));
 		btnLogout.setFont(new Font("Verdana", btnLogout.getFont().getStyle() | Font.BOLD, 12));
-		btnLogout.setBackground(new Color(0, 0, 0));
+		btnLogout.setBackground(new Color(208, 82, 82));
 		btnLogout.setBorderPainted(false);
 		btnLogout.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnLogout.addActionListener(this);
