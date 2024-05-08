@@ -55,7 +55,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         labelTitulo.setBackground(new Color(240, 197, 23));
         labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        add(labelTitulo, BorderLayout.NORTH);
+        //add(labelTitulo, BorderLayout.NORTH);
 
         GridBagLayout gbl_centerPanel = new GridBagLayout();
         gbl_centerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
@@ -68,9 +68,9 @@ public class LoginPanel extends JPanel implements ActionListener {
         Insets insets = new Insets(5, 5, 5, 5); // padding
         
         lblIconoLogo = new JLabel("");
-        ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3b.png");
+        ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3a.png");
         Image image = icono.getImage(); // Obtener la imagen del ImageIcon
-        Image nuevaImagen = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalar la imagen
+        Image nuevaImagen = image.getScaledInstance(150, 150, Image.SCALE_SMOOTH); // Escalar la imagen
         icono = new ImageIcon(nuevaImagen); // Crear un nuevo ImageIcon con la imagen escalada
         lblIconoLogo.setIcon(icono); // Establecer el ImageIcon en el JLabel
         GridBagConstraints gbc_lblIconoLogo = new GridBagConstraints();
@@ -142,7 +142,7 @@ public class LoginPanel extends JPanel implements ActionListener {
                 btnIniciarSesion = new JButton("Iniciar sesión");
                 btnIniciarSesion.setBorderPainted(false);
                 btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
-                btnIniciarSesion.setForeground(new Color(240, 197, 23));
+                btnIniciarSesion.setForeground(new Color(255, 255, 255));
                 btnIniciarSesion.setIconTextGap(5);
                 btnIniciarSesion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
                 btnIniciarSesion.setBackground(new Color(0, 0, 0));

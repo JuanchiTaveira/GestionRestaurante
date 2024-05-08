@@ -86,16 +86,16 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnActualizarPlano = new JButton("Actualizar");
 		btnActualizarPlano.setBorderPainted(false);
 		btnActualizarPlano.setBorder(UIManager.getBorder("Button.border"));
-		btnActualizarPlano.setForeground(new Color(240, 197, 23));
+		btnActualizarPlano.setForeground(new Color(255, 255, 255));
 		btnActualizarPlano.setBackground(new Color(0, 0, 0));
 		btnActualizarPlano.setFont(new Font("Verdana", btnActualizarPlano.getFont().getStyle() | Font.BOLD, 12));
 		btnActualizarPlano.addActionListener(this);
 
 		btnVolverAlMenu = new JButton("Volver al menú");
-		btnVolverAlMenu.setForeground(new Color(240, 197, 23));
+		btnVolverAlMenu.setForeground(new Color(0, 0, 0));
 		btnVolverAlMenu.setBorderPainted(false);
 		btnVolverAlMenu.setBorder(UIManager.getBorder("ToggleButton.border"));
-		btnVolverAlMenu.setBackground(new Color(0, 0, 0));
+		btnVolverAlMenu.setBackground(new Color(208, 82, 82));
 		btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
 		btnVolverAlMenu.addActionListener(this);
 

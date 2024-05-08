@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
@@ -30,6 +31,8 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
     private final GestionRestaurante gestionRestaurante;
     private JTable table;
+    private JLabel labelTitulo;
+
     private final DefaultTableModel tableModel = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -54,6 +57,15 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
         configureTable();
 
+        //Título
+        labelTitulo = new JLabel("Gestión de Reservas"); // titulo de la pantalla
+        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+        labelTitulo.setFocusCycleRoot(true);
+        labelTitulo.setBackground(new Color(240, 197, 23));
+        labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        add(labelTitulo, BorderLayout.NORTH);
+
         // Panel principal para los botones
         JPanel panelBotones = new JPanel();
         panelBotones.setBackground(new Color(240, 197, 23));
@@ -66,10 +78,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         btnVolverAlMenu = new JButton("Volver al menú");
-        btnVolverAlMenu.setBackground(new Color(0, 0, 0));
+        btnVolverAlMenu.setBackground(new Color(208, 82, 82));
         btnVolverAlMenu.setBorderPainted(false);
         btnVolverAlMenu.setBorder(UIManager.getBorder("Button.border"));
-        btnVolverAlMenu.setForeground(new Color(240, 197, 23));
+        btnVolverAlMenu.setForeground(new Color(0, 0, 0));
         btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
@@ -80,7 +92,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         panelAcciones.setBackground(new Color(240, 197, 23));
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        btnInsertar = new JButton("Insertar");
+        btnInsertar = new JButton("Agregar");
         btnInsertar.setBackground(new Color(0, 0, 0));
         btnInsertar.setFont(new Font("Verdana Pro", btnInsertar.getFont().getStyle() | Font.BOLD, 12));
         btnInsertar.setForeground(new Color(240, 197, 23));
