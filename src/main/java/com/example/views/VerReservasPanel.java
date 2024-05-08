@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
@@ -30,6 +31,8 @@ public class VerReservasPanel extends JPanel implements ActionListener {
 
     private final GestionRestaurante gestionRestaurante;
     private JTable table;
+    private JLabel labelTitulo;
+
     private final DefaultTableModel tableModel = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -53,6 +56,15 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     	setBorder(new EmptyBorder(7, 5, 5, 5));
 
         configureTable();
+
+        //Título
+        labelTitulo = new JLabel("Gestión de Reservas"); // titulo de la pantalla
+        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+        labelTitulo.setFocusCycleRoot(true);
+        labelTitulo.setBackground(new Color(240, 197, 23));
+        labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        add(labelTitulo, BorderLayout.NORTH);
 
         // Panel principal para los botones
         JPanel panelBotones = new JPanel();
