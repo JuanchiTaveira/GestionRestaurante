@@ -52,8 +52,12 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		setBackground(new Color(240, 197, 23));
 		setLayout(new BorderLayout(0, 0));
-		setSize(new Dimension(1262, 737));
-		gestionRestaurante.setSize(1262, 737);
+		setSize(new Dimension(1239, 700));
+
+		gestionRestaurante.setSize(1253, 737);
+		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
+		gestionRestaurante.setLocationRelativeTo(null);
+		gestionRestaurante.setResizable(false);
 
 		JPanel filtersContainer = new JPanel(null);
 		filtersContainer.setBackground(new Color(240, 197, 23));
@@ -230,10 +234,6 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);
 
 		setBtnMesaColor();
-
-		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
-		gestionRestaurante.setLocationRelativeTo(null);
-		gestionRestaurante.setResizable(false);
 	}
 
 	@Override
