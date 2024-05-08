@@ -48,12 +48,12 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	Reserva.Horario horarioSelected;
 
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
-		setBackground(new Color(240, 197, 23));
 		this.gestionRestaurante = gestionRestaurante;
-		int width = gestionRestaurante.getWidth();
 
-		setPreferredSize(new Dimension(1248, 700));
+		setBackground(new Color(240, 197, 23));
 		setLayout(new BorderLayout(0, 0));
+		setSize(new Dimension(1262, 737));
+		gestionRestaurante.setSize(1262, 737);
 
 		JPanel filtersContainer = new JPanel(null);
 		filtersContainer.setBackground(new Color(240, 197, 23));
@@ -105,38 +105,38 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
 		gl_filtersContainer.setHorizontalGroup(
-			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(horarioComboBox, 0, 226, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnVolverAlMenu)
-					.addContainerGap(105, Short.MAX_VALUE))
-				.addComponent(calendar, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_filtersContainer.createSequentialGroup()
-					.addContainerGap(137, Short.MAX_VALUE)
-					.addComponent(btnActualizarPlano)
-					.addContainerGap())
+				gl_filtersContainer.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(horarioComboBox, 0, 226, Short.MAX_VALUE)
+								.addContainerGap())
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(btnVolverAlMenu)
+								.addContainerGap(105, Short.MAX_VALUE))
+						.addComponent(calendar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+								.addContainerGap())
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addContainerGap(137, Short.MAX_VALUE)
+								.addComponent(btnActualizarPlano)
+								.addContainerGap())
 		);
 		gl_filtersContainer.setVerticalGroup(
-			gl_filtersContainer.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_filtersContainer.createSequentialGroup()
-					.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnActualizarPlano)
-					.addGap(27)
-					.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
-					.addGap(18)
-					.addComponent(btnVolverAlMenu)
-					.addContainerGap())
+				gl_filtersContainer.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_filtersContainer.createSequentialGroup()
+								.addComponent(calendar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addGap(10)
+								.addComponent(horarioComboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnActualizarPlano)
+								.addGap(27)
+								.addComponent(scrollPaneReservas, GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+								.addGap(18)
+								.addComponent(btnVolverAlMenu)
+								.addContainerGap())
 		);
 
 		filtersContainer.setLayout(gl_filtersContainer);
@@ -147,14 +147,14 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		imagePanel.setBackground(new Color(240, 197, 23));
 		add(imagePanel, BorderLayout.CENTER);
 		imagePanel.setLayout(null);
-		
+
 		btnMesa1 = new JButton("1");
 		btnMesa1.setIconTextGap(5);
 		btnMesa1.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa1.addActionListener(this);
-		btnMesa1.setBounds(119, 140, 52, 23);
+		btnMesa1.setBounds(117, 140, 52, 23);
 		imagePanel.add(btnMesa1);
-		
+
 		btnMesa2 = new JButton("2");
 		btnMesa2.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa2.addActionListener(this);
@@ -164,7 +164,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnMesa3 = new JButton("3");
 		btnMesa3.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa3.addActionListener(this);
-		btnMesa3.setBounds(195, 348, 52, 23);
+		btnMesa3.setBounds(193, 348, 52, 23);
 		imagePanel.add(btnMesa3);
 
 		btnMesa4 = new JButton("4");
@@ -176,55 +176,55 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnMesa5 = new JButton("5");
 		btnMesa5.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa5.addActionListener(this);
-		btnMesa5.setBounds(195, 530, 52, 23);
+		btnMesa5.setBounds(193, 530, 52, 23);
 		imagePanel.add(btnMesa5);
 
 		btnMesa6 = new JButton("6");
 		btnMesa6.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa6.addActionListener(this);
-		btnMesa6.setBounds((int) (width * 0.71), 486, 52, 23);
+		btnMesa6.setBounds(428, 486, 52, 23);
 		imagePanel.add(btnMesa6);
 
 		btnMesa7 = new JButton("7");
 		btnMesa7.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa7.addActionListener(this);
-		btnMesa7.setBounds((int) (width * 0.95), 486, 52, 23);
+		btnMesa7.setBounds(568, 486, 52, 23);
 		imagePanel.add(btnMesa7);
 
 		btnMesa8 = new JButton("8");
 		btnMesa8.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa8.addActionListener(this);
-		btnMesa8.setBounds((int) (width * 1.18), 486, 52, 23);
+		btnMesa8.setBounds(708, 486, 52, 23);
 		imagePanel.add(btnMesa8);
 
 		btnMesa9 = new JButton("9");
 		btnMesa9.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa9.addActionListener(this);
-		btnMesa9.setBounds((int) (width * 1.42) - 1, 486, 52, 23);
+		btnMesa9.setBounds(848, 486, 52, 23);
 		imagePanel.add(btnMesa9);
 
 		btnMesa10 = new JButton("10");
 		btnMesa10.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa10.addActionListener(this);
-		btnMesa10.setBounds((int) (width * 0.74) - 2, 624, 52, 23);
+		btnMesa10.setBounds(441, 624, 52, 23);
 		imagePanel.add(btnMesa10);
 
 		btnMesa11 = new JButton("11");
 		btnMesa11.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa11.addActionListener(this);
-		btnMesa11.setBounds((int) (width * 0.97), 624, 52, 23);
+		btnMesa11.setBounds(581, 624, 52, 23);
 		imagePanel.add(btnMesa11);
 
 		btnMesa12 = new JButton("12");
 		btnMesa12.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa12.addActionListener(this);
-		btnMesa12.setBounds((int) (width * 1.21) - 3, 624, 52, 23);
+		btnMesa12.setBounds(721, 624, 52, 23);
 		imagePanel.add(btnMesa12);
 
 		btnMesa13 = new JButton("13");
 		btnMesa13.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa13.addActionListener(this);
-		btnMesa13.setBounds((int) (width * 1.44) - 1, 624, 52, 23);
+		btnMesa13.setBounds(861, 624, 52, 23);
 		imagePanel.add(btnMesa13);
 
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);
@@ -232,7 +232,6 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		setBtnMesaColor();
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
-		gestionRestaurante.pack();
 		gestionRestaurante.setLocationRelativeTo(null);
 		gestionRestaurante.setResizable(false);
 	}
