@@ -246,12 +246,6 @@ public class PlanoReservar extends JPanel implements ActionListener {
 			}
 		});
 
-		gestionRestaurante.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				System.out.println(imagePanel.getBounds());
-			}
-		});
 		setBtnMesaColor();
 	}
 
