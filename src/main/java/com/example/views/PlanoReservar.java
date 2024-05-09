@@ -151,6 +151,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
 		imagePanel.setSize(new Dimension(966, 690));
+		imagePanel.setMaximumSize(new Dimension(966, 690));
 		imagePanel.setBackground(new Color(240, 197, 23));
 		imagePanel.setLayout(null);
 		int width = imagePanel.getWidth();
@@ -213,7 +214,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnMesa10 = new JButton("10");
 		btnMesa10.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa10.addActionListener(this);
-		btnMesa10.setBounds((int) (width * 0.45), 624, 52, 23);
+		btnMesa10.setBounds((int) (width * 0.45) + 1, 624, 52, 23);
 		imagePanel.add(btnMesa10);
 
 		btnMesa11 = new JButton("11");
@@ -238,11 +239,17 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		add(imagePanel, BorderLayout.CENTER);
 
+		imagePanel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				imagePanel.setSize(new Dimension(966, imagePanel.getHeight()));
+			}
+		});
+
 		gestionRestaurante.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				System.out.println(btnMesa6.getBounds().x);
-				System.out.println(imagePanel.getWidth());
+				System.out.println(imagePanel.getBounds());
 			}
 		});
 		setBtnMesaColor();
