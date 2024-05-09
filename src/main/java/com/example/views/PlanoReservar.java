@@ -17,6 +17,8 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -57,7 +59,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		gestionRestaurante.setSize(1253, 737);
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 		gestionRestaurante.setLocationRelativeTo(null);
-		gestionRestaurante.setResizable(false);
+		gestionRestaurante.setResizable(true);
 
 		JPanel filtersContainer = new JPanel(null);
 		filtersContainer.setBackground(new Color(240, 197, 23));
@@ -147,9 +149,8 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
-		//imagePanel.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		imagePanel.setSize(954, 690);
 		imagePanel.setBackground(new Color(240, 197, 23));
-		add(imagePanel, BorderLayout.CENTER);
 		imagePanel.setLayout(null);
 
 		btnMesa1 = new JButton("1");
@@ -186,53 +187,64 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnMesa6 = new JButton("6");
 		btnMesa6.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa6.addActionListener(this);
-		btnMesa6.setBounds(428, 486, 52, 23);
+		btnMesa6.setBounds(422, 486, 52, 23);
 		imagePanel.add(btnMesa6);
 
 		btnMesa7 = new JButton("7");
 		btnMesa7.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa7.addActionListener(this);
-		btnMesa7.setBounds(568, 486, 52, 23);
+		btnMesa7.setBounds(562, 486, 52, 23);
 		imagePanel.add(btnMesa7);
 
 		btnMesa8 = new JButton("8");
 		btnMesa8.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa8.addActionListener(this);
-		btnMesa8.setBounds(708, 486, 52, 23);
+		btnMesa8.setBounds(702, 486, 52, 23);
 		imagePanel.add(btnMesa8);
 
 		btnMesa9 = new JButton("9");
 		btnMesa9.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa9.addActionListener(this);
-		btnMesa9.setBounds(848, 486, 52, 23);
+		btnMesa9.setBounds(842, 486, 52, 23);
 		imagePanel.add(btnMesa9);
 
 		btnMesa10 = new JButton("10");
 		btnMesa10.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa10.addActionListener(this);
-		btnMesa10.setBounds(441, 624, 52, 23);
+		btnMesa10.setBounds(436, 624, 52, 23);
 		imagePanel.add(btnMesa10);
 
 		btnMesa11 = new JButton("11");
 		btnMesa11.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa11.addActionListener(this);
-		btnMesa11.setBounds(581, 624, 52, 23);
+		btnMesa11.setBounds(575, 624, 52, 23);
 		imagePanel.add(btnMesa11);
 
 		btnMesa12 = new JButton("12");
 		btnMesa12.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa12.addActionListener(this);
-		btnMesa12.setBounds(721, 624, 52, 23);
+		btnMesa12.setBounds(714, 624, 52, 23);
 		imagePanel.add(btnMesa12);
 
 		btnMesa13 = new JButton("13");
 		btnMesa13.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnMesa13.addActionListener(this);
-		btnMesa13.setBounds(861, 624, 52, 23);
+		btnMesa13.setBounds(854, 624, 52, 23);
 		imagePanel.add(btnMesa13);
 
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);
 
+		add(imagePanel, BorderLayout.CENTER);
+
+		gestionRestaurante.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				System.out.println(gestionRestaurante.getSize());
+				System.out.println(getWidth());
+				System.out.println(btnMesa6.getBounds().x);
+				System.out.println(imagePanel.getWidth());
+			}
+		});
 		setBtnMesaColor();
 	}
 
