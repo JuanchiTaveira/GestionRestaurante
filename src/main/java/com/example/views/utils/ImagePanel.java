@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class ImagePanel extends JPanel {
-    private Image background;
+    private final Image background;
 
     public ImagePanel(String imagePath) {
         // Carga la imagen de fondo

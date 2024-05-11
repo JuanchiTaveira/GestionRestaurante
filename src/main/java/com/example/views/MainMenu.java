@@ -2,6 +2,7 @@ package com.example.views;
 
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
+import com.example.views.utils.Constants;
 import com.example.views.utils.ImagePanel;
 
 import javax.swing.*;
@@ -59,7 +60,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnReservar.setForeground(new Color(255, 255, 255));
 		btnReservar.setBackground(new Color(0, 0, 0));
 		btnReservar.setBorderPainted(false);
-		btnReservar.setFont(new Font("Verdana", btnReservar.getFont().getStyle() | Font.BOLD, 18));
+		btnReservar.setFont(new Font(Constants.VERDANA, btnReservar.getFont().getStyle() | Font.BOLD, 18));
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
 		gbc.gridx = 0;
@@ -70,7 +71,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnVerReservas = new JButton("  Gestionar Reservas  ");
 		btnVerReservas.setForeground(new Color(255, 255, 255));
 		btnVerReservas.setBackground(new Color(0, 0, 0));
-		btnVerReservas.setFont(new Font("Verdana", btnVerReservas.getFont().getStyle() | Font.BOLD, 14));
+		btnVerReservas.setFont(new Font(Constants.VERDANA, btnVerReservas.getFont().getStyle() | Font.BOLD, 14));
 		btnVerReservas.setBorderPainted(false);
 		gbc = new GridBagConstraints();
 		gbc.insets = insets;
@@ -83,7 +84,7 @@ public class MainMenu extends JPanel implements ActionListener {
 			btnGestionarEmpleados = new JButton("Gestionar Empleados");
 			btnGestionarEmpleados.setForeground(new Color(255, 255, 255));
 			btnGestionarEmpleados.setBackground(new Color(0, 0, 0));
-			btnGestionarEmpleados.setFont(new Font("Verdana", btnGestionarEmpleados.getFont().getStyle() | Font.BOLD, 14));
+			btnGestionarEmpleados.setFont(new Font(Constants.VERDANA, btnGestionarEmpleados.getFont().getStyle() | Font.BOLD, 14));
 			btnGestionarEmpleados.setBorderPainted(false);
 			gbc = new GridBagConstraints();
 			gbc.insets = insets;
@@ -111,7 +112,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		btnLogout = new JButton("Cerrar sesión");
 		btnLogout.setForeground(new Color(0, 0, 0));
-		btnLogout.setFont(new Font("Verdana", btnLogout.getFont().getStyle() | Font.BOLD, 12));
+		btnLogout.setFont(new Font(Constants.VERDANA, btnLogout.getFont().getStyle() | Font.BOLD, 12));
 		btnLogout.setBackground(new Color(208, 82, 82));
 		btnLogout.setBorderPainted(false);
 		btnLogout.setHorizontalTextPosition(SwingConstants.CENTER);

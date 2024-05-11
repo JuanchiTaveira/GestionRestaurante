@@ -7,6 +7,7 @@ import com.example.controller.ClienteController;
 import com.example.model.Reserva;
 import com.example.model.Cliente;
 import com.example.views.dialogs.clientes.CreateClienteDialog;
+import com.example.views.utils.Constants;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.DefaultComboBoxModel;
@@ -31,14 +32,11 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.awt.Dialog.ModalityType;
 import java.awt.Font;
-import java.awt.Window.Type;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.Cursor;
 import javax.swing.ImageIcon;
-import javax.swing.border.MatteBorder;
 
 public class InsertDialog extends JDialog implements ChangeListener {
     private static final ReservaController reservaController = new ReservaController();
@@ -82,49 +80,49 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
         formPanel.setBackground(new Color(240, 197, 23));
 
-        JLabel label_1 = new JLabel("Correo:");
-        label_1.setIcon(new ImageIcon("src/main/resources/images/correo.png"));
-        label_1.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
-        formPanel.add(label_1);
+        JLabel labelCorreo = new JLabel("Correo:");
+        labelCorreo.setIcon(new ImageIcon("src/main/resources/images/correo.png"));
+        labelCorreo.setFont(new Font(Constants.ROCKWELL_NOVA, Font.PLAIN, 12));
+        formPanel.add(labelCorreo);
         tfCorreoReserva = new JTextField();
-        tfCorreoReserva.setFont(new Font("Rockwell Nova", tfCorreoReserva.getFont().getStyle(), 11));
+        tfCorreoReserva.setFont(new Font(Constants.ROCKWELL_NOVA, tfCorreoReserva.getFont().getStyle(), 11));
         tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfCorreoReserva);
 
-        JLabel label_2 = new JLabel("Numero Mesa:");
-        label_2.setIcon(new ImageIcon("src/main/resources/images/comedor.png"));
-        label_2.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
-        formPanel.add(label_2);
+        JLabel labelNumeroMesa = new JLabel("Numero Mesa:");
+        labelNumeroMesa.setIcon(new ImageIcon("src/main/resources/images/comedor.png"));
+        labelNumeroMesa.setFont(new Font(Constants.ROCKWELL_NOVA, Font.PLAIN, 12));
+        formPanel.add(labelNumeroMesa);
         spinnerNumeroMesa = new JSpinner();
         spinnerNumeroMesa.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        spinnerNumeroMesa.setFont(new Font("Rockwell Nova", spinnerNumeroMesa.getFont().getStyle(), 11));
+        spinnerNumeroMesa.setFont(new Font(Constants.ROCKWELL_NOVA, spinnerNumeroMesa.getFont().getStyle(), 11));
         spinnerNumeroMesa.addChangeListener(this);
         formPanel.add(spinnerNumeroMesa);
 
         JLabel label = new JLabel("Dia (AAAA-MM-DD):");
         label.setIcon(new ImageIcon("src/main/resources/images/calendario.png"));
-        label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), 11));
+        label.setFont(new Font(Constants.ROCKWELL_NOVA, label.getFont().getStyle(), 11));
         label.setBackground(new Color(240, 197, 23));
         formPanel.add(label);
         dateChooser = new JDateChooser();
-        dateChooser.getCalendarButton().setFont(new Font("Rockwell Nova", dateChooser.getCalendarButton().getFont().getStyle(), dateChooser.getCalendarButton().getFont().getSize()));
+        dateChooser.getCalendarButton().setFont(new Font(Constants.ROCKWELL_NOVA, dateChooser.getCalendarButton().getFont().getStyle(), dateChooser.getCalendarButton().getFont().getSize()));
         dateChooser.setForeground(new Color(0, 0, 0));
         dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        dateChooser.setFont(new Font("Rockwell Nova", dateChooser.getFont().getStyle(), 12));
+        dateChooser.setFont(new Font(Constants.ROCKWELL_NOVA, dateChooser.getFont().getStyle(), 12));
         dateChooser.setDateFormatString("yyyy-MM-dd");
         // Accediendo al JTextField y centrando el texto
         JTextField dateTextField = (JTextField) dateChooser.getDateEditor().getUiComponent();
-        dateTextField.setHorizontalAlignment(JTextField.CENTER);
+        dateTextField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(dateChooser);
 
-        JLabel label_3 = new JLabel("Horario:");
-        label_3.setIcon(new ImageIcon("src/main/resources/images/reloj.png"));
-        label_3.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
-        formPanel.add(label_3);
+        JLabel labelHorario = new JLabel("Horario:");
+        labelHorario.setIcon(new ImageIcon("src/main/resources/images/reloj.png"));
+        labelHorario.setFont(new Font(Constants.ROCKWELL_NOVA, Font.PLAIN, 12));
+        formPanel.add(labelHorario);
         horarioComboBox = new JComboBox();
         horarioComboBox.setOpaque(false);
-        horarioComboBox.setFont(new Font("Rockwell Nova", horarioComboBox.getFont().getStyle(), 11));
+        horarioComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, horarioComboBox.getFont().getStyle(), 11));
         horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         horarioComboBox.setBackground(new Color(255, 255, 255));
         horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
@@ -134,15 +132,15 @@ public class InsertDialog extends JDialog implements ChangeListener {
         horarioComboBox.setRenderer(basicComboBoxRenderer);
         formPanel.add(horarioComboBox);
 
-        JLabel label_4 = new JLabel("Cantidad Personas:");
-        label_4.setIcon(new ImageIcon("src/main/resources/images/grupo.png"));
-        label_4.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
-        formPanel.add(label_4);
+        JLabel labelCantidadPersonas = new JLabel("Cantidad Personas:");
+        labelCantidadPersonas.setIcon(new ImageIcon("src/main/resources/images/grupo.png"));
+        labelCantidadPersonas.setFont(new Font(Constants.ROCKWELL_NOVA, Font.PLAIN, 12));
+        formPanel.add(labelCantidadPersonas);
         // Crear el modelo del spinner
         model = new SpinnerNumberModel(1, 1, 10, 1); // valor inicial, min, max, paso
         spinnerNumeroPersonas = new JSpinner(model);
         spinnerNumeroPersonas.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        spinnerNumeroPersonas.setFont(new Font("Rockwell Nova", spinnerNumeroPersonas.getFont().getStyle(), 11));
+        spinnerNumeroPersonas.setFont(new Font(Constants.ROCKWELL_NOVA, spinnerNumeroPersonas.getFont().getStyle(), 11));
         spinnerNumeroPersonas.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         spinnerNumeroPersonas.setBackground(new Color(240, 197, 23));
         formPanel.add(spinnerNumeroPersonas);

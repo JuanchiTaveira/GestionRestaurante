@@ -5,6 +5,7 @@ import com.example.controller.EmpleadoController;
 import com.example.model.Empleado;
 import com.example.views.dialogs.empleados.EditEmpleadoDialog;
 import com.example.views.dialogs.empleados.InsertEmpleadoDialog;
+import com.example.views.utils.Constants;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,7 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.TableRowSorter;
 
 public class GestionarEmpleados extends JPanel implements ActionListener {
-        private final GestionRestaurante gestionRestaurante;
+    private final GestionRestaurante gestionRestaurante;
         private JTable table;
         private JLabel labelTitulo;
 
@@ -49,7 +50,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         //Título
         labelTitulo = new JLabel("Gestión de Empleados"); // titulo de la pantalla
-        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0, 0, 0)));
         labelTitulo.setFocusCycleRoot(true);
         labelTitulo.setBackground(new Color(240, 197, 23));
         labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
@@ -71,7 +72,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         btnVolverAlMenu.setBorderPainted(false);
         btnVolverAlMenu.setBorder(UIManager.getBorder("Button.border"));
         btnVolverAlMenu.setForeground(new Color(0, 0, 0));
-        btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
+        btnVolverAlMenu.setFont(new Font(Constants.VERDANA, btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
         panelVolver.add(btnVolverAlMenu);
@@ -83,7 +84,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         btnAgregarEmpleado = new JButton("Agregar");
         btnAgregarEmpleado.setForeground(new Color(240, 197, 23));
-        btnAgregarEmpleado.setFont(new Font("Verdana", btnAgregarEmpleado.getFont().getStyle() | Font.BOLD, btnAgregarEmpleado.getFont().getSize()));
+        btnAgregarEmpleado.setFont(new Font(Constants.VERDANA, btnAgregarEmpleado.getFont().getStyle() | Font.BOLD, btnAgregarEmpleado.getFont().getSize()));
         btnAgregarEmpleado.setBackground(new Color(0, 0, 0));
         btnAgregarEmpleado.setBorderPainted(false);
         btnAgregarEmpleado.addActionListener(this);
@@ -91,7 +92,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         btnEditar = new JButton("Editar");
         btnEditar.setForeground(new Color(240, 197, 23));
-        btnEditar.setFont(new Font("Verdana", btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
+        btnEditar.setFont(new Font(Constants.VERDANA, btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
         btnEditar.setBackground(new Color(0, 0, 0));
         btnEditar.setBorderPainted(false);
         btnEditar.addActionListener(this);
@@ -99,7 +100,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         btnEliminar = new JButton("Eliminar");
         btnEliminar.setForeground(new Color(240, 197, 23));
-        btnEliminar.setFont(new Font("Verdana", btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
+        btnEliminar.setFont(new Font(Constants.VERDANA, btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
         btnEliminar.setBorderPainted(false);
         btnEliminar.setBackground(new Color(0, 0, 0));
         btnEliminar.addActionListener(this);
@@ -133,12 +134,12 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         table.setRowSorter(sorter);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //centra el contenido de las columnas de la tabla
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < table.getColumnCount(); i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        empleadoController.getAllEmpleados().forEach(reserva -> tableModel.addRow(EmpleadoToTableModel(reserva))); //inserta las reservas a la tabla
+        empleadoController.getAllEmpleados().forEach(reserva -> tableModel.addRow(empleadoToTableModel(reserva))); //inserta las reservas a la tabla
     }
 
     @Override
@@ -162,7 +163,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
     }
 
 
-    private String[] EmpleadoToTableModel(Empleado empleado) {
+    private String[] empleadoToTableModel(Empleado empleado) {
         String[] data = new String[6];
 
         data[0] = empleado.getId().toString();
@@ -206,7 +207,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         dialog.setVisible(true);
 
         if (dialog.isSave()) {
-            tableModel.addRow(EmpleadoToTableModel(dialog.getNuevoEmpleado()));
+            tableModel.addRow(empleadoToTableModel(dialog.getNuevoEmpleado()));
         }
     }
 
@@ -218,7 +219,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
             Boolean isAdmin = table.getValueAt(selectedRow, 5).toString().equals("SI");
 
-            if (EmpleadoController.authUser.getId() == id) {
+            if (EmpleadoController.authUser.getId().equals(id)) {
                 JOptionPane.showMessageDialog(this, "ERROR: No puedes eliminarte a ti mismo.");
                 return;
             }
