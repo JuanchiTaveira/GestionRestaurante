@@ -26,6 +26,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
+import javax.swing.table.TableRowSorter;
 
 public class VerReservasPanel extends JPanel implements ActionListener {
 
@@ -139,6 +140,10 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         tableModel.addColumn("Cantidad pers.");
         tableModel.addColumn("Empleado");
         table.setModel(tableModel);
+
+        // Permitir la ordenación
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        table.setRowSorter(sorter);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //centra el contenido de las columnas de la tabla
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);

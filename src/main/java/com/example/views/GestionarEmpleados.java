@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.LineBorder;
+import javax.swing.table.TableRowSorter;
 
 public class GestionarEmpleados extends JPanel implements ActionListener {
         private final GestionRestaurante gestionRestaurante;
@@ -125,6 +126,10 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         tableModel.addColumn("DNI");
         tableModel.addColumn("Admin");
         table.setModel(tableModel);
+
+        // Permitir la ordenación
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        table.setRowSorter(sorter);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //centra el contenido de las columnas de la tabla
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
