@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -30,7 +29,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	 * Create the panel.
 	 */
 	public MainMenu(GestionRestaurante gestionRestaurante) {
-    	setBackground(new Color(240, 197, 23));
+    	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		this.gestionRestaurante = gestionRestaurante;
 		gestionRestaurante.setSize(600,450);
 		gestionRestaurante.setLocationRelativeTo(null);
@@ -38,7 +37,7 @@ public class MainMenu extends JPanel implements ActionListener {
         setLayout(new BorderLayout(0, 0));
 
 		JPanel centerPanel = new JPanel(new GridBagLayout());
-		centerPanel.setBackground(new Color(240, 197, 23));
+		centerPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
 		GridBagConstraints gbc;
 		Insets insets = new Insets(5, 5, 5, 5); // padding
@@ -57,8 +56,8 @@ public class MainMenu extends JPanel implements ActionListener {
 		centerPanel.add(imagenLogo, gbc);
 
 		btnReservar = new JButton("          Reservar           ");
-		btnReservar.setForeground(new Color(255, 255, 255));
-		btnReservar.setBackground(new Color(0, 0, 0));
+		btnReservar.setForeground(Constants.COLOR_BLANCO);
+		btnReservar.setBackground(Constants.COLOR_NEGRO);
 		btnReservar.setBorderPainted(false);
 		btnReservar.setFont(new Font(Constants.VERDANA, btnReservar.getFont().getStyle() | Font.BOLD, 18));
 		gbc = new GridBagConstraints();
@@ -69,8 +68,8 @@ public class MainMenu extends JPanel implements ActionListener {
 		centerPanel.add(btnReservar, gbc);
 
 		btnVerReservas = new JButton("  Gestionar Reservas  ");
-		btnVerReservas.setForeground(new Color(255, 255, 255));
-		btnVerReservas.setBackground(new Color(0, 0, 0));
+		btnVerReservas.setForeground(Constants.COLOR_BLANCO);
+		btnVerReservas.setBackground(Constants.COLOR_NEGRO);
 		btnVerReservas.setFont(new Font(Constants.VERDANA, btnVerReservas.getFont().getStyle() | Font.BOLD, 14));
 		btnVerReservas.setBorderPainted(false);
 		gbc = new GridBagConstraints();
@@ -82,8 +81,8 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		if (EmpleadoController.authUser.isAdmin()) {
 			btnGestionarEmpleados = new JButton("Gestionar Empleados");
-			btnGestionarEmpleados.setForeground(new Color(255, 255, 255));
-			btnGestionarEmpleados.setBackground(new Color(0, 0, 0));
+			btnGestionarEmpleados.setForeground(Constants.COLOR_BLANCO);
+			btnGestionarEmpleados.setBackground(Constants.COLOR_NEGRO);
 			btnGestionarEmpleados.setFont(new Font(Constants.VERDANA, btnGestionarEmpleados.getFont().getStyle() | Font.BOLD, 14));
 			btnGestionarEmpleados.setBorderPainted(false);
 			gbc = new GridBagConstraints();
@@ -99,21 +98,21 @@ public class MainMenu extends JPanel implements ActionListener {
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
 		ImagePanel imagePanel = new ImagePanel("/images/logopie1b.png");
-		imagePanel.setBackground(new Color(240, 197, 23));
+		imagePanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		imagePanel.setPreferredSize(new Dimension(300, 50));
 		add(imagePanel, BorderLayout.SOUTH);
 
 
 		// Panel para el botón "Cerrar sesion"
 		JPanel panelLogout = new JPanel();
-		panelLogout.setBackground(new Color(240, 197, 23));
+		panelLogout.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		panelLogout.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelLogout.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		btnLogout = new JButton("Cerrar sesión");
-		btnLogout.setForeground(new Color(0, 0, 0));
+		btnLogout.setForeground(Constants.COLOR_NEGRO);
 		btnLogout.setFont(new Font(Constants.VERDANA, btnLogout.getFont().getStyle() | Font.BOLD, 12));
-		btnLogout.setBackground(new Color(208, 82, 82));
+		btnLogout.setBackground(Constants.COLOR_BOTON_VOLVER);
 		btnLogout.setBorderPainted(false);
 		btnLogout.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnLogout.addActionListener(this);

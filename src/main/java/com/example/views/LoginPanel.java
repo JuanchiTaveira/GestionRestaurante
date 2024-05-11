@@ -39,7 +39,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 
 
     public LoginPanel(GestionRestaurante gestionRestaurante) {
-    	setBackground(new Color(240, 197, 23));
+    	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         this.gestionRestaurante = gestionRestaurante;
         gestionRestaurante.setSize(600, 450);
         gestionRestaurante.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -51,10 +51,10 @@ public class LoginPanel extends JPanel implements ActionListener {
         setLayout(new BorderLayout(0,0));
 
         labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
-        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0, 0, 0)));
+        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, Constants.COLOR_NEGRO));
         labelTitulo.setFocusCycleRoot(true);
-        labelTitulo.setBackground(new Color(240, 197, 23));
-        labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
+        labelTitulo.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+        labelTitulo.setFont(new Font(Constants.YU_GOTHIC_UI_SEMIBOLD, Font.PLAIN, 22));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         GridBagLayout gbl_centerPanel = new GridBagLayout();
@@ -62,7 +62,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbl_centerPanel.rowHeights = new int[]{100, 19, 0, 42, 23};
         gbl_centerPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
         JPanel centerPanel = new JPanel(gbl_centerPanel); // contenedor central
-        centerPanel.setBackground(new Color(240, 197, 23));
+        centerPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         GridBagConstraints gbc;
         Insets insets = new Insets(5, 5, 5, 5); // padding
@@ -98,10 +98,10 @@ public class LoginPanel extends JPanel implements ActionListener {
 
         tfUsuario = new JTextField(15);
         tfUsuario.setFont(new Font(Constants.ROCKWELL_NOVA, tfUsuario.getFont().getStyle(), tfUsuario.getFont().getSize()));
-        tfUsuario.setSelectedTextColor(new Color(255, 255, 255));
+        tfUsuario.setSelectedTextColor(Constants.COLOR_BLANCO);
         tfUsuario.setToolTipText("");
-        tfUsuario.setCaretColor(new Color(0, 0, 0));
-        tfUsuario.setBackground(new Color(255, 255, 255));
+        tfUsuario.setCaretColor(Constants.COLOR_NEGRO);
+        tfUsuario.setBackground(Constants.COLOR_BLANCO);
         gbc_1 = new GridBagConstraints();
         gbc_1.anchor = GridBagConstraints.WEST;
         gbc_1.insets = new Insets(5, 5, 5, 0);
@@ -142,11 +142,11 @@ public class LoginPanel extends JPanel implements ActionListener {
                 btnIniciarSesion = new JButton("Iniciar sesión");
                 btnIniciarSesion.setBorderPainted(false);
                 btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
-                btnIniciarSesion.setForeground(new Color(255, 255, 255));
+                btnIniciarSesion.setForeground(Constants.COLOR_BLANCO);
                 btnIniciarSesion.setIconTextGap(5);
                 btnIniciarSesion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                btnIniciarSesion.setBackground(new Color(0, 0, 0));
-                btnIniciarSesion.setFont(new Font("Verdana", btnIniciarSesion.getFont().getStyle() | Font.BOLD, 15));
+                btnIniciarSesion.setBackground(Constants.COLOR_NEGRO);
+                btnIniciarSesion.setFont(new Font(Constants.VERDANA, btnIniciarSesion.getFont().getStyle() | Font.BOLD, 15));
                 gbc_3 = new GridBagConstraints();
                 gbc_3.gridwidth = 3;
                 gbc_3.fill = GridBagConstraints.HORIZONTAL;

@@ -30,7 +30,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.JSpinner;
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Toolkit;
@@ -51,16 +50,16 @@ public class EditDialog extends JDialog implements ChangeListener {
     private JButton btnEliminar;
 
     public EditDialog(String id, String correoReserva, String numeroMesa, String dia, String horario, String numeroPersonas, String empleado) {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/cubiertos.png"));
         setTitle("Editar Reserva");
         setSize(400, 350);
         setModal(true);
-    	setBackground(new Color(240, 197, 23));
-    	getContentPane().setBackground(new Color(240, 197, 23));
+    	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+    	getContentPane().setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(240, 197, 23));
+        panel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Crear labels y textFields
@@ -70,13 +69,13 @@ public class EditDialog extends JDialog implements ChangeListener {
 
         labelCorreoReserva = new JLabel(correoReserva);
         labelCorreoReserva.setFont(new Font(Constants.ROCKWELL_NOVA, labelCorreoReserva.getFont().getStyle(), labelCorreoReserva.getFont().getSize()));
-        labelCorreoReserva.setForeground(new Color(0, 0, 0));
+        labelCorreoReserva.setForeground(Constants.COLOR_NEGRO);
         labelCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
 
         dateChooser = new JDateChooser();
         dateChooser.getCalendarButton().setIcon(new ImageIcon(EditDialog.class.getResource("/com/toedter/calendar/demo/images/DemoTableColor16.gif")));
         dateChooser.setFont(new Font(Constants.ROCKWELL_NOVA, dateChooser.getFont().getStyle(), dateChooser.getFont().getSize()));
-        dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        dateChooser.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         dateChooser.setDateFormatString("yyyy-MM-dd");
         dateChooser.setDate(Date.valueOf(dia));
         // Accediendo al JTextField y centrando el texto
@@ -85,14 +84,14 @@ public class EditDialog extends JDialog implements ChangeListener {
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
-        formPanel.setBackground(new Color(240, 197, 23));
+        formPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         JLabel label = new JLabel("ID:");
         label.setIcon(new ImageIcon("src/main/resources/images/id.png"));
         label.setFont(new Font(Constants.ROCKWELL_NOVA, label.getFont().getStyle(), label.getFont().getSize()));
         formPanel.add(label);
-        labelId.setForeground(new Color(0, 0, 0));
-        labelId.setBackground(new Color(0, 0, 0));
+        labelId.setForeground(Constants.COLOR_NEGRO);
+        labelId.setBackground(Constants.COLOR_NEGRO);
         formPanel.add(labelId);
 
         JLabel labelCorreo = new JLabel("Correo:");
@@ -108,7 +107,7 @@ public class EditDialog extends JDialog implements ChangeListener {
         formPanel.add(labelNumeroMesa);
         spinnerNumeroMesa = new JSpinner();
         spinnerNumeroMesa.setFont(new Font(Constants.ROCKWELL_NOVA, spinnerNumeroMesa.getFont().getStyle(), spinnerNumeroMesa.getFont().getSize()));
-        spinnerNumeroMesa.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        spinnerNumeroMesa.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         spinnerNumeroMesa.addChangeListener(this);
         spinnerNumeroMesa.setValue(Integer.valueOf(numeroMesa));
         formPanel.add(spinnerNumeroMesa);
@@ -124,8 +123,8 @@ public class EditDialog extends JDialog implements ChangeListener {
         labelHorario.setFont(new Font(Constants.ROCKWELL_NOVA, labelHorario.getFont().getStyle(), labelHorario.getFont().getSize()));
         formPanel.add(labelHorario);
         horarioComboBox = new JComboBox();
-        horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        horarioComboBox.setBackground(new Color(255, 255, 255));
+        horarioComboBox.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        horarioComboBox.setBackground(Constants.COLOR_BLANCO);
         horarioComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, horarioComboBox.getFont().getStyle(), horarioComboBox.getFont().getSize()));
         horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
         if (horario.equals(Reserva.Horario.ALMUERZO.toString())) {
@@ -146,18 +145,18 @@ public class EditDialog extends JDialog implements ChangeListener {
         model = new SpinnerNumberModel(Integer.parseInt(numeroPersonas), 1, mesaController.maxPersonasMesa(Integer.valueOf(numeroMesa)).intValue(), 1); // valor inicial, min, max, paso
         spinnerNumeroPersonas = new JSpinner(model);
         spinnerNumeroPersonas.setFont(new Font(Constants.ROCKWELL_NOVA, spinnerNumeroPersonas.getFont().getStyle(), spinnerNumeroPersonas.getFont().getSize()));
-        spinnerNumeroPersonas.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        spinnerNumeroPersonas.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         formPanel.add(spinnerNumeroPersonas);
 
         //Panel del boton de guardar y eliminar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(new Color(240, 197, 23));
+        buttonPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         btnEliminar = new JButton("Eliminar");
         btnEliminar.setBorderPainted(false);
-        btnEliminar.setBackground(new Color(0, 0, 0));
-        btnEliminar.setForeground(new Color(240, 197, 23));
-        btnEliminar.setFont(new Font("Verdana", btnEliminar.getFont().getStyle() | Font.BOLD, 12));
+        btnEliminar.setBackground(Constants.COLOR_NEGRO);
+        btnEliminar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
+        btnEliminar.setFont(new Font(Constants.VERDANA, btnEliminar.getFont().getStyle() | Font.BOLD, 12));
         btnEliminar.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres eliminar la reserva con ID: " + id + "?");
 
@@ -172,10 +171,10 @@ public class EditDialog extends JDialog implements ChangeListener {
         buttonPanel.add(btnEliminar);
 
         JButton saveButton = new JButton("Guardar");
-        saveButton.setBackground(new Color(0, 0, 0));
+        saveButton.setBackground(Constants.COLOR_NEGRO);
         saveButton.setBorderPainted(false);
-        saveButton.setForeground(new Color(240, 197, 23));
-        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 12));
+        saveButton.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
+        saveButton.setFont(new Font(Constants.VERDANA, saveButton.getFont().getStyle() | Font.BOLD, 12));
         saveButton.addActionListener(e -> {
             // Guardar los valores y cerrar el diálogo
             int confirm = JOptionPane.showConfirmDialog(this, "Quieres confirmar los cambios sobre la reserva con ID: " + id + "?");

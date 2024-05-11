@@ -30,7 +30,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.UIManager;
@@ -51,7 +50,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
     private SpinnerNumberModel model;
 
     public InsertDialog() {
-    	setBackground(new Color(240, 197, 23));
+    	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
     	setFont(new Font("Dialog", Font.BOLD, 12));
     	setModalityType(ModalityType.APPLICATION_MODAL);
     	setOpacity(1.0f);
@@ -66,19 +65,19 @@ public class InsertDialog extends JDialog implements ChangeListener {
     }
 
     private void initalize() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/cubiertos.png"));
         setTitle("Insertar Reserva");
         setSize(400, 350);
         setModal(true);
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(240, 197, 23));
+        panel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
-        formPanel.setBackground(new Color(240, 197, 23));
+        formPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         JLabel labelCorreo = new JLabel("Correo:");
         labelCorreo.setIcon(new ImageIcon("src/main/resources/images/correo.png"));
@@ -86,7 +85,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
         formPanel.add(labelCorreo);
         tfCorreoReserva = new JTextField();
         tfCorreoReserva.setFont(new Font(Constants.ROCKWELL_NOVA, tfCorreoReserva.getFont().getStyle(), 11));
-        tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfCorreoReserva.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfCorreoReserva);
 
@@ -95,7 +94,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
         labelNumeroMesa.setFont(new Font(Constants.ROCKWELL_NOVA, Font.PLAIN, 12));
         formPanel.add(labelNumeroMesa);
         spinnerNumeroMesa = new JSpinner();
-        spinnerNumeroMesa.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        spinnerNumeroMesa.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         spinnerNumeroMesa.setFont(new Font(Constants.ROCKWELL_NOVA, spinnerNumeroMesa.getFont().getStyle(), 11));
         spinnerNumeroMesa.addChangeListener(this);
         formPanel.add(spinnerNumeroMesa);
@@ -103,12 +102,12 @@ public class InsertDialog extends JDialog implements ChangeListener {
         JLabel label = new JLabel("Dia (AAAA-MM-DD):");
         label.setIcon(new ImageIcon("src/main/resources/images/calendario.png"));
         label.setFont(new Font(Constants.ROCKWELL_NOVA, label.getFont().getStyle(), 11));
-        label.setBackground(new Color(240, 197, 23));
+        label.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         formPanel.add(label);
         dateChooser = new JDateChooser();
         dateChooser.getCalendarButton().setFont(new Font(Constants.ROCKWELL_NOVA, dateChooser.getCalendarButton().getFont().getStyle(), dateChooser.getCalendarButton().getFont().getSize()));
-        dateChooser.setForeground(new Color(0, 0, 0));
-        dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        dateChooser.setForeground(Constants.COLOR_NEGRO);
+        dateChooser.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         dateChooser.setFont(new Font(Constants.ROCKWELL_NOVA, dateChooser.getFont().getStyle(), 12));
         dateChooser.setDateFormatString("yyyy-MM-dd");
         // Accediendo al JTextField y centrando el texto
@@ -123,8 +122,8 @@ public class InsertDialog extends JDialog implements ChangeListener {
         horarioComboBox = new JComboBox();
         horarioComboBox.setOpaque(false);
         horarioComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, horarioComboBox.getFont().getStyle(), 11));
-        horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        horarioComboBox.setBackground(new Color(255, 255, 255));
+        horarioComboBox.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        horarioComboBox.setBackground(Constants.COLOR_BLANCO);
         horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
         horarioComboBox.setSelectedIndex(0);
         BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
@@ -141,16 +140,16 @@ public class InsertDialog extends JDialog implements ChangeListener {
         spinnerNumeroPersonas = new JSpinner(model);
         spinnerNumeroPersonas.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         spinnerNumeroPersonas.setFont(new Font(Constants.ROCKWELL_NOVA, spinnerNumeroPersonas.getFont().getStyle(), 11));
-        spinnerNumeroPersonas.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        spinnerNumeroPersonas.setBackground(new Color(240, 197, 23));
+        spinnerNumeroPersonas.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        spinnerNumeroPersonas.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         formPanel.add(spinnerNumeroPersonas);
 
         JButton saveButton = new JButton("Guardar");
         saveButton.setBorderPainted(false);
-        saveButton.setForeground(new Color(240, 197, 23));
+        saveButton.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         saveButton.setBorder(UIManager.getBorder("Button.border"));
-        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 13));
-        saveButton.setBackground(new Color(0, 0, 0));
+        saveButton.setFont(new Font(Constants.VERDANA, saveButton.getFont().getStyle() | Font.BOLD, 13));
+        saveButton.setBackground(Constants.COLOR_NEGRO);
         saveButton.addActionListener(e -> {
 
             Cliente cliente = clienteController.getClienteByCorreo(tfCorreoReserva.getText());
@@ -189,7 +188,7 @@ public class InsertDialog extends JDialog implements ChangeListener {
 
         //Panel del boton de guardar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(new Color(240, 197, 23));
+        buttonPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         buttonPanel.add(saveButton);
 
         panel.add(formPanel, BorderLayout.CENTER);

@@ -20,21 +20,21 @@ public class EditEmpleadoDialog extends JDialog {
     private JComboBox adminComboBox;
 
     public EditEmpleadoDialog(String id, String usuario, String nombre, String apellido, String dni, String admin) {
-    	getContentPane().setBackground(new Color(240, 197, 23));
-    	setBackground(new Color(240, 197, 23));
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
+    	getContentPane().setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+    	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/cubiertos.png"));
         setTitle("Editar Empleado");
         setSize(400, 350);
         setModal(true);
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(240, 197, 23));
+        panel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(8, 2, 5, 5));
-        formPanel.setBackground(new Color(240, 197, 23));
+        formPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         JLabel label = new JLabel("ID:");
         label.setIcon(new ImageIcon("src/main/resources/images/id.png"));
@@ -62,7 +62,7 @@ public class EditEmpleadoDialog extends JDialog {
         formPanel.add(label_2);
         passwordField = new JPasswordField(actualPassword);
         passwordField.setFont(new Font(Constants.ROCKWELL_NOVA, passwordField.getFont().getStyle(), passwordField.getFont().getSize()));
-        passwordField.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        passwordField.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(passwordField);
 
@@ -72,7 +72,7 @@ public class EditEmpleadoDialog extends JDialog {
         formPanel.add(label_3);
         repeatPasswordField = new JPasswordField(actualPassword);
         repeatPasswordField.setFont(new Font(Constants.ROCKWELL_NOVA, repeatPasswordField.getFont().getStyle(), repeatPasswordField.getFont().getSize()));
-        repeatPasswordField.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        repeatPasswordField.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         repeatPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(repeatPasswordField);
 
@@ -81,7 +81,7 @@ public class EditEmpleadoDialog extends JDialog {
         label_4.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
         formPanel.add(label_4);
         tfNombre = new JTextField(nombre);
-        tfNombre.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfNombre.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfNombre.setFont(new Font(Constants.ROCKWELL_NOVA, tfNombre.getFont().getStyle(), tfNombre.getFont().getSize()));
         tfNombre.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfNombre);
@@ -92,7 +92,7 @@ public class EditEmpleadoDialog extends JDialog {
         label_5.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
         formPanel.add(label_5);
         tfApellido = new JTextField(apellido);
-        tfApellido.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfApellido.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfApellido.setFont(new Font(Constants.ROCKWELL_NOVA, tfApellido.getFont().getStyle(), tfApellido.getFont().getSize()));
         tfApellido.setHorizontalAlignment(SwingConstants.CENTER);
         tfApellido.setColumns(10);
@@ -103,7 +103,7 @@ public class EditEmpleadoDialog extends JDialog {
         label_7.setFont(new Font(Constants.ROCKWELL_NOVA, label_7.getFont().getStyle(), label_7.getFont().getSize()));
         formPanel.add(label_7);
         tfDni = new JTextField(dni);
-        tfDni.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        tfDni.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfDni.setFont(new Font(Constants.ROCKWELL_NOVA, tfDni.getFont().getStyle(), tfDni.getFont().getSize()));
         tfDni.setHorizontalAlignment(SwingConstants.CENTER);
         tfDni.setColumns(10);
@@ -114,7 +114,7 @@ public class EditEmpleadoDialog extends JDialog {
         label_6.setIcon(new ImageIcon("src/main/resources/images/admin.png"));
         formPanel.add(label_6);
         adminComboBox = new JComboBox();
-        adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+        adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Constants.COLOR_NEGRO));
         adminComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, adminComboBox.getFont().getStyle(), adminComboBox.getFont().getSize()));
         adminComboBox.setModel(new DefaultComboBoxModel(new String[] {"SI", "NO"}));
         if (admin.equals("SI")) {
@@ -129,12 +129,12 @@ public class EditEmpleadoDialog extends JDialog {
 
         //Panel del boton de guardar y eliminar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(new Color(240, 197, 23));
+        buttonPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         JButton saveButton = new JButton("Guardar");
-        saveButton.setForeground(new Color(240, 197, 23));
-        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 12));
-        saveButton.setBackground(new Color(0, 0, 0));
+        saveButton.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
+        saveButton.setFont(new Font(Constants.VERDANA, saveButton.getFont().getStyle() | Font.BOLD, 12));
+        saveButton.setBackground(Constants.COLOR_NEGRO);
         saveButton.setBorderPainted(false);
         saveButton.addActionListener(e -> {
             // Guardar los valores y cerrar el diálogo

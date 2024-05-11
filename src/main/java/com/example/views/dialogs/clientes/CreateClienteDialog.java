@@ -2,6 +2,7 @@ package com.example.views.dialogs.clientes;
 
 import com.example.controller.ClienteController;
 import com.example.model.Cliente;
+import com.example.views.utils.Constants;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -26,66 +27,66 @@ public class CreateClienteDialog extends JDialog {
     private boolean save;
 
     public CreateClienteDialog(String correoReserva) {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/logo_pestana.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/images/cubiertos.png"));
         setTitle("Crear Cliente");
         setSize(400, 264);
         setModal(true);
 
         //Panel principal
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(240, 197, 23));
+        panel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //Panel del formulario
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 5, 5));
-        formPanel.setBackground(new Color(240, 197, 23));
+        formPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
         JLabel label = new JLabel("Correo:");
-        label.setFont(new Font("Rockwell Nova", label.getFont().getStyle(), label.getFont().getSize()));
+        label.setFont(new Font(Constants.ROCKWELL_NOVA, label.getFont().getStyle(), label.getFont().getSize()));
         label.setIcon(new ImageIcon("src/main/resources/images/correo.png"));
         formPanel.add(label);
         tfCorreoReserva = new JTextField("");
-        tfCorreoReserva.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        tfCorreoReserva.setFont(new Font("Rockwell Nova", tfCorreoReserva.getFont().getStyle(), tfCorreoReserva.getFont().getSize()));
+        tfCorreoReserva.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        tfCorreoReserva.setFont(new Font(Constants.ROCKWELL_NOVA, tfCorreoReserva.getFont().getStyle(), tfCorreoReserva.getFont().getSize()));
         tfCorreoReserva.setHorizontalAlignment(SwingConstants.CENTER);
         tfCorreoReserva.setText(correoReserva);
         formPanel.add(tfCorreoReserva);
 
         JLabel label_1 = new JLabel("Nombre:");
         label_1.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
-        label_1.setFont(new Font("Rockwell Nova", label_1.getFont().getStyle(), label_1.getFont().getSize()));
+        label_1.setFont(new Font(Constants.ROCKWELL_NOVA, label_1.getFont().getStyle(), label_1.getFont().getSize()));
         formPanel.add(label_1);
         tfNombre = new JTextField();
-        tfNombre.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        tfNombre.setFont(new Font("Rockwell Nova", tfNombre.getFont().getStyle(), tfNombre.getFont().getSize()));
+        tfNombre.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        tfNombre.setFont(new Font(Constants.ROCKWELL_NOVA, tfNombre.getFont().getStyle(), tfNombre.getFont().getSize()));
         tfNombre.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfNombre);
 
         JLabel label_2 = new JLabel("Apellido:");
         label_2.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
-        label_2.setFont(new Font("Rockwell Nova", label_2.getFont().getStyle(), label_2.getFont().getSize()));
+        label_2.setFont(new Font(Constants.ROCKWELL_NOVA, label_2.getFont().getStyle(), label_2.getFont().getSize()));
         formPanel.add(label_2);
         tfApellido = new JTextField();
-        tfApellido.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        tfApellido.setFont(new Font("Rockwell Nova", tfApellido.getFont().getStyle(), tfApellido.getFont().getSize()));
+        tfApellido.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        tfApellido.setFont(new Font(Constants.ROCKWELL_NOVA, tfApellido.getFont().getStyle(), tfApellido.getFont().getSize()));
         tfApellido.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfApellido);
 
         JLabel label_3 = new JLabel("Telefono:");
         label_3.setIcon(new ImageIcon("src/main/resources/images/telefono.png"));
-        label_3.setFont(new Font("Rockwell Nova", label_3.getFont().getStyle(), label_3.getFont().getSize()));
+        label_3.setFont(new Font(Constants.ROCKWELL_NOVA, label_3.getFont().getStyle(), label_3.getFont().getSize()));
         formPanel.add(label_3);
         tfTelefono = new JTextField();
-        tfTelefono.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-        tfTelefono.setFont(new Font("Rockwell Nova", tfTelefono.getFont().getStyle(), tfTelefono.getFont().getSize()));
+        tfTelefono.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+        tfTelefono.setFont(new Font(Constants.ROCKWELL_NOVA, tfTelefono.getFont().getStyle(), tfTelefono.getFont().getSize()));
         tfTelefono.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(tfTelefono);
 
         JButton saveButton = new JButton("Guardar");
         saveButton.setBorderPainted(false);
-        saveButton.setForeground(new Color(240, 197, 23));
-        saveButton.setBackground(new Color(0, 0, 0));
-        saveButton.setFont(new Font("Verdana", saveButton.getFont().getStyle() | Font.BOLD, 12));
+        saveButton.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
+        saveButton.setBackground(Constants.COLOR_NEGRO);
+        saveButton.setFont(new Font(Constants.VERDANA, saveButton.getFont().getStyle() | Font.BOLD, 12));
         saveButton.addActionListener(e -> {
 
             String nombre = tfNombre.getText();
@@ -114,7 +115,7 @@ public class CreateClienteDialog extends JDialog {
 
         //Panel del boton de guardar
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(new Color(240, 197, 23));
+        buttonPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         buttonPanel.add(saveButton);
 
         panel.add(formPanel, BorderLayout.CENTER);

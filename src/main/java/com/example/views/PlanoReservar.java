@@ -5,6 +5,7 @@ import com.example.controller.ReservaController;
 import com.example.model.Reserva;
 import com.example.views.dialogs.reservas.EditDialog;
 import com.example.views.dialogs.reservas.InsertDialog;
+import com.example.views.utils.Constants;
 import com.example.views.utils.ImagePanel;
 import com.toedter.calendar.JCalendar;
 
@@ -21,7 +22,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -60,7 +60,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
 		this.gestionRestaurante = gestionRestaurante;
 
-		setBackground(new Color(240, 197, 23));
+		setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		setLayout(new BorderLayout(0, 0));
 		setSize(new Dimension(1237, 700));
 
@@ -71,28 +71,28 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		JPanel filtersContainer = new JPanel(null);
 		filtersContainer.setSize(new Dimension(271, 698));
-		filtersContainer.setBackground(new Color(240, 197, 23));
+		filtersContainer.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		filtersContainer.setBorder(new EmptyBorder(10, 10, 5, 0));
 		add(filtersContainer, BorderLayout.WEST);
 
 		calendar = new JCalendar();
-		calendar.getDayChooser().setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		calendar.getDayChooser().setFont(new Font("Rockwell Nova", calendar.getDayChooser().getFont().getStyle(), calendar.getDayChooser().getFont().getSize()));
-		calendar.getDayChooser().getDayPanel().setFont(new Font("Rockwell Nova", calendar.getDayChooser().getDayPanel().getFont().getStyle(), calendar.getDayChooser().getDayPanel().getFont().getSize()));
-		calendar.getYearChooser().getSpinner().setFont(new Font("Rockwell Nova", calendar.getYearChooser().getSpinner().getFont().getStyle(), calendar.getYearChooser().getSpinner().getFont().getSize()));
-		calendar.getMonthChooser().getSpinner().setFont(new Font("Rockwell Nova", calendar.getMonthChooser().getSpinner().getFont().getStyle(), calendar.getMonthChooser().getSpinner().getFont().getSize()));
+		calendar.getDayChooser().setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+		calendar.getDayChooser().setFont(new Font(Constants.ROCKWELL_NOVA, calendar.getDayChooser().getFont().getStyle(), calendar.getDayChooser().getFont().getSize()));
+		calendar.getDayChooser().getDayPanel().setFont(new Font(Constants.ROCKWELL_NOVA, calendar.getDayChooser().getDayPanel().getFont().getStyle(), calendar.getDayChooser().getDayPanel().getFont().getSize()));
+		calendar.getYearChooser().getSpinner().setFont(new Font(Constants.ROCKWELL_NOVA, calendar.getYearChooser().getSpinner().getFont().getStyle(), calendar.getYearChooser().getSpinner().getFont().getSize()));
+		calendar.getMonthChooser().getSpinner().setFont(new Font(Constants.ROCKWELL_NOVA, calendar.getMonthChooser().getSpinner().getFont().getStyle(), calendar.getMonthChooser().getSpinner().getFont().getSize()));
 		calendar.getDayChooser().setAlwaysFireDayProperty(false);
-		calendar.getYearChooser().getSpinner().setForeground(new Color(240, 197, 23));
-		calendar.getMonthChooser().getComboBox().setBackground(new Color(255, 255, 255));
-		calendar.getMonthChooser().getComboBox().setForeground(new Color(0, 0, 0));
-		calendar.getMonthChooser().setBackground(new Color(240, 197, 23));
-		calendar.setBackground(new Color(240, 197, 23));
+		calendar.getYearChooser().getSpinner().setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
+		calendar.getMonthChooser().getComboBox().setBackground(Constants.COLOR_BLANCO);
+		calendar.getMonthChooser().getComboBox().setForeground(Constants.COLOR_NEGRO);
+		calendar.getMonthChooser().setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+		calendar.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		calendar.setBorder(new EmptyBorder(10, 10, 0, 10));
 
 		horarioComboBox = new JComboBox();
-		horarioComboBox.setFont(new Font("Rockwell Nova", horarioComboBox.getFont().getStyle(), horarioComboBox.getFont().getSize()));
-		horarioComboBox.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		horarioComboBox.setBackground(new Color(255, 255, 255));
+		horarioComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, horarioComboBox.getFont().getStyle(), horarioComboBox.getFont().getSize()));
+		horarioComboBox.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
+		horarioComboBox.setBackground(Constants.COLOR_BLANCO);
 		horarioComboBox.setModel(new DefaultComboBoxModel(Reserva.Horario.values()));
 		BasicComboBoxRenderer basicComboBoxRenderer = new BasicComboBoxRenderer();
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,17 +101,17 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnActualizarPlano = new JButton("Actualizar");
 		btnActualizarPlano.setBorderPainted(false);
 		btnActualizarPlano.setBorder(UIManager.getBorder("Button.border"));
-		btnActualizarPlano.setForeground(new Color(255, 255, 255));
-		btnActualizarPlano.setBackground(new Color(0, 0, 0));
-		btnActualizarPlano.setFont(new Font("Verdana", btnActualizarPlano.getFont().getStyle() | Font.BOLD, 12));
+		btnActualizarPlano.setForeground(Constants.COLOR_BLANCO);
+		btnActualizarPlano.setBackground(Constants.COLOR_NEGRO);
+		btnActualizarPlano.setFont(new Font(Constants.VERDANA, btnActualizarPlano.getFont().getStyle() | Font.BOLD, 12));
 		btnActualizarPlano.addActionListener(this);
 
 		btnVolverAlMenu = new JButton("Volver al menú");
-		btnVolverAlMenu.setForeground(new Color(0, 0, 0));
+		btnVolverAlMenu.setForeground(Constants.COLOR_NEGRO);
 		btnVolverAlMenu.setBorderPainted(false);
 		btnVolverAlMenu.setBorder(UIManager.getBorder("ToggleButton.border"));
-		btnVolverAlMenu.setBackground(new Color(208, 82, 82));
-		btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
+		btnVolverAlMenu.setBackground(Constants.COLOR_BOTON_VOLVER);
+		btnVolverAlMenu.setFont(new Font(Constants.VERDANA, btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
 		btnVolverAlMenu.addActionListener(this);
 
 		tableReservas = new JTable();
@@ -160,7 +160,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
 		imagePanel.setSize(new Dimension(966, 690));
 		imagePanel.setMaximumSize(new Dimension(966, 690));
-		imagePanel.setBackground(new Color(240, 197, 23));
+		imagePanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		imagePanel.setLayout(null);
 		int width = imagePanel.getWidth();
 
@@ -267,7 +267,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		} else {
 			JButton btnMesa = (JButton) e.getSource();
 
-			if (btnMesa.getBackground().equals(new Color(242, 18, 13))) { // si esta reservada
+			if (btnMesa.getBackground().equals(Constants.COLOR_MESA_OCUPADA)) { // si esta reservada
 				Reserva reserva = reservaController.getReserva(Integer.valueOf(btnMesa.getText()), dateSelected, horarioSelected);
 
 				EditDialog dialog = new EditDialog(reserva.getId().toString(), reserva.getCliente().getCorreo(), reserva.getNumeroMesa().toString(), dateSelected.toString(), horarioSelected.toString(), reserva.getNumeroPersonas().toString(), reserva.getEmpleado().getUsuario());
@@ -279,7 +279,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 					setBtnMesaColor();
 				}
 
-			} else if (btnMesa.getBackground().equals(new Color(128, 255, 0))) { // si está libre
+			} else if (btnMesa.getBackground().equals(Constants.COLOR_MESA_DISPONIBLE)) { // si está libre
 				InsertDialog dialog = new InsertDialog(btnMesa.getText(), dateSelected.toString(), horarioSelected);
 				dialog.setLocationRelativeTo(null);
 				dialog.setVisible(true);
@@ -304,9 +304,9 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		allBtnMesa.forEach(btn -> {
 			if (mesasReservadas.contains(btn.getText())) {
-				btn.setBackground(new Color(242, 18, 13));
+				btn.setBackground(Constants.COLOR_MESA_OCUPADA);
 			} else {
-				btn.setBackground(new Color(128, 255, 0));
+				btn.setBackground(Constants.COLOR_MESA_DISPONIBLE);
 			}
 		});
 
@@ -315,7 +315,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 	private void configureTableReservas() {
 		scrollPaneReservas = new JScrollPane();
-		scrollPaneReservas.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+		scrollPaneReservas.setBorder(new LineBorder(Constants.COLOR_NEGRO, 3));
 		scrollPaneReservas.setViewportView(tableReservas);
 
 		tableModel.addColumn("Mesa");

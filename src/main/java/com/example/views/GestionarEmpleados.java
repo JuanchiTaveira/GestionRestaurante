@@ -36,8 +36,8 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         private JButton btnVolverAlMenu;
 
     public GestionarEmpleados(GestionRestaurante gestionRestaurante) {
-    	setBackground(new Color(240, 197, 23));
-    	setForeground(new Color(240, 197, 23));
+    	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+    	setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         this.gestionRestaurante = gestionRestaurante;
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
         gestionRestaurante.setSize(800, 500);
@@ -50,10 +50,10 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         //Título
         labelTitulo = new JLabel("Gestión de Empleados"); // titulo de la pantalla
-        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0, 0, 0)));
+        labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, Constants.COLOR_NEGRO));
         labelTitulo.setFocusCycleRoot(true);
-        labelTitulo.setBackground(new Color(240, 197, 23));
-        labelTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 22));
+        labelTitulo.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
+        labelTitulo.setFont(new Font(Constants.YU_GOTHIC_UI_SEMIBOLD, Font.PLAIN, 22));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         add(labelTitulo, BorderLayout.NORTH);
 
@@ -64,14 +64,14 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         // Panel para el botón "Volver al menú"
         JPanel panelVolver = new JPanel();
-        panelVolver.setBackground(new Color(240, 197, 23));
+        panelVolver.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         btnVolverAlMenu = new JButton("Volver al menú");
-        btnVolverAlMenu.setBackground(new Color(208, 82, 82));
+        btnVolverAlMenu.setBackground(Constants.COLOR_BOTON_VOLVER);
         btnVolverAlMenu.setBorderPainted(false);
         btnVolverAlMenu.setBorder(UIManager.getBorder("Button.border"));
-        btnVolverAlMenu.setForeground(new Color(0, 0, 0));
+        btnVolverAlMenu.setForeground(Constants.COLOR_NEGRO);
         btnVolverAlMenu.setFont(new Font(Constants.VERDANA, btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
@@ -79,30 +79,30 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
         // Panel para los otros botones con alineación a la derecha
         JPanel panelAcciones = new JPanel();
-        panelAcciones.setBackground(new Color(240, 197, 23));
+        panelAcciones.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         btnAgregarEmpleado = new JButton("Agregar");
-        btnAgregarEmpleado.setForeground(new Color(240, 197, 23));
+        btnAgregarEmpleado.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnAgregarEmpleado.setFont(new Font(Constants.VERDANA, btnAgregarEmpleado.getFont().getStyle() | Font.BOLD, btnAgregarEmpleado.getFont().getSize()));
-        btnAgregarEmpleado.setBackground(new Color(0, 0, 0));
+        btnAgregarEmpleado.setBackground(Constants.COLOR_NEGRO);
         btnAgregarEmpleado.setBorderPainted(false);
         btnAgregarEmpleado.addActionListener(this);
         panelAcciones.add(btnAgregarEmpleado);
 
         btnEditar = new JButton("Editar");
-        btnEditar.setForeground(new Color(240, 197, 23));
+        btnEditar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnEditar.setFont(new Font(Constants.VERDANA, btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
-        btnEditar.setBackground(new Color(0, 0, 0));
+        btnEditar.setBackground(Constants.COLOR_NEGRO);
         btnEditar.setBorderPainted(false);
         btnEditar.addActionListener(this);
         panelAcciones.add(btnEditar);
 
         btnEliminar = new JButton("Eliminar");
-        btnEliminar.setForeground(new Color(240, 197, 23));
+        btnEliminar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnEliminar.setFont(new Font(Constants.VERDANA, btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
         btnEliminar.setBorderPainted(false);
-        btnEliminar.setBackground(new Color(0, 0, 0));
+        btnEliminar.setBackground(Constants.COLOR_NEGRO);
         btnEliminar.addActionListener(this);
         panelAcciones.add(btnEliminar);
 
@@ -113,12 +113,12 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
     private void configureTable() {
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-        scrollPane.setBackground(new Color(240, 197, 23));
+        scrollPane.setBorder(new LineBorder(Constants.COLOR_NEGRO, 3));
+        scrollPane.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();
-        table.setBackground(new Color(240, 197, 23));
+        table.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         scrollPane.setViewportView(table);
 
         tableModel.addColumn("Id");
