@@ -94,26 +94,26 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         btnInsertar = new JButton("Agregar");
-        btnInsertar.setBackground(new Color(0, 0, 0));
-        btnInsertar.setFont(new Font("Verdana Pro", btnInsertar.getFont().getStyle() | Font.BOLD, 12));
         btnInsertar.setForeground(new Color(240, 197, 23));
+        btnInsertar.setFont(new Font("Verdana", btnInsertar.getFont().getStyle() | Font.BOLD, btnInsertar.getFont().getSize()));
+        btnInsertar.setBackground(new Color(0, 0, 0));
         btnInsertar.setBorderPainted(false);
         btnInsertar.addActionListener(this);
         panelAcciones.add(btnInsertar);
 
         btnEditar = new JButton("Editar");
-        btnEditar.setBackground(new Color(0, 0, 0));
-        btnEditar.setFont(new Font("Verdana", btnEditar.getFont().getStyle() | Font.BOLD, 12));
         btnEditar.setForeground(new Color(240, 197, 23));
+        btnEditar.setFont(new Font("Verdana", btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
+        btnEditar.setBackground(new Color(0, 0, 0));
         btnEditar.setBorderPainted(false);
         btnEditar.addActionListener(this);
         panelAcciones.add(btnEditar);
 
         btnEliminar = new JButton("Eliminar");
-        btnEliminar.setBackground(new Color(0, 0, 0));
-        btnEliminar.setFont(btnEliminar.getFont().deriveFont(btnEliminar.getFont().getStyle() | Font.BOLD, 12f));
         btnEliminar.setForeground(new Color(240, 197, 23));
+        btnEliminar.setFont(new Font("Verdana", btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
         btnEliminar.setBorderPainted(false);
+        btnEliminar.setBackground(new Color(0, 0, 0));
         btnEliminar.addActionListener(this);
         panelAcciones.add(btnEliminar);
 

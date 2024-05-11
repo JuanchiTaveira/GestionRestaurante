@@ -67,10 +67,11 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         btnVolverAlMenu = new JButton("Volver al menú");
-        btnVolverAlMenu.setForeground(new Color(0, 0, 0));
-        btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 11));
         btnVolverAlMenu.setBackground(new Color(208, 82, 82));
         btnVolverAlMenu.setBorderPainted(false);
+        btnVolverAlMenu.setBorder(UIManager.getBorder("Button.border"));
+        btnVolverAlMenu.setForeground(new Color(0, 0, 0));
+        btnVolverAlMenu.setFont(new Font("Verdana", btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
         btnVolverAlMenu.setHorizontalTextPosition(SwingConstants.CENTER);
         btnVolverAlMenu.addActionListener(this);
         panelVolver.add(btnVolverAlMenu);
