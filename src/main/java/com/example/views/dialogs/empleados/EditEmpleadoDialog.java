@@ -114,7 +114,7 @@ public class EditEmpleadoDialog extends JDialog {
         label_6.setIcon(new ImageIcon("src/main/resources/images/admin.png"));
         formPanel.add(label_6);
         adminComboBox = new JComboBox();
-        adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Constants.COLOR_NEGRO));
+        adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, Constants.COLOR_NEGRO));
         adminComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, adminComboBox.getFont().getStyle(), adminComboBox.getFont().getSize()));
         adminComboBox.setModel(new DefaultComboBoxModel(new String[] {"SI", "NO"}));
         if (admin.equals("SI")) {

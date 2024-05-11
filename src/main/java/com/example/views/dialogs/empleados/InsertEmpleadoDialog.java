@@ -19,7 +19,6 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.border.LineBorder;

@@ -15,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import java.awt.Font;
