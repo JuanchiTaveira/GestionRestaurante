@@ -61,7 +61,7 @@ public class GestionRestaurante extends JFrame {
 		Faker faker = new Faker(new Locale("es"));
 
 		// Crear empleados
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 15; i++) {
 			String usuario = faker.name().username();
 			String password = faker.internet().password();
 			String nombre = faker.name().firstName();
@@ -73,7 +73,7 @@ public class GestionRestaurante extends JFrame {
 		}
 
 		// Crear reservas
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 800; i++) {
 			String clienteNombre = faker.name().firstName();
 			String clienteApellido = faker.name().lastName();
 			String clienteTelefono = faker.phoneNumber().phoneNumber();
@@ -82,7 +82,7 @@ public class GestionRestaurante extends JFrame {
 			clienteController.insertarClienteReserva(cliente);
 
 			int numeroMesa = faker.number().numberBetween(1, 13);
-			LocalDate dia = LocalDate.now().plusDays(faker.number().numberBetween(0, 5));
+			LocalDate dia = LocalDate.now().plusDays(faker.number().numberBetween(-60, 7));
 			Reserva.Horario horario = faker.options().option(Reserva.Horario.class);
 
 			int cantidadPersonas = faker.number().numberBetween(1, mesaController.maxPersonasMesa(numeroMesa));
