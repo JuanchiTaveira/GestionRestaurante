@@ -54,13 +54,11 @@ public class EditEmpleadoDialog extends JDialog {
         labelUsuarioAutofill.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(labelUsuarioAutofill);
 
-        String actualPassword = empleadoController.getEmpleadoById(id).getPassword();
-
         JLabel labelPassword = new JLabel("Contraseña:");
         labelPassword.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
         labelPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelPassword.getFont().getStyle(), labelPassword.getFont().getSize()));
         formPanel.add(labelPassword);
-        passwordField = new JPasswordField(actualPassword);
+        passwordField = new JPasswordField("");
         passwordField.setFont(new Font(Constants.ROCKWELL_NOVA, passwordField.getFont().getStyle(), passwordField.getFont().getSize()));
         passwordField.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,7 +68,7 @@ public class EditEmpleadoDialog extends JDialog {
         labelRepeatPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelRepeatPassword.getFont().getStyle(), labelRepeatPassword.getFont().getSize()));
         labelRepeatPassword.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
         formPanel.add(labelRepeatPassword);
-        repeatPasswordField = new JPasswordField(actualPassword);
+        repeatPasswordField = new JPasswordField("");
         repeatPasswordField.setFont(new Font(Constants.ROCKWELL_NOVA, repeatPasswordField.getFont().getStyle(), repeatPasswordField.getFont().getSize()));
         repeatPasswordField.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         repeatPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,12 +145,12 @@ public class EditEmpleadoDialog extends JDialog {
             String nuevoDni = tfDni.getText();
             Boolean nuevoAdmin = adminComboBox.getSelectedItem().toString().equals("SI");
 
-            if (password.isBlank() || repeatPassword.isBlank() || nuevoNombre.isBlank() || nuevoApellido.isBlank() || nuevoDni.isBlank()) {
+            if (nuevoNombre.isBlank() || nuevoApellido.isBlank() || nuevoDni.isBlank()) {
                 JOptionPane.showMessageDialog(this, "ERROR: Debe completar todos los campos");
                 return;
             }
 
-            if (!password.equals(repeatPassword)) {
+            if ((!password.isBlank() || !repeatPassword.isBlank()) && !password.equals(repeatPassword)) {
                 JOptionPane.showMessageDialog(this, "ERROR: Las contraseñas no coinciden.");
                 return;
             }
@@ -168,7 +166,7 @@ public class EditEmpleadoDialog extends JDialog {
                 Empleado empleadoActualizado = Empleado.builder()
                         .id(Integer.valueOf(id))
                         .usuario(usuario)
-                        .password(password)
+                        .password(password.isBlank() ? oldEmpleado.getPassword() : password)
                         .nombre(nuevoNombre)
                         .apellido(nuevoApellido)
                         .dni(nuevoDni)

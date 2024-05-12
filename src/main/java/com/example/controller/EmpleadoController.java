@@ -100,9 +100,12 @@ public class EmpleadoController {
 
     public Boolean editarEmpleado(Empleado empleadoActualizado) {
         try (Session session = sessionFactory.openSession()) {
+            empleadoActualizado.setPassword(PasswordUtil.hashPassword(empleadoActualizado.getPassword()));
+
             session.beginTransaction();
             session.merge(empleadoActualizado);
             session.getTransaction().commit();
+
             System.out.println("Empleado editado con id: " + empleadoActualizado.getId());
             return true;
         }
