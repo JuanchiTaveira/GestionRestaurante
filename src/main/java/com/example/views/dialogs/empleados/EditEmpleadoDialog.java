@@ -13,7 +13,7 @@ import javax.swing.border.MatteBorder;
 
 public class EditEmpleadoDialog extends JDialog {
     private static final EmpleadoController empleadoController = new EmpleadoController();
-    private final JLabel labelId, labelUsuario;
+    private final JLabel labelIdAutofill, labelUsuarioAutofill;
     private boolean save;
     private JTextField tfNombre, tfApellido, tfDni;
     private JPasswordField passwordField, repeatPasswordField;
@@ -36,50 +36,50 @@ public class EditEmpleadoDialog extends JDialog {
         JPanel formPanel = new JPanel(new GridLayout(8, 2, 5, 5));
         formPanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 
-        JLabel label = new JLabel("ID:");
-        label.setIcon(new ImageIcon("src/main/resources/images/id.png"));
-        label.setFont(new Font(Constants.ROCKWELL_NOVA, label.getFont().getStyle(), label.getFont().getSize()));
-        formPanel.add(label);
-        labelId = new JLabel(id);
+        JLabel labelId = new JLabel("ID:");
+        labelId.setIcon(new ImageIcon("src/main/resources/images/id.png"));
         labelId.setFont(new Font(Constants.ROCKWELL_NOVA, labelId.getFont().getStyle(), labelId.getFont().getSize()));
-        labelId.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(labelId);
+        labelIdAutofill = new JLabel(id);
+        labelIdAutofill.setFont(new Font(Constants.ROCKWELL_NOVA, labelIdAutofill.getFont().getStyle(), labelIdAutofill.getFont().getSize()));
+        labelIdAutofill.setHorizontalAlignment(SwingConstants.CENTER);
+        formPanel.add(labelIdAutofill);
 
-        JLabel label_1 = new JLabel("Usuario:");
-        label_1.setIcon(new ImageIcon("src/main/resources/images/usuario_p.png"));
-        label_1.setFont(new Font(Constants.ROCKWELL_NOVA, label_1.getFont().getStyle(), label_1.getFont().getSize()));
-        formPanel.add(label_1);
-        labelUsuario = new JLabel(usuario);
+        JLabel labelUsuario = new JLabel("Usuario:");
+        labelUsuario.setIcon(new ImageIcon("src/main/resources/images/usuario_p.png"));
         labelUsuario.setFont(new Font(Constants.ROCKWELL_NOVA, labelUsuario.getFont().getStyle(), labelUsuario.getFont().getSize()));
-        labelUsuario.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(labelUsuario);
+        labelUsuarioAutofill = new JLabel(usuario);
+        labelUsuarioAutofill.setFont(new Font(Constants.ROCKWELL_NOVA, labelUsuarioAutofill.getFont().getStyle(), labelUsuarioAutofill.getFont().getSize()));
+        labelUsuarioAutofill.setHorizontalAlignment(SwingConstants.CENTER);
+        formPanel.add(labelUsuarioAutofill);
 
         String actualPassword = empleadoController.getEmpleadoById(id).getPassword();
 
-        JLabel label_2 = new JLabel("Contraseña:");
-        label_2.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
-        label_2.setFont(new Font(Constants.ROCKWELL_NOVA, label_2.getFont().getStyle(), label_2.getFont().getSize()));
-        formPanel.add(label_2);
+        JLabel labelPassword = new JLabel("Contraseña:");
+        labelPassword.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
+        labelPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelPassword.getFont().getStyle(), labelPassword.getFont().getSize()));
+        formPanel.add(labelPassword);
         passwordField = new JPasswordField(actualPassword);
         passwordField.setFont(new Font(Constants.ROCKWELL_NOVA, passwordField.getFont().getStyle(), passwordField.getFont().getSize()));
         passwordField.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(passwordField);
 
-        JLabel label_3 = new JLabel("Repetir contraseña:");
-        label_3.setFont(new Font(Constants.ROCKWELL_NOVA, label_3.getFont().getStyle(), label_3.getFont().getSize()));
-        label_3.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
-        formPanel.add(label_3);
+        JLabel labelRepeatPassword = new JLabel("Repetir contraseña:");
+        labelRepeatPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelRepeatPassword.getFont().getStyle(), labelRepeatPassword.getFont().getSize()));
+        labelRepeatPassword.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
+        formPanel.add(labelRepeatPassword);
         repeatPasswordField = new JPasswordField(actualPassword);
         repeatPasswordField.setFont(new Font(Constants.ROCKWELL_NOVA, repeatPasswordField.getFont().getStyle(), repeatPasswordField.getFont().getSize()));
         repeatPasswordField.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         repeatPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
         formPanel.add(repeatPasswordField);
 
-        JLabel label_4 = new JLabel("Nombre:");
-        label_4.setFont(new Font(Constants.ROCKWELL_NOVA, label_4.getFont().getStyle(), label_4.getFont().getSize()));
-        label_4.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
-        formPanel.add(label_4);
+        JLabel labelNombre = new JLabel("Nombre:");
+        labelNombre.setFont(new Font(Constants.ROCKWELL_NOVA, labelNombre.getFont().getStyle(), labelNombre.getFont().getSize()));
+        labelNombre.setIcon(new ImageIcon("src/main/resources/images/firma.png"));
+        formPanel.add(labelNombre);
         tfNombre = new JTextField(nombre);
         tfNombre.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfNombre.setFont(new Font(Constants.ROCKWELL_NOVA, tfNombre.getFont().getStyle(), tfNombre.getFont().getSize()));
@@ -87,10 +87,10 @@ public class EditEmpleadoDialog extends JDialog {
         formPanel.add(tfNombre);
         tfNombre.setColumns(10);
 
-        JLabel label_5 = new JLabel("Apellido:");
-        label_5.setFont(new Font(Constants.ROCKWELL_NOVA, label_5.getFont().getStyle(), label_5.getFont().getSize()));
-        label_5.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
-        formPanel.add(label_5);
+        JLabel labelApellido = new JLabel("Apellido:");
+        labelApellido.setFont(new Font(Constants.ROCKWELL_NOVA, labelApellido.getFont().getStyle(), labelApellido.getFont().getSize()));
+        labelApellido.setIcon(new ImageIcon("src/main/resources/images/candado_p.png"));
+        formPanel.add(labelApellido);
         tfApellido = new JTextField(apellido);
         tfApellido.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfApellido.setFont(new Font(Constants.ROCKWELL_NOVA, tfApellido.getFont().getStyle(), tfApellido.getFont().getSize()));
@@ -98,10 +98,10 @@ public class EditEmpleadoDialog extends JDialog {
         tfApellido.setColumns(10);
         formPanel.add(tfApellido);
 
-        JLabel label_7 = new JLabel("DNI:");
-        label_7.setIcon(new ImageIcon("src/main/resources/images/dni.png"));
-        label_7.setFont(new Font(Constants.ROCKWELL_NOVA, label_7.getFont().getStyle(), label_7.getFont().getSize()));
-        formPanel.add(label_7);
+        JLabel labelDni = new JLabel("DNI:");
+        labelDni.setIcon(new ImageIcon("src/main/resources/images/dni.png"));
+        labelDni.setFont(new Font(Constants.ROCKWELL_NOVA, labelDni.getFont().getStyle(), labelDni.getFont().getSize()));
+        formPanel.add(labelDni);
         tfDni = new JTextField(dni);
         tfDni.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
         tfDni.setFont(new Font(Constants.ROCKWELL_NOVA, tfDni.getFont().getStyle(), tfDni.getFont().getSize()));
@@ -109,10 +109,10 @@ public class EditEmpleadoDialog extends JDialog {
         tfDni.setColumns(10);
         formPanel.add(tfDni);
 
-        JLabel label_6 = new JLabel("Admin:");
-        label_6.setFont(new Font(Constants.ROCKWELL_NOVA, label_6.getFont().getStyle(), label_6.getFont().getSize()));
-        label_6.setIcon(new ImageIcon("src/main/resources/images/admin.png"));
-        formPanel.add(label_6);
+        JLabel labelAdmin = new JLabel("Admin:");
+        labelAdmin.setFont(new Font(Constants.ROCKWELL_NOVA, labelAdmin.getFont().getStyle(), labelAdmin.getFont().getSize()));
+        labelAdmin.setIcon(new ImageIcon("src/main/resources/images/admin.png"));
+        formPanel.add(labelAdmin);
         adminComboBox = new JComboBox();
         adminComboBox.setBorder(new MatteBorder(2, 2, 2, 2, Constants.COLOR_NEGRO));
         adminComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, adminComboBox.getFont().getStyle(), adminComboBox.getFont().getSize()));
@@ -202,11 +202,11 @@ public class EditEmpleadoDialog extends JDialog {
     }
 
     public String getId() {
-        return labelId.getText();
+        return labelIdAutofill.getText();
     }
 
     public String getUsuario() {
-        return labelUsuario.getText();
+        return labelUsuarioAutofill.getText();
     }
 
 
