@@ -54,9 +54,9 @@ public class GestionRestaurante extends JFrame {
 		empleadoController.insertarEmpleado(empleado);
 		empleadoController.insertarEmpleado(empleado1);
 		empleadoController.insertarEmpleado(empleado2);
-		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan.taveira@gmail.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
-		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "leo.messi@gmail.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado2));
-		reservaController.insertarReserva(new Reserva(new Cliente("Asier", "Azpiazu", "+34666000666", "asier@gmail.com"), 2, LocalDate.now(), Reserva.Horario.ALMUERZO, 3, empleado1));
+		reservaController.persistReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan.taveira@gmail.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
+		reservaController.persistReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "leo.messi@gmail.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado2));
+		reservaController.persistReserva(new Reserva(new Cliente("Asier", "Azpiazu", "+34666000666", "asier@gmail.com"), 2, LocalDate.now(), Reserva.Horario.ALMUERZO, 3, empleado1));
 
 		Faker faker = new Faker(new Locale("es"));
 
@@ -91,7 +91,7 @@ public class GestionRestaurante extends JFrame {
 			Empleado empleadoRandom = empleadoController.getEmpleadoById(String.valueOf(faker.number().numberBetween(1, 10)));
 
 			Reserva reserva = new Reserva(cliente, numeroMesa, dia, horario, cantidadPersonas, empleadoRandom);
-			reservaController.insertarReserva(reserva);
+			reservaController.persistReserva(reserva);
 		}
 	}
 
