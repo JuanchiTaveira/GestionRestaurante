@@ -45,8 +45,6 @@ public class LoginPanel extends JPanel implements ActionListener {
         gestionRestaurante.setLocationRelativeTo(null); // Centra la ventana en la pantalla
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
-
-
         setLayout(new BorderLayout(0,0));
 
         labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
@@ -98,7 +96,6 @@ public class LoginPanel extends JPanel implements ActionListener {
         tfUsuario = new JTextField(15);
         tfUsuario.setFont(new Font(Constants.ROCKWELL_NOVA, tfUsuario.getFont().getStyle(), tfUsuario.getFont().getSize()));
         tfUsuario.setSelectedTextColor(Constants.COLOR_BLANCO);
-        tfUsuario.setToolTipText("");
         tfUsuario.setCaretColor(Constants.COLOR_NEGRO);
         tfUsuario.setBackground(Constants.COLOR_BLANCO);
         gbc_1 = new GridBagConstraints();
@@ -116,45 +113,44 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc_lbIconoCandado.gridy = 2;
         centerPanel.add(lbIconoCandado, gbc_lbIconoCandado);
         
-                labelPassword = new JLabel("Contraseña");
-                labelPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelPassword.getFont().getStyle(), 13));
-                gbc_4 = new GridBagConstraints();
-                gbc_4.insets = insets;
-                gbc_4.gridx = 1;
-                gbc_4.gridy = 2;
-                centerPanel.add(labelPassword, gbc_4);
-        
-                tfPassword = new JPasswordField(15);
-                tfPassword.setFont(new Font(Constants.ROCKWELL_NOVA, tfPassword.getFont().getStyle(), tfPassword.getFont().getSize()));
-                tfPassword.setToolTipText("");
-                gbc_2 = new GridBagConstraints();
-                gbc_2.anchor = GridBagConstraints.WEST;
-                gbc_2.insets = new Insets(5, 5, 5, 0);
-                gbc_2.gridx = 3;
-                gbc_2.gridy = 2;
-                tfPassword.putClientProperty("JComponent.roundRect",true);
-                tfPassword.addActionListener(this);
-                centerPanel.add(tfPassword, gbc_2);
+        labelPassword = new JLabel("Contraseña");
+        labelPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelPassword.getFont().getStyle(), 13));
+        gbc_4 = new GridBagConstraints();
+        gbc_4.insets = insets;
+        gbc_4.gridx = 1;
+        gbc_4.gridy = 2;
+        centerPanel.add(labelPassword, gbc_4);
+
+        tfPassword = new JPasswordField(15);
+        tfPassword.setFont(new Font(Constants.ROCKWELL_NOVA, tfPassword.getFont().getStyle(), tfPassword.getFont().getSize()));
+        gbc_2 = new GridBagConstraints();
+        gbc_2.anchor = GridBagConstraints.WEST;
+        gbc_2.insets = new Insets(5, 5, 5, 0);
+        gbc_2.gridx = 3;
+        gbc_2.gridy = 2;
+        tfPassword.putClientProperty("JComponent.roundRect",true);
+        tfPassword.addActionListener(this);
+        centerPanel.add(tfPassword, gbc_2);
 
         add(centerPanel, BorderLayout.CENTER); // agrego el contenedor central al contenedor principal
         
-                btnIniciarSesion = new JButton("Iniciar sesión");
-                btnIniciarSesion.setBorderPainted(false);
-                btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
-                btnIniciarSesion.setForeground(Constants.COLOR_BLANCO);
-                btnIniciarSesion.setIconTextGap(5);
-                btnIniciarSesion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                btnIniciarSesion.setBackground(Constants.COLOR_NEGRO);
-                btnIniciarSesion.setFont(new Font(Constants.VERDANA, btnIniciarSesion.getFont().getStyle() | Font.BOLD, 15));
-                gbc_3 = new GridBagConstraints();
-                gbc_3.gridwidth = 3;
-                gbc_3.fill = GridBagConstraints.HORIZONTAL;
-                gbc_3.anchor = GridBagConstraints.SOUTH;
-                gbc_3.insets = new Insets(5, 5, 5, 0);
-                gbc_3.gridx = 1;
-                gbc_3.gridy = 3;
-                centerPanel.add(btnIniciarSesion, gbc_3);
-                btnIniciarSesion.addActionListener(this);
+        btnIniciarSesion = new JButton("Iniciar sesión");
+        btnIniciarSesion.setBorderPainted(false);
+        btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnIniciarSesion.setForeground(Constants.COLOR_BLANCO);
+        btnIniciarSesion.setIconTextGap(5);
+        btnIniciarSesion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        btnIniciarSesion.setBackground(Constants.COLOR_NEGRO);
+        btnIniciarSesion.setFont(new Font(Constants.VERDANA, btnIniciarSesion.getFont().getStyle() | Font.BOLD, 15));
+        gbc_3 = new GridBagConstraints();
+        gbc_3.gridwidth = 3;
+        gbc_3.fill = GridBagConstraints.HORIZONTAL;
+        gbc_3.anchor = GridBagConstraints.SOUTH;
+        gbc_3.insets = new Insets(5, 5, 5, 0);
+        gbc_3.gridx = 1;
+        gbc_3.gridy = 3;
+        centerPanel.add(btnIniciarSesion, gbc_3);
+        btnIniciarSesion.addActionListener(this);
 
     }
 
