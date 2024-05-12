@@ -96,7 +96,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
-		ImagePanel imagePanel = new ImagePanel("/images/logopie1b.png");
+		ImagePanel imagePanel = new ImagePanel("/images/logopie1c.png");
 		imagePanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		imagePanel.setPreferredSize(new Dimension(300, 50));
 		add(imagePanel, BorderLayout.SOUTH);
