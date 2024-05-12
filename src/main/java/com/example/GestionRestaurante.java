@@ -54,8 +54,8 @@ public class GestionRestaurante extends JFrame {
 		empleadoController.insertarEmpleado(empleado);
 		empleadoController.insertarEmpleado(empleado1);
 		empleadoController.insertarEmpleado(empleado2);
-		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan@juan.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
-		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "messi@messi.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado2));
+		reservaController.insertarReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan.taveira@gmail.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
+		reservaController.insertarReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "leo.messi@gmail.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado2));
 		reservaController.insertarReserva(new Reserva(new Cliente("Asier", "Azpiazu", "+34666000666", "asier@gmail.com"), 2, LocalDate.now(), Reserva.Horario.ALMUERZO, 3, empleado1));
 
 		Faker faker = new Faker(new Locale("es"));

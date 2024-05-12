@@ -64,9 +64,19 @@ public class EmpleadoController {
     public void eliminarEmpleado(Integer id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+
+            Empleado admin = getEmpleadoByUsuario("admin");
+
+            // Actualizar todas las reservas asociadas al empleado
+            session.createQuery("UPDATE Reserva r SET r.empleado = :admin WHERE r.empleado.id = :id")
+                    .setParameter("admin", admin)
+                    .setParameter("id", id)
+                    .executeUpdate();
+
             session.createQuery("DELETE FROM Empleado u WHERE u.id = :id")
                     .setParameter("id", id)
                     .executeUpdate();
+
             session.getTransaction().commit();
             System.out.println("Empleado eliminado con id: " + id);
         }
