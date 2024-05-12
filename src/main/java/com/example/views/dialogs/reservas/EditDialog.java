@@ -208,16 +208,21 @@ public class EditDialog extends JDialog implements ChangeListener {
                     return;
                 }
 
-                Boolean success = reservaController.editarReserva(reservaActualizada);
+                int resultCode = reservaController.persistReserva(reservaActualizada);
 
-                if (!success) {
+                if (resultCode == 0) {
+                    save = true;
+                } else if (resultCode == -1) {
                     JOptionPane.showMessageDialog(this, "Mesa no disponible en ese horario");
                     return;
+                } else if (resultCode == -2) {
+                    JOptionPane.showMessageDialog(this, "No es posible reservar una mesa para una fecha pasada.");
+                    return;
+                } else if (resultCode == -3) {
+                    JOptionPane.showMessageDialog(this, "La mesa seleccionada no admite la cantidad de personas indicada.");
+                    return;
                 }
-
-                save = true;
             }
-
             dispose();
         });
         buttonPanel.add(saveButton);

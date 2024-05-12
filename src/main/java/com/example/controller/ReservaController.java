@@ -36,22 +36,26 @@ public class ReservaController {
         }
     }
 
-    public Boolean insertarReserva(Reserva reserva) {
+    public int persistReserva(Reserva reserva) {
         try (Session session = sessionFactory.openSession()) {
 
             if (!verificarDisponibilidadMesa(reserva.getNumeroMesa(), reserva.getDia(), reserva.getHorario())) {
-                return false;
+                return -1;
+            }
+
+            if (reserva.getDia().isBefore(LocalDate.now())) {
+                return -2;
             }
 
             if(reserva.getNumeroPersonas() > mesaController.maxPersonasMesa(reserva.getNumeroMesa())) {
-                return false;
+                return -3;
             }
 
             session.beginTransaction();
             session.merge(reserva);
             session.getTransaction().commit();
             System.out.println("Reserva registrada");
-            return true;
+            return 0;
         }
     }
 
@@ -63,25 +67,6 @@ public class ReservaController {
                     .executeUpdate();
             session.getTransaction().commit();
             System.out.println("Reserva eliminada con id: " + id);
-        }
-    }
-
-    public Boolean editarReserva(Reserva reservaActualizada) {
-        try (Session session = sessionFactory.openSession()) {
-
-            if (!verificarDisponibilidadMesa(reservaActualizada.getNumeroMesa(), reservaActualizada.getDia(), reservaActualizada.getHorario())) {
-                return false;
-            }
-
-            if(reservaActualizada.getNumeroPersonas() > mesaController.maxPersonasMesa(reservaActualizada.getNumeroMesa())) {
-                return false;
-            }
-
-            session.beginTransaction();
-            session.merge(reservaActualizada);
-            session.getTransaction().commit();
-            System.out.println("Reserva editada con id: " + reservaActualizada.getId());
-            return true;
         }
     }
 

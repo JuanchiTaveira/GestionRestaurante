@@ -172,16 +172,21 @@ public class InsertDialog extends JDialog implements ChangeListener {
 
             nuevaReserva = new Reserva(cliente, numeroMesa, dia, horario, numeroPersonas, EmpleadoController.authUser);
 
-            Boolean success = reservaController.insertarReserva(nuevaReserva);
+            int resultCode = reservaController.persistReserva(nuevaReserva);
 
-            if (!success) {
+            if (resultCode == 0) {
+                nuevaReserva = reservaController.getReserva(numeroMesa, dia, horario);
+                save = true;
+            } else if (resultCode == -1) {
                 JOptionPane.showMessageDialog(this, "Mesa no disponible en ese horario");
                 return;
+            } else if (resultCode == -2) {
+                JOptionPane.showMessageDialog(this, "No es posible reservar una mesa para una fecha pasada.");
+                return;
+            } else if (resultCode == -3) {
+                JOptionPane.showMessageDialog(this, "La mesa seleccionada no admite la cantidad de personas indicada.");
+                return;
             }
-
-            nuevaReserva = reservaController.getReserva(numeroMesa, dia, horario);
-
-            save = true;
 
             dispose();
         });
