@@ -5,8 +5,7 @@ import com.example.controller.ReservaController;
 import com.example.model.Reserva;
 import com.example.views.dialogs.reservas.EditDialog;
 import com.example.views.dialogs.reservas.InsertDialog;
-import com.example.views.utils.Constants;
-import com.example.views.utils.ImagePanel;
+import com.example.utils.Constants;
 import com.toedter.calendar.JCalendar;
 
 import java.awt.BorderLayout;

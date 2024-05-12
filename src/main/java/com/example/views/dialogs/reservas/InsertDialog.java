@@ -7,7 +7,7 @@ import com.example.controller.ClienteController;
 import com.example.model.Reserva;
 import com.example.model.Cliente;
 import com.example.views.dialogs.clientes.CreateClienteDialog;
-import com.example.views.utils.Constants;
+import com.example.utils.Constants;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.DefaultComboBoxModel;

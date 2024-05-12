@@ -2,7 +2,7 @@ package com.example.views.dialogs.empleados;
 
 import com.example.controller.EmpleadoController;
 import com.example.model.Empleado;
-import com.example.views.utils.Constants;
+import com.example.utils.Constants;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

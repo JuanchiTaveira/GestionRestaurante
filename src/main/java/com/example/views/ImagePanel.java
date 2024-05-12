@@ -1,4 +1,4 @@
-package com.example.views.utils;
+package com.example.views;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;

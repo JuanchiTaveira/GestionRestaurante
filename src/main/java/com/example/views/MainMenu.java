@@ -2,8 +2,7 @@ package com.example.views;
 
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
-import com.example.views.utils.Constants;
-import com.example.views.utils.ImagePanel;
+import com.example.utils.Constants;
 
 import javax.swing.*;
 import java.awt.*;

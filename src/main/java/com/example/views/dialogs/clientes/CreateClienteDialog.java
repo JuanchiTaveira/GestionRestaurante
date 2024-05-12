@@ -2,7 +2,7 @@ package com.example.views.dialogs.clientes;
 
 import com.example.controller.ClienteController;
 import com.example.model.Cliente;
-import com.example.views.utils.Constants;
+import com.example.utils.Constants;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

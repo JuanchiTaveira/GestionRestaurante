@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.config.HibernateUtil;
 import com.example.model.Empleado;
+import com.example.utils.PasswordUtil;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +19,7 @@ public class EmpleadoController {
     }
 
     public Boolean iniciarSesion(String usuario, String password) {
-        Empleado result = getEmpleado(usuario, password);
+        Empleado result = getEmpleado(usuario, PasswordUtil.hashPassword(password));
 
         authUser = result;
 
@@ -50,9 +51,12 @@ public class EmpleadoController {
 
     public void insertarEmpleado(Empleado empleado) {
         try (Session session = sessionFactory.openSession()) {
+            empleado.setPassword(PasswordUtil.hashPassword(empleado.getPassword()));
+
             session.beginTransaction();
             session.persist(empleado);
             session.getTransaction().commit();
+
             System.out.println("Empleado registrado");
         }
     }

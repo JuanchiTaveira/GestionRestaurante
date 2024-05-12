@@ -2,7 +2,7 @@ package com.example.views;
 
 import com.example.GestionRestaurante;
 import com.example.controller.EmpleadoController;
-import com.example.views.utils.Constants;
+import com.example.utils.Constants;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
