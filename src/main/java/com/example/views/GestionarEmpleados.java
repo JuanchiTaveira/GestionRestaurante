@@ -20,20 +20,16 @@ import javax.swing.table.TableRowSorter;
 
 public class GestionarEmpleados extends JPanel implements ActionListener {
     private final GestionRestaurante gestionRestaurante;
-        private JTable table;
-        private JLabel labelTitulo;
-
-        private final DefaultTableModel tableModel = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // Esto hace que todas las celdas sean no editables
-            }
-        };
-        private static final EmpleadoController empleadoController = new EmpleadoController();
-        private JButton btnAgregarEmpleado;
-        private JButton btnEditar;
-        private JButton btnEliminar;
-        private JButton btnVolverAlMenu;
+    private JTable table;
+    private JLabel labelTitulo;
+    private final DefaultTableModel tableModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // Esto hace que todas las celdas sean no editables
+        }
+    };
+    private static final EmpleadoController empleadoController = new EmpleadoController();
+    private JButton btnAgregarEmpleado, btnEditar, btnEliminar, btnVolverAlMenu;
 
     public GestionarEmpleados(GestionRestaurante gestionRestaurante) {
     	setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
