@@ -31,7 +31,7 @@ public class GestionRestaurante extends JFrame {
 
 	public GestionRestaurante() {
 		crearMesas();
-		insertTestData();
+//		insertTestData();
 		initialize();
 	}
 
@@ -82,7 +82,7 @@ public class GestionRestaurante extends JFrame {
 			clienteController.insertarClienteReserva(cliente);
 
 			int numeroMesa = faker.number().numberBetween(1, 13);
-			LocalDate dia = LocalDate.now().plusDays(faker.number().numberBetween(-60, 7));
+			LocalDate dia = LocalDate.now().plusDays(faker.number().numberBetween(-30, 50));
 			Reserva.Horario horario = faker.options().option(Reserva.Horario.class);
 
 			int cantidadPersonas = faker.number().numberBetween(1, mesaController.maxPersonasMesa(numeroMesa));

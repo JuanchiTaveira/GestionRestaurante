@@ -11,7 +11,8 @@
         <property name="current_session_context_class">thread</property>
 
         <!-- Habilitar la creación automática de tablas -->
-        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+<!--        <property name="hibernate.hbm2ddl.auto">create-drop</property>-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Otras propiedades -->
 <!--        <property name="hibernate.show_sql">true</property>-->
