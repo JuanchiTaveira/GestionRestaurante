@@ -47,6 +47,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     private JButton btnVolverAlMenu;
 
     public VerReservasPanel(GestionRestaurante gestionRestaurante) {
+        // Recupera JFrame y settea sus caracteristicas
         this.gestionRestaurante = gestionRestaurante;
         gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
         gestionRestaurante.setSize(1000, 500);
@@ -93,6 +94,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         panelAcciones.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
+        // Botón "Agregar"
         btnInsertar = new JButton("Agregar");
         btnInsertar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnInsertar.setFont(new Font(Constants.VERDANA, btnInsertar.getFont().getStyle() | Font.BOLD, btnInsertar.getFont().getSize()));
@@ -101,6 +103,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         btnInsertar.addActionListener(this);
         panelAcciones.add(btnInsertar);
 
+        // Botón "Editar"
         btnEditar = new JButton("Editar");
         btnEditar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnEditar.setFont(new Font(Constants.VERDANA, btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
@@ -109,6 +112,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
         btnEditar.addActionListener(this);
         panelAcciones.add(btnEditar);
 
+        // Botón "Eliminar"
         btnEliminar = new JButton("Eliminar");
         btnEliminar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnEliminar.setFont(new Font(Constants.VERDANA, btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
@@ -123,11 +127,13 @@ public class VerReservasPanel extends JPanel implements ActionListener {
     }
 
     private void configureTable() {
+        //ScrollPane para la tabla
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBorder(new LineBorder(Constants.COLOR_NEGRO, 3));
         scrollPane.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         add(scrollPane, BorderLayout.CENTER);
 
+        //Tabla
         table = new JTable();
         table.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         scrollPane.setViewportView(table);
@@ -165,7 +171,7 @@ public class VerReservasPanel extends JPanel implements ActionListener {
             insertarReserva();
         } else if (e.getSource().equals(btnEliminar)) {
             int selectedRow = table.getSelectedRow();
-            if (selectedRow != -1) {
+            if (selectedRow != -1) { // Si hay una fila seleccionada
                 eliminarReserva(selectedRow);
             }
         } else if (e.getSource().equals(btnVolverAlMenu)) {

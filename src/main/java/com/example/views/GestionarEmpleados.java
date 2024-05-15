@@ -63,6 +63,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         panelVolver.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panelVolver.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+        // Botón "Volver al menu"
         btnVolverAlMenu = new JButton("Volver al menú");
         btnVolverAlMenu.setBackground(Constants.COLOR_BOTON_VOLVER);
         btnVolverAlMenu.setBorderPainted(false);
@@ -78,6 +79,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         panelAcciones.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         panelAcciones.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
+        // Botón "Agregar"
         btnAgregarEmpleado = new JButton("Agregar");
         btnAgregarEmpleado.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnAgregarEmpleado.setFont(new Font(Constants.VERDANA, btnAgregarEmpleado.getFont().getStyle() | Font.BOLD, btnAgregarEmpleado.getFont().getSize()));
@@ -86,6 +88,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         btnAgregarEmpleado.addActionListener(this);
         panelAcciones.add(btnAgregarEmpleado);
 
+        // Botón "Editar"
         btnEditar = new JButton("Editar");
         btnEditar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnEditar.setFont(new Font(Constants.VERDANA, btnEditar.getFont().getStyle() | Font.BOLD, btnEditar.getFont().getSize()));
@@ -94,6 +97,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
         btnEditar.addActionListener(this);
         panelAcciones.add(btnEditar);
 
+        // Botón "Eliminar"
         btnEliminar = new JButton("Eliminar");
         btnEliminar.setForeground(Constants.COLOR_PRINCIPAL_AMARILLO);
         btnEliminar.setFont(new Font(Constants.VERDANA, btnEliminar.getFont().getStyle() | Font.BOLD, btnEliminar.getFont().getSize()));
@@ -108,11 +112,13 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
     }
 
     private void configureTable() {
+        // ScrollPane
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBorder(new LineBorder(Constants.COLOR_NEGRO, 3));
         scrollPane.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         add(scrollPane, BorderLayout.CENTER);
 
+        // Tabla
         table = new JTable();
         table.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
         scrollPane.setViewportView(table);
@@ -135,7 +141,8 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        empleadoController.getAllEmpleados().forEach(reserva -> tableModel.addRow(empleadoToTableModel(reserva))); //inserta las reservas a la tabla
+        // Insertar las reservas a la tabla
+        empleadoController.getAllEmpleados().forEach(reserva -> tableModel.addRow(empleadoToTableModel(reserva)));
     }
 
     @Override
@@ -149,7 +156,7 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
             insertarEmpleado();
         } else if (e.getSource().equals(btnEliminar)) {
             int selectedRow = table.getSelectedRow();
-            if (selectedRow != -1) {
+            if (selectedRow != -1) { // Si hay una fila seleccionada
                 eliminarEmpleado(selectedRow);
             }
         } else if (e.getSource().equals(btnVolverAlMenu)) {
@@ -215,12 +222,12 @@ public class GestionarEmpleados extends JPanel implements ActionListener {
 
             Boolean isAdmin = table.getValueAt(selectedRow, 5).toString().equals("SI");
 
-            if (EmpleadoController.authUser.getId().equals(id)) {
+            if (EmpleadoController.authUser.getId().equals(id)) { //empleado a eliminar es empleado loggeado?
                 JOptionPane.showMessageDialog(this, "ERROR: No puedes eliminarte a ti mismo.");
                 return;
             }
 
-            if (isAdmin && empleadoController.getEmpleadosAdminCount() < 2) {
+            if (isAdmin && empleadoController.getEmpleadosAdminCount() < 2) { // es el único admin?
                 JOptionPane.showMessageDialog(this, "ERROR: No puede revocar permisos de administrador, ya que éste usuario es el único administrador.");
                 return;
             }

@@ -47,6 +47,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 
         setLayout(new BorderLayout(0,0));
 
+        // Título
         labelTitulo = new JLabel("JAJ - Gestión de Restaurantes"); // titulo de la pantalla
         labelTitulo.setBorder(new MatteBorder(0, 0, 2, 0, Constants.COLOR_NEGRO));
         labelTitulo.setFocusCycleRoot(true);
@@ -54,6 +55,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         labelTitulo.setFont(new Font(Constants.YU_GOTHIC_UI_SEMIBOLD, Font.PLAIN, 22));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
+        // Layout
         GridBagLayout gbl_centerPanel = new GridBagLayout();
         gbl_centerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
         gbl_centerPanel.rowHeights = new int[]{100, 19, 0, 42, 23};
@@ -63,7 +65,8 @@ public class LoginPanel extends JPanel implements ActionListener {
 
         GridBagConstraints gbc;
         Insets insets = new Insets(5, 5, 5, 5); // padding
-        
+
+        // Logo
         lblIconoLogo = new JLabel("");
         ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3a.png");
         Image image = icono.getImage(); // Obtener la imagen del ImageIcon
@@ -76,7 +79,8 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc_lblIconoLogo.gridx = 0;
         gbc_lblIconoLogo.gridy = 0;
         centerPanel.add(lblIconoLogo, gbc_lblIconoLogo);
-        
+
+        // Icon Usuario
         lblIconoUsuario = new JLabel("");
         lblIconoUsuario.setIcon(new ImageIcon("src/main/resources/images/Usuario.png"));
         GridBagConstraints gbc_lblIconoUsuario = new GridBagConstraints();
@@ -85,6 +89,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc_lblIconoUsuario.gridy = 1;
         centerPanel.add(lblIconoUsuario, gbc_lblIconoUsuario);
 
+        // Label Usuario
         labelUsuario = new JLabel("Usuario");
         labelUsuario.setFont(new Font(Constants.ROCKWELL_NOVA, labelUsuario.getFont().getStyle(), 13));
         gbc = new GridBagConstraints();
@@ -93,6 +98,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc.gridy = 1;
         centerPanel.add(labelUsuario, gbc);
 
+        // Text Field Usuario
         tfUsuario = new JTextField(15);
         tfUsuario.setFont(new Font(Constants.ROCKWELL_NOVA, tfUsuario.getFont().getStyle(), tfUsuario.getFont().getSize()));
         tfUsuario.setSelectedTextColor(Constants.COLOR_BLANCO);
@@ -104,7 +110,8 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc_1.gridx = 3;
         gbc_1.gridy = 1;
         centerPanel.add(tfUsuario, gbc_1);
-        
+
+        // Icon contraseña
         lbIconoCandado = new JLabel("");
         lbIconoCandado.setIcon(new ImageIcon("src/main/resources/images/candado.png"));
         GridBagConstraints gbc_lbIconoCandado = new GridBagConstraints();
@@ -112,7 +119,8 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc_lbIconoCandado.gridx = 0;
         gbc_lbIconoCandado.gridy = 2;
         centerPanel.add(lbIconoCandado, gbc_lbIconoCandado);
-        
+
+        // Label contraseña
         labelPassword = new JLabel("Contraseña");
         labelPassword.setFont(new Font(Constants.ROCKWELL_NOVA, labelPassword.getFont().getStyle(), 13));
         gbc_4 = new GridBagConstraints();
@@ -121,6 +129,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         gbc_4.gridy = 2;
         centerPanel.add(labelPassword, gbc_4);
 
+        // Text field contraseña
         tfPassword = new JPasswordField(15);
         tfPassword.setFont(new Font(Constants.ROCKWELL_NOVA, tfPassword.getFont().getStyle(), tfPassword.getFont().getSize()));
         gbc_2 = new GridBagConstraints();
@@ -132,8 +141,9 @@ public class LoginPanel extends JPanel implements ActionListener {
         tfPassword.addActionListener(this);
         centerPanel.add(tfPassword, gbc_2);
 
-        add(centerPanel, BorderLayout.CENTER); // agrego el contenedor central al contenedor principal
-        
+        add(centerPanel, BorderLayout.CENTER); // agrega el contenedor central al contenedor principal
+
+        // Botón iniciar sesión
         btnIniciarSesion = new JButton("Iniciar sesión");
         btnIniciarSesion.setBorderPainted(false);
         btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -161,7 +171,7 @@ public class LoginPanel extends JPanel implements ActionListener {
                 this.setVisible(false);
                 new MainMenu(gestionRestaurante);
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos"); // diálogo
             }
         } else if (e.getSource().equals(tfPassword) && e.getModifiers() == 0) { // si clickeas enter tambien hace login
             btnIniciarSesion.doClick();

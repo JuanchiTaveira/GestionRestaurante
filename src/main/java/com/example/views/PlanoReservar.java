@@ -57,7 +57,8 @@ public class PlanoReservar extends JPanel implements ActionListener {
 	Reserva.Horario horarioSelected;
 
 	public PlanoReservar(GestionRestaurante gestionRestaurante) {
-		this.gestionRestaurante = gestionRestaurante;
+		// Recupera JFrame y settea sus caracteristicas
+		this.gestionRestaurante = gestionRestaurante; // recupera JFrame
 
 		setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		setLayout(new BorderLayout(0, 0));
@@ -68,12 +69,15 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		gestionRestaurante.setLocationRelativeTo(null);
 		gestionRestaurante.setResizable(true);
 
+
+		// Panel para West
 		JPanel filtersContainer = new JPanel(null);
 		filtersContainer.setSize(new Dimension(271, 698));
 		filtersContainer.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		filtersContainer.setBorder(new EmptyBorder(10, 10, 5, 0));
 		add(filtersContainer, BorderLayout.WEST);
 
+		// Calendario JCalendar
 		calendar = new JCalendar();
 		calendar.getDayChooser().setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
 		calendar.getDayChooser().setFont(new Font(Constants.ROCKWELL_NOVA, calendar.getDayChooser().getFont().getStyle(), calendar.getDayChooser().getFont().getSize()));
@@ -88,6 +92,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		calendar.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		calendar.setBorder(new EmptyBorder(10, 10, 0, 10));
 
+		// Horario comboBox
 		horarioComboBox = new JComboBox();
 		horarioComboBox.setFont(new Font(Constants.ROCKWELL_NOVA, horarioComboBox.getFont().getStyle(), horarioComboBox.getFont().getSize()));
 		horarioComboBox.setBorder(new LineBorder(Constants.COLOR_NEGRO, 2));
@@ -97,6 +102,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		basicComboBoxRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		horarioComboBox.setRenderer(basicComboBoxRenderer);
 
+		// Botón Actualizar plano
 		btnActualizarPlano = new JButton("Actualizar");
 		btnActualizarPlano.setBorderPainted(false);
 		btnActualizarPlano.setBorder(UIManager.getBorder("Button.border"));
@@ -105,6 +111,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnActualizarPlano.setFont(new Font(Constants.VERDANA, btnActualizarPlano.getFont().getStyle() | Font.BOLD, 12));
 		btnActualizarPlano.addActionListener(this);
 
+		// Botón volver al menu
 		btnVolverAlMenu = new JButton("Volver al menú");
 		btnVolverAlMenu.setForeground(Constants.COLOR_NEGRO);
 		btnVolverAlMenu.setBorderPainted(false);
@@ -113,10 +120,12 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		btnVolverAlMenu.setFont(new Font(Constants.VERDANA, btnVolverAlMenu.getFont().getStyle() | Font.BOLD, 12));
 		btnVolverAlMenu.addActionListener(this);
 
+		// Lista de reservas en JTable
 		tableReservas = new JTable();
 		configureTableReservas();
 		updateTableReservas();
 
+		// Layout
 		GroupLayout gl_filtersContainer = new GroupLayout(filtersContainer);
 		gl_filtersContainer.setHorizontalGroup(
 				gl_filtersContainer.createParallelGroup(Alignment.TRAILING)
@@ -155,7 +164,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		filtersContainer.setLayout(gl_filtersContainer);
 
-
+		// Panel Imagen Plano
 		ImagePanel imagePanel = new ImagePanel("/images/plano1c.png");
 		imagePanel.setSize(new Dimension(966, 690));
 		imagePanel.setMaximumSize(new Dimension(966, 690));
@@ -163,6 +172,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 		imagePanel.setLayout(null);
 		int width = imagePanel.getWidth();
 
+		// Botones mesas en plano
 		btnMesa1 = new JButton("1");
 		btnMesa1.setIconTextGap(5);
 		btnMesa1.setBorder(UIManager.getBorder("ToggleButton.border"));
@@ -244,7 +254,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 
 		allBtnMesa = List.of(btnMesa1, btnMesa2, btnMesa3, btnMesa4, btnMesa5, btnMesa6, btnMesa7, btnMesa8, btnMesa9, btnMesa10, btnMesa11, btnMesa12, btnMesa13);
 
-		add(imagePanel, BorderLayout.CENTER);
+		add(imagePanel, BorderLayout.CENTER); // añade imagen al panel
 
 		imagePanel.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -253,6 +263,7 @@ public class PlanoReservar extends JPanel implements ActionListener {
 			}
 		});
 
+		// Comprobar fecha y horario visualizados y actualizar colores de botones para mesas libres/reservadas
 		setBtnMesaColor();
 	}
 

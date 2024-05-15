@@ -30,9 +30,12 @@ public class GestionRestaurante extends JFrame {
 	}
 
 	public GestionRestaurante() {
-		crearMesas();
-//		insertTestData();
+
+		// Iniciar ventana login
 		initialize();
+
+		// Usado para poblar base de datos (desarrollo)
+		//insertTestData();
 	}
 
 	private void initialize() {
@@ -43,24 +46,43 @@ public class GestionRestaurante extends JFrame {
 	}
 
 	private void insertTestData() {
+		// Controllers
 		EmpleadoController empleadoController = new EmpleadoController();
 		ReservaController reservaController = new ReservaController();
 		MesaController mesaController = new MesaController();
 		ClienteController clienteController = new ClienteController();
 
+		// Crear mesas
+		mesaController.crearMesa(1, 10);
+		mesaController.crearMesa(2, 4);
+		mesaController.crearMesa(3, 4);
+		mesaController.crearMesa(4, 4);
+		mesaController.crearMesa(5, 4);
+		mesaController.crearMesa(6, 4);
+		mesaController.crearMesa(7, 4);
+		mesaController.crearMesa(8, 4);
+		mesaController.crearMesa(9, 4);
+		mesaController.crearMesa(10, 2);
+		mesaController.crearMesa(11, 2);
+		mesaController.crearMesa(12, 2);
+		mesaController.crearMesa(13, 2);
+
+		//Crear empleados base
 		Empleado empleado = new Empleado("admin", "admin", "Admin", "Admin", "12345678", true);
 		Empleado empleado1 = new Empleado("juan", "juan", "Juan", "Taveira", "Y123456Z", false);
 		Empleado empleado2 = new Empleado("asier", "asier", "Asier", "Azpiazu", "12345678Z", false);
 		empleadoController.insertarEmpleado(empleado);
 		empleadoController.insertarEmpleado(empleado1);
 		empleadoController.insertarEmpleado(empleado2);
+		//Crear reservas base
 		reservaController.persistReserva(new Reserva(new Cliente("Juan", "Taveira", "+34112233", "juan.taveira@gmail.com"), 1, LocalDate.now(), Reserva.Horario.ALMUERZO, 5, empleado));
 		reservaController.persistReserva(new Reserva(new Cliente("Leo", "Messi", "+34112233", "leo.messi@gmail.com"), 5, LocalDate.now(), Reserva.Horario.ALMUERZO, 4, empleado2));
 		reservaController.persistReserva(new Reserva(new Cliente("Asier", "Azpiazu", "+34666000666", "asier@gmail.com"), 2, LocalDate.now(), Reserva.Horario.ALMUERZO, 3, empleado1));
 
+		// Faker para creación masiva
 		Faker faker = new Faker(new Locale("es"));
 
-		// Crear empleados
+		// Crear empleados masivo
 		for (int i = 0; i < 15; i++) {
 			String usuario = faker.name().username();
 			String password = faker.internet().password();
@@ -72,7 +94,7 @@ public class GestionRestaurante extends JFrame {
 			empleadoController.insertarEmpleado(new Empleado(usuario, password, nombre, apellido, dni, admin));
 		}
 
-		// Crear reservas
+		// Crear reservas masivo
 		for (int i = 0; i < 800; i++) {
 			String clienteNombre = faker.name().firstName();
 			String clienteApellido = faker.name().lastName();
@@ -90,26 +112,9 @@ public class GestionRestaurante extends JFrame {
 			// Asignar un empleado al azar a la reserva
 			Empleado empleadoRandom = empleadoController.getEmpleadoById(String.valueOf(faker.number().numberBetween(1, 10)));
 
+			// Crear reserva
 			Reserva reserva = new Reserva(cliente, numeroMesa, dia, horario, cantidadPersonas, empleadoRandom);
 			reservaController.persistReserva(reserva);
 		}
-	}
-
-	private void crearMesas() {
-		MesaController mesaController = new MesaController();
-
-		mesaController.crearMesa(1, 10);
-		mesaController.crearMesa(2, 4);
-		mesaController.crearMesa(3, 4);
-		mesaController.crearMesa(4, 4);
-		mesaController.crearMesa(5, 4);
-		mesaController.crearMesa(6, 4);
-		mesaController.crearMesa(7, 4);
-		mesaController.crearMesa(8, 4);
-		mesaController.crearMesa(9, 4);
-		mesaController.crearMesa(10, 2);
-		mesaController.crearMesa(11, 2);
-		mesaController.crearMesa(12, 2);
-		mesaController.crearMesa(13, 2);
 	}
 }

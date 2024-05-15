@@ -41,6 +41,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		GridBagConstraints gbc;
 		Insets insets = new Insets(5, 5, 5, 5); // padding
 
+		// Logo
 		JLabel imagenLogo = new JLabel("");
 		ImageIcon icono = new ImageIcon("src/main/resources/images/logo_transp3a.png");
 		Image image = icono.getImage(); // Obtener la imagen del ImageIcon
@@ -54,6 +55,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		gbc.gridy = 0;
 		centerPanel.add(imagenLogo, gbc);
 
+		// Botón reservar
 		btnReservar = new JButton("          Reservar           ");
 		btnReservar.setForeground(Constants.COLOR_BLANCO);
 		btnReservar.setBackground(Constants.COLOR_NEGRO);
@@ -66,6 +68,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnReservar.addActionListener(this);
 		centerPanel.add(btnReservar, gbc);
 
+		// Botón Gestionar reservas
 		btnVerReservas = new JButton("  Gestionar Reservas  ");
 		btnVerReservas.setForeground(Constants.COLOR_BLANCO);
 		btnVerReservas.setBackground(Constants.COLOR_NEGRO);
@@ -78,6 +81,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		btnVerReservas.addActionListener(this);
 		centerPanel.add(btnVerReservas, gbc);
 
+		// Botón Gestionar empleados (Solo para Admins)
 		if (EmpleadoController.authUser.isAdmin()) {
 			btnGestionarEmpleados = new JButton("Gestionar Empleados");
 			btnGestionarEmpleados.setForeground(Constants.COLOR_BLANCO);
@@ -96,6 +100,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		gestionRestaurante.getContentPane().add(this, BorderLayout.CENTER);
 
+		// Logo pie
 		ImagePanel imagePanel = new ImagePanel("/images/logopie1c.png");
 		imagePanel.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		imagePanel.setPreferredSize(new Dimension(300, 50));
@@ -107,7 +112,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		panelLogout.setBackground(Constants.COLOR_PRINCIPAL_AMARILLO);
 		panelLogout.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelLogout.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+		// Botón cerrar sesión
 		btnLogout = new JButton("Cerrar sesión");
 		btnLogout.setForeground(Constants.COLOR_NEGRO);
 		btnLogout.setFont(new Font(Constants.VERDANA, btnLogout.getFont().getStyle() | Font.BOLD, 12));
