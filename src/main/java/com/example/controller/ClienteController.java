@@ -27,7 +27,7 @@ public class ClienteController {
 
             return clienteEncontrado;
         } catch (NoResultException e) {
-            System.err.println("ERROR: Cliente no encontrado.");
+            System.err.println("INFO: Cliente no encontrado.");
             return null;
         }
     }
